@@ -262,7 +262,7 @@ function Team1() {
     if (input.length !== 10)
       alert("Please enter a valid game ID");
     else {
-      fetch("http://localhost:8080/https://na1.api.riotgames.com/lol/match/v4/matches/" + input + "?api_key=RGAPI-52a61610-b8a2-4968-91aa-4db800e8a1e6")
+      fetch("https://na1.api.riotgames.com/lol/match/v4/matches/" + input + "?api_key=RGAPI-52a61610-b8a2-4968-91aa-4db800e8a1e6")
         .then((res) => {
           writeGameData(res)
           console.log(res)
