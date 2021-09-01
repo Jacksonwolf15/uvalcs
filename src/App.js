@@ -7,17 +7,17 @@ import { getDatabase, ref, get, set, child, push, onValue } from "firebase/datab
 
 
 const config = {
-  apiKey: "AIzaSyDeAQw1gPdDTVR6kF4ru7O1ae-9j3cPuPs",
-  authDomain: "uvalol-989f6.firebaseapp.com",
-  databaseURL: "https://uvalol-989f6-default-rtdb.firebaseio.com",
-  projectId: "uvalol-989f6",
-  storageBucket: "uvalol-989f6.appspot.com",
-  messagingSenderId: "784419543132",
-  appId: "1:784419543132:web:29aa78c88292bb10a4ae99",
-  measurementId: "G-D631FY7R8W"
+  apiKey: process.env.REACT_APP_apiKey,
+  authDomain: process.env.REACT_APP_authDomain,
+  databaseURL: process.env.REACT_APP_databaseURL,
+  projectId: process.env.REACT_APP_projectId,
+  storageBucket: process.env.REACT_APP_storageBucket,
+  messagingSenderId: process.env.REACT_APP_messagingSenderId,
+  appId: process.env.REACT_APP_appId,
+  measurementId: process.env.REACT_APP_measurementId,
 };
 
-const riotKey = "RGAPI-5c435bb1-36cc-4d36-8121-ed8be40cfc43"
+const riotKey = process.env.REACT_APP_riotKey
 
 try {
   const firebaseApp = initializeApp(config)
