@@ -1,9 +1,9 @@
 import './App.css';
 import React, { useEffect, useState } from "react";
-import { Grid, Card, CardBody, Anchor, Button, Box, Grommet, Header, Nav, Table, TableBody, TableCell, TableHeader, TableRow, TableFooter } from 'grommet';
+import { Grid, Anchor, Button, Box, Grommet, Header, Nav, Table, TableBody, TableCell, TableHeader, TableRow } from 'grommet';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import { initializeApp, firebase } from "firebase/app";
-import { getDatabase, ref, get, set, child, push, onValue } from "firebase/database";
+import { initializeApp } from "firebase/app";
+import { getDatabase, ref, get, set, child, push } from "firebase/database";
 
 
 const config = {
@@ -27,8 +27,6 @@ catch {
 
 }
 
-
-
 const customTheme = {
   button: {
     primary: {
@@ -48,7 +46,7 @@ function App() {
       <Router>
         <Header background="#3b68ff" pad="small">
           <Nav direction="row">
-            <Button style={{fontSize: 'calc(10px + 1.5vmin)', color: 'black', fontWeight: 'bold'}} primary label='UVA LCS'></Button>
+            <Button style={{fontSize: 'calc(10px + 1.5vmin)', color: 'black', fontWeight: 'bold'}} href='/' primary label='UVA LCS'></Button>
             <Anchor style={{fontSize: 'calc(6px + 1.25vmin)'}} color='white' href='/' label='Home'/>|
             <Anchor style={{fontSize: 'calc(6px + 1.25vmin)'}} color='white' href='/Team1' label='Team 1'/>|
             <Anchor style={{fontSize: 'calc(6px + 1.25vmin)'}} color='white' href='/Team2' label='Team 2'/>|
@@ -58,9 +56,14 @@ function App() {
             <Anchor style={{fontSize: 'calc(6px + 1.25vmin)'}} color='white' href='/Team6' label='Team 6'/>
           </Nav>
         </Header>
-      <div className='body'>
+      
+      <div>
+        <div class="bg"></div>
+        <div class="bg bg2"></div>
+        <div class="bg bg3"></div>
           {/* A <Switch> looks through its children <Route>s and
               renders the first one that matches the current URL. */}
+          <div class='box' >
           <Switch>
             <Route path="/Team1">
               <Team1 />
@@ -84,6 +87,7 @@ function App() {
               <Home />
             </Route>
           </Switch>
+          </div>
         </div>
       </Router>
     </Grommet>
@@ -93,50 +97,50 @@ function App() {
 function Home() {
   return(
     <Grommet>
-    <div className="App">
-      <header className="App-header">
-        <Box round='small' pad='large' background='dark-1'>
+    <div>
+      <header>
+        <Box align='center' round='small' pad='medium' background='rgba(255,255,255,.8)' style={{maxWidth: '40rem', margin: 'auto', borderRadius: '.25em', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black', marginTop: '5%'}}>
           <h1>UVA LCS FALL 2021</h1>
           <h2>STANDINGS</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Team</th>
-                <th>Record</th>
-                <th>Points</th>
-              </tr>
-            </thead>
-            <tr>
-              <td>Team 4</td>
-              <td>4-0-1</td>
-              <td>9</td>
-            </tr>
-            <tr>
-              <td>Team 3</td>
-              <td>3-0-2</td>
-              <td>8</td>
-            </tr>
-            <tr>
-              <td>Team 1</td>
-              <td>3-1-1</td>
-              <td>7</td>
-            </tr>
-            <tr>
-              <td>Team 6</td>
-              <td>2-1-2</td>
-              <td>6</td>
-            </tr>
-            <tr>
-              <td>Team 2</td>
-              <td>2-2-1</td>
-              <td>5</td>
-            </tr>
-            <tr>
-              <td>Team 5</td>
-              <td>0-3-2</td>
-              <td>2</td>
-            </tr>
-          </table>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableCell>Team</TableCell>
+                <TableCell>Record</TableCell>
+                <TableCell>Points</TableCell>
+              </TableRow>
+            </TableHeader>
+            <TableRow>
+              <TableCell>Team 4</TableCell>
+              <TableCell>4-0-1</TableCell>
+              <TableCell>9</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Team 3</TableCell>
+              <TableCell>3-0-2</TableCell>
+              <TableCell>8</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Team 1</TableCell>
+              <TableCell>3-1-1</TableCell>
+              <TableCell>7</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Team 6</TableCell>
+              <TableCell>2-1-2</TableCell>
+              <TableCell>6</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Team 2</TableCell>
+              <TableCell>2-2-1</TableCell>
+              <TableCell>5</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Team 5</TableCell>
+              <TableCell>0-3-2</TableCell>
+              <TableCell>2</TableCell>
+            </TableRow>
+          </Table>
         </Box>
       </header>
       
@@ -149,6 +153,7 @@ function Team1() {
 
   const [input, setInput] = useState("")
   const [games, setGames] = useState([])
+  const [submit, setSubmit] = useState(false)
   const captain = 'JWoIf'
 
   useEffect(()=> {
@@ -163,7 +168,8 @@ function Team1() {
     }).catch((error) => {
     console.error(error);
     });
-  }, [])
+    console.log('yo')
+  }, [submit])
   
 
   const handleChange = (newInput) => {
@@ -274,17 +280,7 @@ function Team1() {
     const newPostRef = push(postListRef);
     set(newPostRef, gameData);
     
-    const dbRef = ref(getDatabase());
-    get(child(dbRef, 'team1/games')).then((snapshot) => {
-      if (snapshot.exists()) {
-        console.log(Object.values(snapshot.val()));
-        setGames(Object.values(snapshot.val()))
-      } else {
-        console.log("No data available")
-      }
-    }).catch((error) => {
-      console.error(error)
-    });
+    setSubmit(!submit)
   }
 
 
@@ -299,208 +295,199 @@ function Team1() {
         .then((res)=>{
           writeGameData(res)
         });
-    }
+    } console.log('ho')
   };
 
 
   //This is a component that will be reused to represent each individual game.
   const Game = ({game}) => {
-    const [win, setWin] = useState(false);
-    if (game.member1 === captain || game.member2 === captain || game.member3 === captain || game.member4 === captain || game.member5 === captain) {
-      if (game.homeWin === 'Win') {
-        setWin(true)
+      let win = false
+      if (game.member1 === captain || game.member2 === captain || game.member3 === captain || game.member4 === captain || game.member5 === captain) {
+        if (game.homeWin === 'Win') {
+          win = true
+        }
+        
+      } else {
+        if (game.homeWin === 'Fail') {
+          win = true
+        }
       }
-      
-    } else {
-      if (game.homeWin === 'Fail') {
-        setWin(true)
-      }
-    }
-    const kills = game.member1kills + game.member2kills + game.member3kills + game.member4kills + game.member5kills
-    const oppkills = game.oppmember1kills + game.oppmember2kills + game.oppmember3kills + game.oppmember4kills + game.oppmember5kills
-    if (win) {
-    return (
-      <Grommet full theme={customTheme}>
-        <Grid style={{ padding: '40px'}}
-        fill 
-        rows={['auto']}
-        columns={['1']}
-        gap="small"
-        areas={[
-        { name: 'game', start: [0, 0], end: [0, 0] }
-        ]}
-        >
-        <Box gridArea="game" style={{alignItems: 'center', marginLeft: '10%', marginRight: '10%'}} background="#3a9de8">
-          <h1>{kills} | {oppkills}</h1>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableCell>CHAMP</TableCell>
-                  <TableCell>IGN</TableCell>
-                  <TableCell>KDA</TableCell>
-                  <TableCell>DMG</TableCell>
-                  <TableCell>   </TableCell>
-                  <TableCell>DMG</TableCell>
-                  <TableCell>KDA</TableCell>
-                  <TableCell>IGN</TableCell>
-                  <TableCell>CHAMP</TableCell>
-                </TableRow>
-              </TableHeader>
-                <TableBody>
-                  <TableRow>
-                    <TableCell>{game.member1champ}</TableCell>
-                    <TableCell>{game.member1}</TableCell>
-                    <TableCell>{game.member1kills}/{game.member1deaths}/{game.member1assists}</TableCell>
-                    <TableCell>{game.member1dmg}</TableCell>
-                    <TableCell>   </TableCell>
-                    <TableCell>{game.oppmember1dmg}</TableCell>
-                    <TableCell>{game.oppmember1kills}/{game.oppmember1deaths}/{game.oppmember1assists}</TableCell>
-                    <TableCell>{game.oppmember1}</TableCell>
-                    <TableCell>{game.oppmember1champ}</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>{game.member2champ}</TableCell>
-                    <TableCell>{game.member2}</TableCell>
-                    <TableCell>{game.member2kills}/{game.member2deaths}/{game.member2assists}</TableCell>
-                    <TableCell>{game.member2dmg}</TableCell>
-                    <TableCell>   </TableCell>
-                    <TableCell>{game.oppmember2dmg}</TableCell>
-                    <TableCell>{game.oppmember2kills}/{game.oppmember2deaths}/{game.oppmember2assists}</TableCell>
-                    <TableCell>{game.oppmember2}</TableCell>
-                    <TableCell>{game.oppmember2champ}</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>{game.member3champ}</TableCell>
-                    <TableCell>{game.member3}</TableCell>
-                    <TableCell>{game.member3kills}/{game.member3deaths}/{game.member3assists}</TableCell>
-                    <TableCell>{game.member3dmg}</TableCell>
-                    <TableCell>   </TableCell>
-                    <TableCell>{game.oppmember3dmg}</TableCell>
-                    <TableCell>{game.oppmember3kills}/{game.oppmember3deaths}/{game.oppmember3assists}</TableCell>
-                    <TableCell>{game.oppmember3}</TableCell>
-                    <TableCell>{game.oppmember3champ}</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>{game.member4champ}</TableCell>
-                    <TableCell>{game.member4}</TableCell>
-                    <TableCell>{game.member4kills}/{game.member4deaths}/{game.member4assists}</TableCell>
-                    <TableCell>{game.member4dmg}</TableCell>
-                    <TableCell>   </TableCell>
-                    <TableCell>{game.oppmember4dmg}</TableCell>
-                    <TableCell>{game.oppmember4kills}/{game.oppmember4deaths}/{game.oppmember4assists}</TableCell>
-                    <TableCell>{game.oppmember4}</TableCell>
-                    <TableCell>{game.oppmember4champ}</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>{game.member5champ}</TableCell>
-                    <TableCell>{game.member5}</TableCell>
-                    <TableCell>{game.member5kills}/{game.member5deaths}/{game.member5assists}</TableCell>
-                    <TableCell>{game.member5dmg}</TableCell>
-                    <TableCell>   </TableCell>
-                    <TableCell>{game.oppmember5dmg}</TableCell>
-                    <TableCell>{game.oppmember5kills}/{game.oppmember5deaths}/{game.oppmember5assists}</TableCell>
-                    <TableCell>{game.oppmember5}</TableCell>
-                    <TableCell>{game.oppmember5champ}</TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </Box>
-            </Grid>
-          </Grommet>
-      )}
-    else {
+      const kills = game.member1kills + game.member2kills + game.member3kills + game.member4kills + game.member5kills
+      const oppkills = game.oppmember1kills + game.oppmember2kills + game.oppmember3kills + game.oppmember4kills + game.oppmember5kills
+      if (win) {
       return (
-        <div  style={{display: "flex", flexDirection: "column", height: games.length * 160, marginTop: '4%', marginRight: '-2%', marginBottom: '-5%'}}>
-          <Grommet>
-            
-            <Box style={{alignItems: 'center'}} background="#e83a3a">
-              <h1>{kills} | {oppkills}</h1>
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableCell>CHAMP</TableCell>
-                    <TableCell>IGN</TableCell>
-                    <TableCell>KDA</TableCell>
-                    <TableCell>DMG</TableCell>
-                    <TableCell>   </TableCell>
-                    <TableCell>DMG</TableCell>
-                    <TableCell>KDA</TableCell>
-                    <TableCell>IGN</TableCell>
-                    <TableCell>CHAMP</TableCell>
-                  </TableRow>
-                </TableHeader>
-                  <TableBody>
+        <div  style={{display: "flex", flexDirection: "column", height: games.length * 120, marginTop: '4%', marginRight: '-2%'}}>
+            <Grommet>
+              <Box align='center' round='small' pad='small' background='rgba(71, 188, 255, .8)' style={{marginLeft: '10%', marginRight: '10%', marginBottom: '10px', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'white'}}>
+                <h1>{kills} | {oppkills}</h1>
+                <Table>
+                  <TableHeader>
                     <TableRow>
-                      <TableCell>{game.member1champ}</TableCell>
-                      <TableCell>{game.member1}</TableCell>
-                      <TableCell>{game.member1kills}/{game.member1deaths}/{game.member1assists}</TableCell>
-                      <TableCell>{game.member1dmg}</TableCell>
+                      <TableCell>CHAMP</TableCell>
+                      <TableCell>IGN</TableCell>
+                      <TableCell>KDA</TableCell>
+                      <TableCell>DMG</TableCell>
                       <TableCell>   </TableCell>
-                      <TableCell>{game.oppmember1dmg}</TableCell>
-                      <TableCell>{game.oppmember1kills}/{game.oppmember1deaths}/{game.oppmember1assists}</TableCell>
-                      <TableCell>{game.oppmember1}</TableCell>
-                      <TableCell>{game.oppmember1champ}</TableCell>
+                      <TableCell>DMG</TableCell>
+                      <TableCell>KDA</TableCell>
+                      <TableCell>IGN</TableCell>
+                      <TableCell>CHAMP</TableCell>
                     </TableRow>
+                  </TableHeader>
+                    <TableBody>
+                      <TableRow>
+                        <TableCell>{game.member1champ}</TableCell>
+                        <TableCell>{game.member1}</TableCell>
+                        <TableCell>{game.member1kills}/{game.member1deaths}/{game.member1assists}</TableCell>
+                        <TableCell>{game.member1dmg}</TableCell>
+                        <TableCell>   </TableCell>
+                        <TableCell>{game.oppmember1dmg}</TableCell>
+                        <TableCell>{game.oppmember1kills}/{game.oppmember1deaths}/{game.oppmember1assists}</TableCell>
+                        <TableCell>{game.oppmember1}</TableCell>
+                        <TableCell>{game.oppmember1champ}</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell>{game.member2champ}</TableCell>
+                        <TableCell>{game.member2}</TableCell>
+                        <TableCell>{game.member2kills}/{game.member2deaths}/{game.member2assists}</TableCell>
+                        <TableCell>{game.member2dmg}</TableCell>
+                        <TableCell>   </TableCell>
+                        <TableCell>{game.oppmember2dmg}</TableCell>
+                        <TableCell>{game.oppmember2kills}/{game.oppmember2deaths}/{game.oppmember2assists}</TableCell>
+                        <TableCell>{game.oppmember2}</TableCell>
+                        <TableCell>{game.oppmember2champ}</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell>{game.member3champ}</TableCell>
+                        <TableCell>{game.member3}</TableCell>
+                        <TableCell>{game.member3kills}/{game.member3deaths}/{game.member3assists}</TableCell>
+                        <TableCell>{game.member3dmg}</TableCell>
+                        <TableCell>   </TableCell>
+                        <TableCell>{game.oppmember3dmg}</TableCell>
+                        <TableCell>{game.oppmember3kills}/{game.oppmember3deaths}/{game.oppmember3assists}</TableCell>
+                        <TableCell>{game.oppmember3}</TableCell>
+                        <TableCell>{game.oppmember3champ}</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell>{game.member4champ}</TableCell>
+                        <TableCell>{game.member4}</TableCell>
+                        <TableCell>{game.member4kills}/{game.member4deaths}/{game.member4assists}</TableCell>
+                        <TableCell>{game.member4dmg}</TableCell>
+                        <TableCell>   </TableCell>
+                        <TableCell>{game.oppmember4dmg}</TableCell>
+                        <TableCell>{game.oppmember4kills}/{game.oppmember4deaths}/{game.oppmember4assists}</TableCell>
+                        <TableCell>{game.oppmember4}</TableCell>
+                        <TableCell>{game.oppmember4champ}</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell>{game.member5champ}</TableCell>
+                        <TableCell>{game.member5}</TableCell>
+                        <TableCell>{game.member5kills}/{game.member5deaths}/{game.member5assists}</TableCell>
+                        <TableCell>{game.member5dmg}</TableCell>
+                        <TableCell>   </TableCell>
+                        <TableCell>{game.oppmember5dmg}</TableCell>
+                        <TableCell>{game.oppmember5kills}/{game.oppmember5deaths}/{game.oppmember5assists}</TableCell>
+                        <TableCell>{game.oppmember5}</TableCell>
+                        <TableCell>{game.oppmember5champ}</TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </Box>
+            </Grommet>
+            </div>
+        )}
+      else {
+        return (
+          <div  style={{display: "flex", flexDirection: "column", height: games.length * 120, marginTop: '4%', marginRight: '-2%'}}>
+            <Grommet>
+              <Box align='center' round='small' pad='small' background='rgba(232, 58, 58, .9)' style={{marginLeft: '10%', marginRight: '10%', marginBottom: '10px', boxShadow:'0 0 .25em rgba(0,0,0,.25)'}}>
+                <h1>{kills} | {oppkills}</h1>
+                <Table>
+                  <TableHeader>
                     <TableRow>
-                      <TableCell>{game.member2champ}</TableCell>
-                      <TableCell>{game.member2}</TableCell>
-                      <TableCell>{game.member2kills}/{game.member2deaths}/{game.member2assists}</TableCell>
-                      <TableCell>{game.member2dmg}</TableCell>
+                      <TableCell>CHAMP</TableCell>
+                      <TableCell>IGN</TableCell>
+                      <TableCell>KDA</TableCell>
+                      <TableCell>DMG</TableCell>
                       <TableCell>   </TableCell>
-                      <TableCell>{game.oppmember2dmg}</TableCell>
-                      <TableCell>{game.oppmember2kills}/{game.oppmember2deaths}/{game.oppmember2assists}</TableCell>
-                      <TableCell>{game.oppmember2}</TableCell>
-                      <TableCell>{game.oppmember2champ}</TableCell>
+                      <TableCell>DMG</TableCell>
+                      <TableCell>KDA</TableCell>
+                      <TableCell>IGN</TableCell>
+                      <TableCell>CHAMP</TableCell>
                     </TableRow>
-                    <TableRow>
-                      <TableCell>{game.member3champ}</TableCell>
-                      <TableCell>{game.member3}</TableCell>
-                      <TableCell>{game.member3kills}/{game.member3deaths}/{game.member3assists}</TableCell>
-                      <TableCell>{game.member3dmg}</TableCell>
-                      <TableCell>   </TableCell>
-                      <TableCell>{game.oppmember3dmg}</TableCell>
-                      <TableCell>{game.oppmember3kills}/{game.oppmember3deaths}/{game.oppmember3assists}</TableCell>
-                      <TableCell>{game.oppmember3}</TableCell>
-                      <TableCell>{game.oppmember3champ}</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell>{game.member4champ}</TableCell>
-                      <TableCell>{game.member4}</TableCell>
-                      <TableCell>{game.member4kills}/{game.member4deaths}/{game.member4assists}</TableCell>
-                      <TableCell>{game.member4dmg}</TableCell>
-                      <TableCell>   </TableCell>
-                      <TableCell>{game.oppmember4dmg}</TableCell>
-                      <TableCell>{game.oppmember4kills}/{game.oppmember4deaths}/{game.oppmember4assists}</TableCell>
-                      <TableCell>{game.oppmember4}</TableCell>
-                      <TableCell>{game.oppmember4champ}</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell>{game.member5champ}</TableCell>
-                      <TableCell>{game.member5}</TableCell>
-                      <TableCell>{game.member5kills}/{game.member5deaths}/{game.member5assists}</TableCell>
-                      <TableCell>{game.member5dmg}</TableCell>
-                      <TableCell>   </TableCell>
-                      <TableCell>{game.oppmember5dmg}</TableCell>
-                      <TableCell>{game.oppmember5kills}/{game.oppmember5deaths}/{game.oppmember5assists}</TableCell>
-                      <TableCell>{game.oppmember5}</TableCell>
-                      <TableCell>{game.oppmember5champ}</TableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
-              </Box>
-              
-          </Grommet>
-          </div>
-      )}
+                  </TableHeader>
+                    <TableBody>
+                      <TableRow>
+                        <TableCell>{game.member1champ}</TableCell>
+                        <TableCell>{game.member1}</TableCell>
+                        <TableCell>{game.member1kills}/{game.member1deaths}/{game.member1assists}</TableCell>
+                        <TableCell>{game.member1dmg}</TableCell>
+                        <TableCell>   </TableCell>
+                        <TableCell>{game.oppmember1dmg}</TableCell>
+                        <TableCell>{game.oppmember1kills}/{game.oppmember1deaths}/{game.oppmember1assists}</TableCell>
+                        <TableCell>{game.oppmember1}</TableCell>
+                        <TableCell>{game.oppmember1champ}</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell>{game.member2champ}</TableCell>
+                        <TableCell>{game.member2}</TableCell>
+                        <TableCell>{game.member2kills}/{game.member2deaths}/{game.member2assists}</TableCell>
+                        <TableCell>{game.member2dmg}</TableCell>
+                        <TableCell>   </TableCell>
+                        <TableCell>{game.oppmember2dmg}</TableCell>
+                        <TableCell>{game.oppmember2kills}/{game.oppmember2deaths}/{game.oppmember2assists}</TableCell>
+                        <TableCell>{game.oppmember2}</TableCell>
+                        <TableCell>{game.oppmember2champ}</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell>{game.member3champ}</TableCell>
+                        <TableCell>{game.member3}</TableCell>
+                        <TableCell>{game.member3kills}/{game.member3deaths}/{game.member3assists}</TableCell>
+                        <TableCell>{game.member3dmg}</TableCell>
+                        <TableCell>   </TableCell>
+                        <TableCell>{game.oppmember3dmg}</TableCell>
+                        <TableCell>{game.oppmember3kills}/{game.oppmember3deaths}/{game.oppmember3assists}</TableCell>
+                        <TableCell>{game.oppmember3}</TableCell>
+                        <TableCell>{game.oppmember3champ}</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell>{game.member4champ}</TableCell>
+                        <TableCell>{game.member4}</TableCell>
+                        <TableCell>{game.member4kills}/{game.member4deaths}/{game.member4assists}</TableCell>
+                        <TableCell>{game.member4dmg}</TableCell>
+                        <TableCell>   </TableCell>
+                        <TableCell>{game.oppmember4dmg}</TableCell>
+                        <TableCell>{game.oppmember4kills}/{game.oppmember4deaths}/{game.oppmember4assists}</TableCell>
+                        <TableCell>{game.oppmember4}</TableCell>
+                        <TableCell>{game.oppmember4champ}</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell>{game.member5champ}</TableCell>
+                        <TableCell>{game.member5}</TableCell>
+                        <TableCell>{game.member5kills}/{game.member5deaths}/{game.member5assists}</TableCell>
+                        <TableCell>{game.member5dmg}</TableCell>
+                        <TableCell>   </TableCell>
+                        <TableCell>{game.oppmember5dmg}</TableCell>
+                        <TableCell>{game.oppmember5kills}/{game.oppmember5deaths}/{game.oppmember5assists}</TableCell>
+                        <TableCell>{game.oppmember5}</TableCell>
+                        <TableCell>{game.oppmember5champ}</TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </Box>
+                
+            </Grommet>
+            </div>
+        )}
   };
   
   return(
     <Grommet theme={customTheme}>
-      <Grid style={{paddingTop:'7%'}}
+      <Grid style={{marginTop:'4%'}}
         fill 
-        rows={['xsmall', 'medium', 'medium']}
+        rows={['xsmall', '450px', '250px']}
         columns={['1/2', '1/2']}
-        gap="small"
+        gap="medium"
         areas={[
         { name: 'banner', start: [0, 0], end: [1, 0] },
         { name: 'schedule', start: [0, 1], end: [0, 1] },
@@ -508,86 +495,91 @@ function Team1() {
         { name: 'matches', start: [0,2], end: [1,2] },
         ]}
       >
-        <Box style={{alignItems: 'center'}} gridArea="banner" background="#3b68ff" round='xsmall'>
+        <Box align='center' round='small' pad='small' background='rgba(255,255,255,.8)' style={{marginLeft: '10%', marginRight: '10%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black'}} gridArea="banner" >
           <h1>Team 1</h1>
         </Box>
-        <Box style={{alignItems: 'center'}} gridArea="schedule" background="dark-1">
+        <Box align='center' round='small' pad='small' background='rgba(255,255,255,.8)' style={{marginLeft: '10%', marginRight: '10%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black'}} gridArea="schedule">
           <h1>Schedule</h1>
-          <table>
-            <thead>
-              <tr>
-                <th>Week</th>
-                <th>Home</th>
-                <th>Away</th>
-                <th>Score</th>
-              </tr>
-            </thead>
-            <tr>
-              <td>1</td>
-              <td>Team 3</td>
-              <td>Team 1</td>
-              <td>2-0</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Team 1</td>
-              <td>Team 5</td>
-              <td>1-1</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Team 4</td>
-              <td>Team 1</td>
-              <td>0-2</td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>Team 2</td>
-              <td>Team 1</td>
-              <td>2-0</td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>Team 1</td>
-              <td>Team 6</td>
-              <td>1-1</td>
-            </tr>
-          </table>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableCell>Week</TableCell>
+                <TableCell>Home</TableCell>
+                <TableCell>Away</TableCell>
+                <TableCell>Score</TableCell>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+            <TableRow>
+              <TableCell>1</TableCell>
+              <TableCell>Team 3</TableCell>
+              <TableCell>Team 1</TableCell>
+              <TableCell>2-0</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>2</TableCell>
+              <TableCell>Team 1</TableCell>
+              <TableCell>Team 5</TableCell>
+              <TableCell>1-1</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>3</TableCell>
+              <TableCell>Team 4</TableCell>
+              <TableCell>Team 1</TableCell>
+              <TableCell>0-2</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>4</TableCell>
+              <TableCell>Team 2</TableCell>
+              <TableCell>Team 1</TableCell>
+              <TableCell>2-0</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>5</TableCell>
+              <TableCell>Team 1</TableCell>
+              <TableCell>Team 6</TableCell>
+              <TableCell>1-1</TableCell>
+            </TableRow>
+            </TableBody>
+          </Table>
+          
         </Box>
-        <Box style={{alignItems: 'center'}} gridArea="roster" background="dark-1">
+        <Box align='center' round='small' background='rgba(255,255,255,.8)' style={{marginLeft: '10%', marginRight: '10%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black'}} gridArea="roster">
           <h1>Roster</h1>
-          <table>
-            <thead>
-              <tr>
-                <th>IGN</th>
-                <th>Rank</th>
-              </tr>
-            </thead>
-            <tr>
-              <td><a style={{color: 'white'}} href='https://na.op.gg/summoner/userName=jwoif'>JWoIf</a></td>
-              <td>Diamond 1</td>
-            </tr>
-            <tr>
-              <td><a style={{color: 'white'}} href='https://na.op.gg/summoner/userName=Sariz'>Sariz</a></td>
-              <td>Diamond 1</td>
-            </tr>
-            <tr>
-              <td><a style={{color: 'white'}} href='https://na.op.gg/summoner/userName=trollfaceftw'>Trollfaceftw</a></td>
-              <td>Platinum 3</td>
-            </tr>
-            <tr>
-            <td><a style={{color: 'white'}} href='https://na.op.gg/summoner/userName=spartacus'>Spartacus</a></td>
-              <td>Gold 2</td>
-            </tr>
-            <tr>
-            <td><a style={{color: 'white'}} href='https://na.op.gg/summoner/userName=J%C3%A4cks'>Jäcks</a></td>
-              <td>Silver 4</td>
-            </tr>
-          </table>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableCell>IGN</TableCell>
+                <TableCell>Rank</TableCell>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              <TableRow>
+                <TableCell><a style={{color: 'black'}} href='https://na.op.gg/summoner/userName=jwoif'>JWoIf</a></TableCell>
+                <TableCell>Diamond 1</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell><a style={{color: 'black'}} href='https://na.op.gg/summoner/userName=Sariz'>Sariz</a></TableCell>
+                <TableCell>Diamond 1</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell><a style={{color: 'black'}} href='https://na.op.gg/summoner/userName=trollfaceftw'>Trollfaceftw</a></TableCell>
+                <TableCell>Gold 1</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell><a style={{color: 'black'}} href='https://na.op.gg/summoner/userName=spartacus'>Spartacus</a></TableCell>
+                <TableCell>Silver 1</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell><a style={{color: 'black'}} href='https://na.op.gg/summoner/userName=J%C3%A4cks'>Jäcks</a></TableCell>
+                <TableCell>Silver 4</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
           <h2>Point Total: 187/200</h2>
           <Button href='https://na.op.gg/multi/query=jwoif%2C%20sariz%2C%20spartacus%2C%20Trollfaceftw%2C%20J%C3%A4cks' primary style={{fontSize: 'calc(10px + 1.5vmin)', color: 'black', fontWeight: 'bold'}} label='Team OP.GG'/>
         </Box>
-        <Box style={{alignItems: 'center'}} gridArea="matches" background="dark-1">
+        <Box align='center' round='small' background='rgba(255,255,255,.8)' style={{marginLeft: '10%', marginRight: '10%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black'}} gridArea="matches">
           <h1>Match History</h1>
           <form onSubmit={handleAdd}>
           <h2>Match ID:</h2>
@@ -603,8 +595,7 @@ function Team1() {
         {games.map((game) => (
           <Game game={game}/>
         ))}
-      
-    </Grommet>
+    </Grommet >
   )
 }
 
