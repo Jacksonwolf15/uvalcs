@@ -31,7 +31,7 @@ function Home() {
                 <TableCell>0</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>Team Taesung</TableCell>
+                <TableCell>i like fortnite</TableCell>
                 <TableCell>0-0-0</TableCell>
                 <TableCell>0</TableCell>
               </TableRow>
@@ -41,7 +41,7 @@ function Home() {
                 <TableCell>0</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>Team Shoushukann</TableCell>
+                <TableCell>The Supine Snails</TableCell>
                 <TableCell>0-0-0</TableCell>
                 <TableCell>0</TableCell>
               </TableRow>
@@ -56,7 +56,7 @@ function Home() {
                 <TableCell>0</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>Team Bejeweled</TableCell>
+                <TableCell>The Copium Cartel</TableCell>
                 <TableCell>0-0-0</TableCell>
                 <TableCell>0</TableCell>
               </TableRow>

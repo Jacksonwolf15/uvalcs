@@ -602,7 +602,7 @@ const config = {
                 <TableRow>
                     <TableCell>9/19</TableCell>
                     <TableCell> The Supine Snails</TableCell>
-                    <TableCell>Team Taesung</TableCell>
+                    <TableCell>i like fortnite</TableCell>
                     <TableCell>0-0</TableCell>
                 </TableRow>
                 <TableRow>
@@ -614,7 +614,7 @@ const config = {
                 <TableRow>
                     <TableCell>10/3</TableCell>
                     <TableCell> The Supine Snails</TableCell>
-                    <TableCell>Team Bejeweled</TableCell>
+                    <TableCell>The Copium Cartel</TableCell>
                     <TableCell>0-0</TableCell>
                 </TableRow>
                 <TableRow>
@@ -746,7 +746,7 @@ const config = {
                 <TableRow>
                     <TableCell>9/19</TableCell>
                     <TableCell> The Supine Snails</TableCell>
-                    <TableCell>Team Taesung</TableCell>
+                    <TableCell>i like fortnite</TableCell>
                     <TableCell>0-0</TableCell>
                 </TableRow>
                 <TableRow>
@@ -758,7 +758,7 @@ const config = {
                 <TableRow>
                     <TableCell>10/3</TableCell>
                     <TableCell> The Supine Snails</TableCell>
-                    <TableCell>Team Bejeweled</TableCell>
+                    <TableCell>The Copium Cartel</TableCell>
                     <TableCell>0-0</TableCell>
                 </TableRow>
                 <TableRow>

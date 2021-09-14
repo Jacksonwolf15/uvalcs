@@ -610,7 +610,7 @@ const config = {
               <TableRow>
                 <TableCell>10/3</TableCell>
                 <TableCell>Team Xan</TableCell>
-                <TableCell>Team Taesung</TableCell>
+                <TableCell>The Fortniters</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
@@ -622,7 +622,7 @@ const config = {
               <TableRow>
                 <TableCell>10/17</TableCell>
                 <TableCell>Team Xan</TableCell>
-                <TableCell>Team Bejeweled</TableCell>
+                <TableCell>The Copium Cartel</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
@@ -750,7 +750,7 @@ const config = {
               <TableRow>
                 <TableCell>10/3</TableCell>
                 <TableCell>Team Xan</TableCell>
-                <TableCell>Team Taesung</TableCell>
+                <TableCell>The Fortniters</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
@@ -762,7 +762,7 @@ const config = {
               <TableRow>
                 <TableCell>10/17</TableCell>
                 <TableCell>Team Xan</TableCell>
-                <TableCell>Team Bejeweled</TableCell>
+                <TableCell>The Copium Cartel</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>

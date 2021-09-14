@@ -601,7 +601,7 @@ const config = {
                 <TableRow>
                     <TableCell>9/19</TableCell>
                     <TableCell>The Doomsday Specialists</TableCell>
-                    <TableCell>Team Bejeweled</TableCell>
+                    <TableCell>The Copium Cartel</TableCell>
                     <TableCell>0-0</TableCell>
                 </TableRow>
                 <TableRow>
@@ -643,7 +643,7 @@ const config = {
                 <TableRow>
                     <TableCell>11/7</TableCell>
                     <TableCell>The Doomsday Specialists</TableCell>
-                    <TableCell>Team Taesung</TableCell>
+                    <TableCell>i like fortnite</TableCell>
                     <TableCell>0-0</TableCell>
                 </TableRow>
                 <TableRow>
@@ -745,7 +745,7 @@ const config = {
                 <TableRow>
                     <TableCell>9/19</TableCell>
                     <TableCell>The Doomsday Specialists</TableCell>
-                    <TableCell>Team Bejeweled</TableCell>
+                    <TableCell>The Copium Cartel</TableCell>
                     <TableCell>0-0</TableCell>
                 </TableRow>
                 <TableRow>
@@ -787,7 +787,7 @@ const config = {
                 <TableRow>
                     <TableCell>11/7</TableCell>
                     <TableCell>The Doomsday Specialists</TableCell>
-                    <TableCell>Team Taesung</TableCell>
+                    <TableCell>i like fortnite</TableCell>
                     <TableCell>0-0</TableCell>
                 </TableRow>
                 <TableRow>

@@ -23,7 +23,7 @@ body {
 }
 .bgrats {
   animation:slide 3s ease-in-out infinite alternate;
-  background-image: linear-gradient(-60deg, #fffa75 50%, #75cfff 50%);
+  background-image: linear-gradient(-60deg, #fff700 50%, #101416 50%);
   bottom:0;
   left:-50%;
   opacity:.5;
@@ -32,6 +32,43 @@ body {
   top:0;
   z-index:-1;
 }
+
+.bgkaa {
+  animation:slide 3s ease-in-out infinite alternate;
+  background-image: linear-gradient(-60deg, #39423e 50%, #22e393 50%);
+  bottom:0;
+  left:-50%;
+  opacity:.5;
+  position:fixed;
+  right:-50%;
+  top:0;
+  z-index:-1;
+}
+
+.bgjew {
+  animation:slide 3s ease-in-out infinite alternate;
+  background-image: linear-gradient(-60deg, #8dd2fc 50%, #1bccba 50%);
+  bottom:0;
+  left:-50%;
+  opacity:.5;
+  position:fixed;
+  right:-50%;
+  top:0;
+  z-index:-1;
+}
+
+.bgtae{
+  animation:slide 3s ease-in-out infinite alternate;
+  background-image: linear-gradient(-60deg, black 50%, #ff80d2 50%);
+  bottom:0;
+  left:-50%;
+  opacity:.5;
+  position:fixed;
+  right:-50%;
+  top:0;
+  z-index:-1;
+}
+
 
 .bgver {
   animation:slide 3s ease-in-out infinite alternate;

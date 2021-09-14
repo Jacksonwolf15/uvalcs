@@ -606,7 +606,7 @@ const config = {
               </TableRow>
               <TableRow>
                 <TableCell>9/26</TableCell>
-                <TableCell>Team Taesung</TableCell>
+                <TableCell>i like fortnite</TableCell>
                 <TableCell>Team Verule</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
@@ -618,7 +618,7 @@ const config = {
               </TableRow>
               <TableRow>
                 <TableCell>10/10</TableCell>
-                <TableCell>Team Bejewelled</TableCell>
+                <TableCell>The Copium Cartel</TableCell>
                 <TableCell>Team Verule</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
@@ -749,7 +749,7 @@ const config = {
               </TableRow>
               <TableRow>
                 <TableCell>9/26</TableCell>
-                <TableCell>Team Taesung</TableCell>
+                <TableCell>i like fortnite</TableCell>
                 <TableCell>Team Verule</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
@@ -761,7 +761,7 @@ const config = {
               </TableRow>
               <TableRow>
                 <TableCell>10/10</TableCell>
-                <TableCell>Team Bejewelled</TableCell>
+                <TableCell>The Copium Cartel</TableCell>
                 <TableCell>Team Verule</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>

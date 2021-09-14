@@ -601,7 +601,7 @@ function Team1() {
                 </TableRow>
                 <TableRow>
                   <TableCell>9/26</TableCell>
-                  <TableCell>Team Bejeweled</TableCell>
+                  <TableCell>The Copium Cartel</TableCell>
                   <TableCell>The Electric Rats</TableCell>
                   <TableCell>0-0</TableCell>
                 </TableRow>
@@ -643,7 +643,7 @@ function Team1() {
                 </TableRow>
                 <TableRow>
                   <TableCell>11/14</TableCell>
-                  <TableCell>Team Taesung</TableCell>
+                  <TableCell>i like fortnite</TableCell>
                   <TableCell>The Electric Rats</TableCell>
                   <TableCell>0-0</TableCell>
                 </TableRow>
@@ -744,7 +744,7 @@ function Team1() {
                 </TableRow>
                 <TableRow>
                   <TableCell>9/26</TableCell>
-                  <TableCell>Team Bejeweled</TableCell>
+                  <TableCell>The Copium Cartel</TableCell>
                   <TableCell>The Electric Rats</TableCell>
                   <TableCell>0-0</TableCell>
                 </TableRow>
@@ -786,7 +786,7 @@ function Team1() {
                 </TableRow>
                 <TableRow>
                   <TableCell>11/14</TableCell>
-                  <TableCell>Team Taesung</TableCell>
+                  <TableCell>i like fortnite</TableCell>
                   <TableCell>The Electric Rats</TableCell>
                   <TableCell>0-0</TableCell>
                 </TableRow>

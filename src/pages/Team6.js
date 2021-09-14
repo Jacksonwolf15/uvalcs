@@ -568,6 +568,9 @@ const config = {
     if (bigscreen) {
     return(
       <Grommet  >
+        <div class='bgkaa'></div>
+        <div class='bgkaa bg2'></div>
+        <div class='bgkaa bg3'></div>
         <Grid style={{marginTop:'4%', paddingBottom: '2%'}}
           fill 
           rows={['xsmall', 'auto', '250px']}
@@ -615,7 +618,7 @@ const config = {
               </TableRow>
               <TableRow>
                 <TableCell>10/10</TableCell>
-                <TableCell>Team Taesung</TableCell>
+                <TableCell>i like fortnite</TableCell>
                 <TableCell>Team Kaalok</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
@@ -639,7 +642,7 @@ const config = {
               </TableRow>
               <TableRow>
                 <TableCell>11/7</TableCell>
-                <TableCell>Team Bejeweled</TableCell>
+                <TableCell>The Copium Cartel</TableCell>
                 <TableCell>Team Kaalok</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
@@ -686,7 +689,7 @@ const config = {
               </TableBody>
             </Table>
             <h2>Point Total: 171/175</h2>
-            <Button href='https://na.op.gg/multi/query=Plump%20Dumpling%2CLord%20Bandito%2CWedda%2Cthicccactus%2CL%20TheLaw%20L' primary style={{fontSize: 'calc(10px + 1.5vmin)', color: 'black', fontWeight: 'bold'}} label='Team OP.GG'/>
+            <Button href='https://na.op.gg/multi/query=Plump%20Dumpling%2CLord%20Bandito%2CWedda%2Cthicccactus%2CL%20TheLaw%20L' primary style={{fontSize: 'calc(10px + 1.5vmin)', color: 'black', fontWeight: 'bold', backgroundColor: '#22e393', border: '#22e393'}} label='Team OP.GG'/>
           </Box>
           <Box align='center' round='small' background='rgba(255,255,255,.8)' style={{marginLeft: '10%', marginRight: '10%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black'}} gridArea="matches">
             <h1>Match History</h1>
@@ -697,7 +700,7 @@ const config = {
               type="text"
               onChange={(e) => handleChange(e.target.value)}
             />
-            <Button type='submit' primary style={{fontSize: 'calc(10px + 1.5vmin)', color: 'black', fontWeight: 'bold', marginLeft: '10px'}} label='Add Game'/>
+            <Button type='submit' primary style={{fontSize: 'calc(10px + 1.5vmin)', color: 'black', fontWeight: 'bold', marginLeft: '10px', backgroundColor: '#22e393', border: '#22e393'}} label='Add Game'/>
             </form>
           </Box>
           </Grid>
@@ -708,6 +711,9 @@ const config = {
     )}
     return(
         <Grommet  >
+        <div class='bgkaa'></div>
+        <div class='bgkaa bg2'></div>
+        <div class='bgkaa bg3'></div>
         <Grid style={{marginTop:'4%', paddingBottom: '2%'}}
           fill 
           rows={['xsmall', 'auto', 'auto', 'auto']}
@@ -755,7 +761,7 @@ const config = {
               </TableRow>
               <TableRow>
                 <TableCell>10/10</TableCell>
-                <TableCell>Team Taesung</TableCell>
+                <TableCell>i like fortnite</TableCell>
                 <TableCell>Team Kaalok</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
@@ -779,7 +785,7 @@ const config = {
               </TableRow>
               <TableRow>
                 <TableCell>11/7</TableCell>
-                <TableCell>Team Bejeweled</TableCell>
+                <TableCell>The Copium Cartel</TableCell>
                 <TableCell>Team Kaalok</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
@@ -826,7 +832,7 @@ const config = {
               </TableBody>
             </Table>
             <h2>Point Total: 171/175</h2>
-            <Button href='https://na.op.gg/multi/query=Plump%20Dumpling%2CLord%20Bandito%2CWedda%2Cthicccactus%2CL%20TheLaw%20L' primary style={{fontSize: 'calc(10px + 1.5vmin)', color: 'black', fontWeight: 'bold'}} label='Team OP.GG'/>
+            <Button href='https://na.op.gg/multi/query=Plump%20Dumpling%2CLord%20Bandito%2CWedda%2Cthicccactus%2CL%20TheLaw%20L' primary style={{fontSize: 'calc(10px + 1.5vmin)', color: 'black', fontWeight: 'bold', backgroundColor: '#22e393', border: '#22e393'}} label='Team OP.GG'/>
           </Box>
           <Box align='center' round='small' background='rgba(255,255,255,.8)' style={{marginLeft: '10%', marginRight: '10%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black', paddingBottom: '2%'}} gridArea="matches">
             <h1>Match History</h1>
@@ -837,7 +843,7 @@ const config = {
               type="text"
               onChange={(e) => handleChange(e.target.value)}
             />
-            <Button type='submit' primary style={{fontSize: 'calc(10px + 1.5vmin)', color: 'black', fontWeight: 'bold', marginLeft: '10px'}} label='Add Game'/>
+            <Button type='submit' primary style={{fontSize: 'calc(10px + 1.5vmin)', color: 'black', fontWeight: 'bold', marginLeft: '10px', backgroundColor: '#22e393', border: '#22e393'}} label='Add Game'/>
             </form>
           </Box>
           </Grid>

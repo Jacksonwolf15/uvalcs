@@ -621,7 +621,7 @@ const config = {
               </TableRow>
               <TableRow>
                 <TableCell>10/17</TableCell>
-                <TableCell>Team Taesung</TableCell>
+                <TableCell>i like fortnite</TableCell>
                 <TableCell>Team Keith</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
@@ -634,7 +634,7 @@ const config = {
               <TableRow>
                 <TableCell>10/31</TableCell>
                 <TableCell>Team Keith</TableCell>
-                <TableCell>Team Bejeweled</TableCell>
+                <TableCell>The Copium Cartel</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
@@ -761,7 +761,7 @@ const config = {
               </TableRow>
               <TableRow>
                 <TableCell>10/17</TableCell>
-                <TableCell>Team Taesung</TableCell>
+                <TableCell>i like fortnite</TableCell>
                 <TableCell>Team Keith</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
@@ -774,7 +774,7 @@ const config = {
               <TableRow>
                 <TableCell>10/31</TableCell>
                 <TableCell>Team Keith</TableCell>
-                <TableCell>Team Bejeweled</TableCell>
+                <TableCell>The Copium Cartel</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>

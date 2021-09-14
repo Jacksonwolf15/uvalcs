@@ -53,13 +53,13 @@ function App() {
                   items={[
                     { label: 'The Electric Rats', href: '/Team1', },
                     { label: 'The Doomsday Specialists', href: '/Team2' },
-                    { label: ' The Supine Snails', href: '/Team3' },
+                    { label: 'The Supine Snails', href: '/Team3' },
                     { label: 'Team Xan', href: '/Team4' },
                     { label: 'The Scuttle Hunters', href: '/Team5' },
                     { label: 'Team Kaalok', href: '/Team6' },
-                    { label: 'The Keith', href: '/Team7' },
-                    { label: 'Team Bejeweled', href: '/Team8' },
-                    { label: 'Team Taesung', href: '/Team9' },
+                    { label: 'Team Keith', href: '/Team7' },
+                    { label: 'The Copium Cartel', href: '/Team8' },
+                    { label: 'i like fortnite', href: '/Team9' },
                     { label: 'The Verule', href: '/Team10' },
                   ]}
                 />
@@ -139,10 +139,10 @@ function App() {
                   <Anchor style={{fontSize: 'calc(6px + 1.25vmin)'}} color='white' href='/Team7' label='Team Keith'/>
                 </TableCell>
                 <TableCell>
-                  <Anchor style={{fontSize: 'calc(6px + 1.25vmin)'}} color='white' href='/Team8' label='Team Bejeweled'/>
+                  <Anchor style={{fontSize: 'calc(6px + 1.25vmin)'}} color='white' href='/Team8' label='The Copium Cartel'/>
                 </TableCell>
                 <TableCell>
-                  <Anchor style={{fontSize: 'calc(6px + 1.25vmin)'}} color='white' href='/Team9' label='Team Taesung'/>
+                  <Anchor style={{fontSize: 'calc(6px + 1.25vmin)'}} color='white' href='/Team9' label='i like fortnite'/>
                 </TableCell>
                 <TableCell>
                   <Anchor style={{fontSize: 'calc(6px + 1.25vmin)'}} color='white' href='/Team10' label='Team Verule'/>

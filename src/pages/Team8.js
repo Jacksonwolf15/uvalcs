@@ -568,6 +568,9 @@ const config = {
     if (bigscreen) {
     return(
       <Grommet  >
+        <div class='bgjew'></div>
+        <div class='bgjew bg2'></div>
+        <div class='bgjew bg3'></div>
         <Grid style={{marginTop:'4%', paddingBottom: '2%'}}
           fill 
           rows={['xsmall', 'auto', '250px']}
@@ -581,7 +584,7 @@ const config = {
           ]}
         >
           <Box align='center' round='small' pad='small' background='rgba(255,255,255,.8)' style={{marginLeft: '10%', marginRight: '10%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black'}} gridArea="banner" >
-            <h1>Team Bejeweled</h1>
+            <h1>The Copium Cartel</h1>
           </Box>
           <Box align='center' round='small' pad='small' background='rgba(255,255,255,.8)' style={{marginLeft: '10%', marginRight: '10%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black'}} gridArea="schedule">
             <h1>Schedule</h1>
@@ -598,54 +601,54 @@ const config = {
               <TableRow>
                 <TableCell>9/19</TableCell>
                 <TableCell>The Doomsday Specialists</TableCell>
-                <TableCell>Team Bejeweled</TableCell>
+                <TableCell>The Copium Cartel</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>9/26</TableCell>
-                <TableCell>Team Bejeweled</TableCell>
+                <TableCell>The Copium Cartel</TableCell>
                 <TableCell>The Electric Rats</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>10/3</TableCell>
                 <TableCell> The Supine Snails</TableCell>
-                <TableCell>Team Bejeweled</TableCell>
+                <TableCell>The Copium Cartel</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>10/10</TableCell>
-                <TableCell>Team Bejeweled</TableCell>
+                <TableCell>The Copium Cartel</TableCell>
                 <TableCell>Team Verule</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>10/17</TableCell>
                 <TableCell>Team Xan</TableCell>
-                <TableCell>Team Bejeweled</TableCell>
+                <TableCell>The Copium Cartel</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>10/24</TableCell>
                 <TableCell>Team Bejewelled</TableCell>
-                <TableCell>Team Taesung</TableCell>
+                <TableCell>i like fortnite</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>10/31</TableCell>
                 <TableCell>Team Keith</TableCell>
-                <TableCell>Team Bejeweled</TableCell>
+                <TableCell>The Copium Cartel</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>11/7</TableCell>
-                <TableCell>Team Bejeweled</TableCell>
+                <TableCell>The Copium Cartel</TableCell>
                 <TableCell>Team Kaalok</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>11/14</TableCell>
-                <TableCell>Team Bejeweled</TableCell>
+                <TableCell>The Copium Cartel</TableCell>
                 <TableCell>The Scuttle Hunters</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
@@ -686,7 +689,7 @@ const config = {
               </TableBody>
             </Table>
             <h2>Point Total: 175.4/175</h2>
-            <Button href='https://na.op.gg/multi/query=Bejeweled%2CFishNumber7%2CSarachyan%2CDHLETHALITYSIVIR%2CHentai%20Evelynn' primary style={{fontSize: 'calc(10px + 1.5vmin)', color: 'black', fontWeight: 'bold'}} label='Team OP.GG'/>
+            <Button href='https://na.op.gg/multi/query=Bejeweled%2CFishNumber7%2CSarachyan%2CDHLETHALITYSIVIR%2CHentai%20Evelynn' primary style={{fontSize: 'calc(10px + 1.5vmin)', color: 'black', fontWeight: 'bold', backgroundColor: '#8dd2fc', border: '#8dd2fc',}} label='Team OP.GG'/>
           </Box>
           <Box align='center' round='small' background='rgba(255,255,255,.8)' style={{marginLeft: '10%', marginRight: '10%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black'}} gridArea="matches">
             <h1>Match History</h1>
@@ -697,7 +700,7 @@ const config = {
               type="text"
               onChange={(e) => handleChange(e.target.value)}
             />
-            <Button type='submit' primary style={{fontSize: 'calc(10px + 1.5vmin)', color: 'black', fontWeight: 'bold', marginLeft: '10px'}} label='Add Game'/>
+            <Button type='submit' primary style={{fontSize: 'calc(10px + 1.5vmin)', color: 'black', fontWeight: 'bold', marginLeft: '10px', backgroundColor: '#8dd2fc', border: '#8dd2fc',}} label='Add Game'/>
             </form>
           </Box>
           </Grid>
@@ -708,6 +711,9 @@ const config = {
     )}
     return (
         <Grommet  >
+        <div class='bgjew'></div>
+        <div class='bgjew bg2'></div>
+        <div class='bgjew bg3'></div>
         <Grid style={{marginTop:'4%', paddingBottom: '2%'}}
           fill 
           rows={['xsmall', 'auto', 'auto', 'auto']}
@@ -721,7 +727,7 @@ const config = {
           ]}
         >
           <Box align='center' round='small' pad='small' background='rgba(255,255,255,.8)' style={{marginLeft: '10%', marginRight: '10%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black'}} gridArea="banner" >
-            <h1>Team Bejeweled</h1>
+            <h1>The Copium Cartel</h1>
           </Box>
           <Box align='center' round='small' pad='small' background='rgba(255,255,255,.8)' style={{marginLeft: '10%', marginRight: '10%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black'}} gridArea="schedule">
             <h1>Schedule</h1>
@@ -738,54 +744,54 @@ const config = {
               <TableRow>
                 <TableCell>9/19</TableCell>
                 <TableCell>The Doomsday Specialists</TableCell>
-                <TableCell>Team Bejeweled</TableCell>
+                <TableCell>The Copium Cartel</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>9/26</TableCell>
-                <TableCell>Team Bejeweled</TableCell>
+                <TableCell>The Copium Cartel</TableCell>
                 <TableCell>The Electric Rats</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>10/3</TableCell>
                 <TableCell> The Supine Snails</TableCell>
-                <TableCell>Team Bejeweled</TableCell>
+                <TableCell>The Copium Cartel</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>10/10</TableCell>
-                <TableCell>Team Bejeweled</TableCell>
+                <TableCell>The Copium Cartel</TableCell>
                 <TableCell>Team Verule</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>10/17</TableCell>
                 <TableCell>Team Xan</TableCell>
-                <TableCell>Team Bejeweled</TableCell>
+                <TableCell>The Copium Cartel</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>10/24</TableCell>
                 <TableCell>Team Bejewelled</TableCell>
-                <TableCell>Team Taesung</TableCell>
+                <TableCell>i like fortnite</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>10/31</TableCell>
                 <TableCell>Team Keith</TableCell>
-                <TableCell>Team Bejeweled</TableCell>
+                <TableCell>The Copium Cartel</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>11/7</TableCell>
-                <TableCell>Team Bejeweled</TableCell>
+                <TableCell>The Copium Cartel</TableCell>
                 <TableCell>Team Kaalok</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>11/14</TableCell>
-                <TableCell>Team Bejeweled</TableCell>
+                <TableCell>The Copium Cartel</TableCell>
                 <TableCell>The Scuttle Hunters</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
@@ -826,7 +832,7 @@ const config = {
               </TableBody>
             </Table>
             <h2>Point Total: 175.4/175</h2>
-            <Button href='https://na.op.gg/multi/query=Bejeweled%2CFishNumber7%2CSarachyan%2CDHLETHALITYSIVIR%2CHentai%20Evelynn' primary style={{fontSize: 'calc(10px + 1.5vmin)', color: 'black', fontWeight: 'bold'}} label='Team OP.GG'/>
+            <Button href='https://na.op.gg/multi/query=Bejeweled%2CFishNumber7%2CSarachyan%2CDHLETHALITYSIVIR%2CHentai%20Evelynn' primary style={{fontSize: 'calc(10px + 1.5vmin)', color: 'black', fontWeight: 'bold', backgroundColor: '#8dd2fc', border: '#8dd2fc',}} label='Team OP.GG'/>
           </Box>
           <Box align='center' round='small' background='rgba(255,255,255,.8)' style={{marginLeft: '10%', marginRight: '10%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black', paddingBottom: '2%'}} gridArea="matches">
             <h1>Match History</h1>
@@ -837,7 +843,7 @@ const config = {
               type="text"
               onChange={(e) => handleChange(e.target.value)}
             />
-            <Button type='submit' primary style={{fontSize: 'calc(10px + 1.5vmin)', color: 'black', fontWeight: 'bold', marginLeft: '10px'}} label='Add Game'/>
+            <Button type='submit' primary style={{fontSize: 'calc(10px + 1.5vmin)', color: 'black', fontWeight: 'bold', marginLeft: '10px', backgroundColor: '#8dd2fc', border: '#8dd2fc',}} label='Add Game'/>
             </form>
           </Box>
           </Grid>
