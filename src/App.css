@@ -69,6 +69,29 @@ body {
   z-index:-1;
 }
 
+.bgXan{
+  animation:slide 3s ease-in-out infinite alternate;
+  background-image: linear-gradient(-60deg, #2af0fa 50%, #a153cf 50%);
+  bottom:0;
+  left:-50%;
+  opacity:.5;
+  position:fixed;
+  right:-50%;
+  top:0;
+  z-index:-1;
+}
+
+.bgKei {
+  animation:slide 3s ease-in-out infinite alternate;
+  background-image: linear-gradient(-60deg, #faa72e 50%, #966fd6 50%);
+  bottom:0;
+  left:-50%;
+  opacity:.5;
+  position:fixed;
+  right:-50%;
+  top:0;
+  z-index:-1;
+}
 
 .bgver {
   animation:slide 3s ease-in-out infinite alternate;

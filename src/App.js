@@ -14,7 +14,6 @@ import Team10 from './pages/Team10'
 import { Anchor, Button, Menu, Box, Grommet, Header, Table, TableCell, TableRow } from 'grommet';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, get, set, child, push } from "firebase/database";
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const config = {
@@ -54,7 +53,7 @@ function App() {
                     { label: 'The Electric Rats', href: '/Team1', },
                     { label: 'The Doomsday Specialists', href: '/Team2' },
                     { label: 'The Supine Snails', href: '/Team3' },
-                    { label: 'Team Xan', href: '/Team4' },
+                    { label: 'Team Jungle Diff ', href: '/Team4' },
                     { label: 'The Scuttle Hunters', href: '/Team5' },
                     { label: 'Team Kaalok', href: '/Team6' },
                     { label: 'Team Keith', href: '/Team7' },
@@ -127,7 +126,7 @@ function App() {
                   <Anchor style={{fontSize: 'calc(6px + 1.25vmin)'}} color='white' href='/Team3' label=' The Supine Snails'/>
                 </TableCell>
                 <TableCell>
-                  <Anchor style={{fontSize: 'calc(6px + 1.25vmin)'}} color='white' href='/Team4' label='Team Xan'/>
+                  <Anchor style={{fontSize: 'calc(6px + 1.25vmin)'}} color='white' href='/Team4' label='Team Jungle Diff '/>
                 </TableCell>
                 <TableCell>
                   <Anchor style={{fontSize: 'calc(6px + 1.25vmin)'}} color='white' href='/Team5' label='The Scuttle Hunters'/>

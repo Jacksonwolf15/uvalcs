@@ -61,7 +61,7 @@ function Home() {
                 <TableCell>0</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>Team Xan</TableCell>
+                <TableCell>Team Jungle Diff </TableCell>
                 <TableCell>0-0-0</TableCell>
                 <TableCell>0</TableCell>
               </TableRow>

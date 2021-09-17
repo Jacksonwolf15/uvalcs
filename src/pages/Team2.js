@@ -1,9 +1,11 @@
+/* eslint-disable react/jsx-no-target-blank */
 import '../App.css';
 import React, { useEffect, useState } from "react";
 import { Grid, Button, Box, Grommet, Table, TableBody, TableCell, TableHeader, TableRow } from 'grommet';
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get, set, child, push } from "firebase/database";
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import Game from '../components/game.js'
 
 const config = {
     apiKey: process.env.REACT_APP_apiKey,
@@ -380,189 +382,6 @@ const config = {
     };
   
   
-    //This is a component that will be reused to represent each individual game.
-    const Game = ({game}) => {
-        let win = false
-        if (game.member1 === captain || game.member2 === captain || game.member3 === captain || game.member4 === captain || game.member5 === captain) {
-          if (game.homeWin === 'Win') {
-            win = true
-          }
-          
-        } else {
-          if (game.homeWin === 'Fail') {
-            win = true
-          }
-        }
-  
-        
-        const kills = game.member1kills + game.member2kills + game.member3kills + game.member4kills + game.member5kills
-        const oppkills = game.oppmember1kills + game.oppmember2kills + game.oppmember3kills + game.oppmember4kills + game.oppmember5kills
-        if (win) {
-        return (
-          <div  style={{display: "flex", flexDirection: "column", height: games.length * 120, marginTop: '4%', marginRight: '-2%'}}>
-              <Grommet>
-                <Box align='center' round='small' pad='small' background='rgba(71, 188, 255, .8)' style={{marginLeft: '10%', marginRight: '10%', marginBottom: '10px', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'white'}}>
-                  <h1>{kills} | {oppkills}</h1>
-                  <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableCell>CHAMP</TableCell>
-                        <TableCell>IGN</TableCell>
-                        <TableCell>KDA</TableCell>
-                        <TableCell>DMG</TableCell>
-                        <TableCell>   </TableCell>
-                        <TableCell>DMG</TableCell>
-                        <TableCell>KDA</TableCell>
-                        <TableCell>IGN</TableCell>
-                        <TableCell>CHAMP</TableCell>
-                      </TableRow>
-                    </TableHeader>
-                      <TableBody>
-                        <TableRow>
-                          <TableCell>{game.member1champname}</TableCell>
-                          <TableCell>{game.member1}</TableCell>
-                          <TableCell>{game.member1kills}/{game.member1deaths}/{game.member1assists}</TableCell>
-                          <TableCell>{game.member1dmg}</TableCell>
-                          <TableCell>   </TableCell>
-                          <TableCell>{game.oppmember1dmg}</TableCell>
-                          <TableCell>{game.oppmember1kills}/{game.oppmember1deaths}/{game.oppmember1assists}</TableCell>
-                          <TableCell>{game.oppmember1}</TableCell>
-                          <TableCell>{game.oppmember1champname}</TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell>{game.member2champname}</TableCell>
-                          <TableCell>{game.member2}</TableCell>
-                          <TableCell>{game.member2kills}/{game.member2deaths}/{game.member2assists}</TableCell>
-                          <TableCell>{game.member2dmg}</TableCell>
-                          <TableCell>   </TableCell>
-                          <TableCell>{game.oppmember2dmg}</TableCell>
-                          <TableCell>{game.oppmember2kills}/{game.oppmember2deaths}/{game.oppmember2assists}</TableCell>
-                          <TableCell>{game.oppmember2}</TableCell>
-                          <TableCell>{game.oppmember2champname}</TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell>{game.member3champname}</TableCell>
-                          <TableCell>{game.member3}</TableCell>
-                          <TableCell>{game.member3kills}/{game.member3deaths}/{game.member3assists}</TableCell>
-                          <TableCell>{game.member3dmg}</TableCell>
-                          <TableCell>   </TableCell>
-                          <TableCell>{game.oppmember3dmg}</TableCell>
-                          <TableCell>{game.oppmember3kills}/{game.oppmember3deaths}/{game.oppmember3assists}</TableCell>
-                          <TableCell>{game.oppmember3}</TableCell>
-                          <TableCell>{game.oppmember3champname}</TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell>{game.member4champname}</TableCell>
-                          <TableCell>{game.member4}</TableCell>
-                          <TableCell>{game.member4kills}/{game.member4deaths}/{game.member4assists}</TableCell>
-                          <TableCell>{game.member4dmg}</TableCell>
-                          <TableCell>   </TableCell>
-                          <TableCell>{game.oppmember4dmg}</TableCell>
-                          <TableCell>{game.oppmember4kills}/{game.oppmember4deaths}/{game.oppmember4assists}</TableCell>
-                          <TableCell>{game.oppmember4}</TableCell>
-                          <TableCell>{game.oppmember4champname}</TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell>{game.member5champname}</TableCell>
-                          <TableCell>{game.member5}</TableCell>
-                          <TableCell>{game.member5kills}/{game.member5deaths}/{game.member5assists}</TableCell>
-                          <TableCell>{game.member5dmg}</TableCell>
-                          <TableCell>   </TableCell>
-                          <TableCell>{game.oppmember5dmg}</TableCell>
-                          <TableCell>{game.oppmember5kills}/{game.oppmember5deaths}/{game.oppmember5assists}</TableCell>
-                          <TableCell>{game.oppmember5}</TableCell>
-                          <TableCell>{game.oppmember5champname}</TableCell>
-                        </TableRow>
-                      </TableBody>
-                    </Table>
-                  </Box>
-              </Grommet>
-              </div>
-          )}
-        else {
-          return (
-            <div  style={{display: "flex", flexDirection: "column", height: games.length * 120, marginTop: '4%', marginRight: '-2%'}}>
-              <Grommet>
-                <Box align='center' round='small' pad='small' background='rgba(232, 58, 58, .9)' style={{marginLeft: '10%', marginRight: '10%', marginBottom: '10px', boxShadow:'0 0 .25em rgba(0,0,0,.25)'}}>
-                  <h1>{kills} | {oppkills}</h1>
-                  <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableCell>CHAMP</TableCell>
-                        <TableCell>IGN</TableCell>
-                        <TableCell>KDA</TableCell>
-                        <TableCell>DMG</TableCell>
-                        <TableCell>   </TableCell>
-                        <TableCell>DMG</TableCell>
-                        <TableCell>KDA</TableCell>
-                        <TableCell>IGN</TableCell>
-                        <TableCell>CHAMP</TableCell>
-                      </TableRow>
-                    </TableHeader>
-                      <TableBody>
-                        <TableRow>
-                          <TableCell>{game.member1champname}</TableCell>
-                          <TableCell>{game.member1}</TableCell>
-                          <TableCell>{game.member1kills}/{game.member1deaths}/{game.member1assists}</TableCell>
-                          <TableCell>{game.member1dmg}</TableCell>
-                          <TableCell>   </TableCell>
-                          <TableCell>{game.oppmember1dmg}</TableCell>
-                          <TableCell>{game.oppmember1kills}/{game.oppmember1deaths}/{game.oppmember1assists}</TableCell>
-                          <TableCell>{game.oppmember1}</TableCell>
-                          <TableCell>{game.oppmember1champname}</TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell>{game.member1champname}</TableCell>
-                          <TableCell>{game.member2}</TableCell>
-                          <TableCell>{game.member2kills}/{game.member2deaths}/{game.member2assists}</TableCell>
-                          <TableCell>{game.member2dmg}</TableCell>
-                          <TableCell>   </TableCell>
-                          <TableCell>{game.oppmember2dmg}</TableCell>
-                          <TableCell>{game.oppmember2kills}/{game.oppmember2deaths}/{game.oppmember2assists}</TableCell>
-                          <TableCell>{game.oppmember2}</TableCell>
-                          <TableCell>{game.oppmember2champname}</TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell>{game.member3champname}</TableCell>
-                          <TableCell>{game.member3}</TableCell>
-                          <TableCell>{game.member3kills}/{game.member3deaths}/{game.member3assists}</TableCell>
-                          <TableCell>{game.member3dmg}</TableCell>
-                          <TableCell>   </TableCell>
-                          <TableCell>{game.oppmember3dmg}</TableCell>
-                          <TableCell>{game.oppmember3kills}/{game.oppmember3deaths}/{game.oppmember3assists}</TableCell>
-                          <TableCell>{game.oppmember3}</TableCell>
-                          <TableCell>{game.oppmember3champname}</TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell>{game.member4champname}</TableCell>
-                          <TableCell>{game.member4}</TableCell>
-                          <TableCell>{game.member4kills}/{game.member4deaths}/{game.member4assists}</TableCell>
-                          <TableCell>{game.member4dmg}</TableCell>
-                          <TableCell>   </TableCell>
-                          <TableCell>{game.oppmember4dmg}</TableCell>
-                          <TableCell>{game.oppmember4kills}/{game.oppmember4deaths}/{game.oppmember4assists}</TableCell>
-                          <TableCell>{game.oppmember4}</TableCell>
-                          <TableCell>{game.oppmember4champname}</TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell>{game.member5champname}</TableCell>
-                          <TableCell>{game.member5}</TableCell>
-                          <TableCell>{game.member5kills}/{game.member5deaths}/{game.member5assists}</TableCell>
-                          <TableCell>{game.member5dmg}</TableCell>
-                          <TableCell>   </TableCell>
-                          <TableCell>{game.oppmember5dmg}</TableCell>
-                          <TableCell>{game.oppmember5kills}/{game.oppmember5deaths}/{game.oppmember5assists}</TableCell>
-                          <TableCell>{game.oppmember5}</TableCell>
-                          <TableCell>{game.oppmember5champname}</TableCell>
-                        </TableRow>
-                      </TableBody>
-                    </Table>
-                  </Box>
-                  
-              </Grommet>
-              </div>
-          )}
-    };
     const bigscreen = useMediaQuery('(min-width: 1138px)');
   
     if (bigscreen) {
@@ -599,12 +418,6 @@ const config = {
                 </TableHeader>
                 <TableBody>
                 <TableRow>
-                    <TableCell>9/19</TableCell>
-                    <TableCell>The Doomsday Specialists</TableCell>
-                    <TableCell>The Copium Cartel</TableCell>
-                    <TableCell>0-0</TableCell>
-                </TableRow>
-                <TableRow>
                     <TableCell>9/26</TableCell>
                     <TableCell>The Scuttle Hunters</TableCell>
                     <TableCell>The Doomsday Specialists</TableCell>
@@ -636,7 +449,7 @@ const config = {
                 </TableRow>
                 <TableRow>
                     <TableCell>10/31</TableCell>
-                    <TableCell>Team Xan</TableCell>
+                    <TableCell>Team Jungle Diff </TableCell>
                     <TableCell>The Doomsday Specialists</TableCell>
                     <TableCell>0-0</TableCell>
                 </TableRow>
@@ -667,29 +480,29 @@ const config = {
                 </TableHeader>
                 <TableBody>
                     <TableRow>
-                    <TableCell><a style={{color: 'black'}} href='https://na.op.gg/summoner/userName=Von+Bon'>Von Bon</a></TableCell>
+                    <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Von+Bon'>Von Bon</a></TableCell>
                     <TableCell>Diamond 4</TableCell>
                     </TableRow>
                     <TableRow>
-                    <TableCell><a style={{color: 'black'}} href='https://na.op.gg/summoner/userName=Lucaspeng'>Lucaspeng</a></TableCell>
+                    <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Lukaspeng'>Lukaspeng</a></TableCell>
                     <TableCell>unranked</TableCell>
                     </TableRow>
                     <TableRow>
-                    <TableCell><a style={{color: 'black'}} href='https://na.op.gg/summoner/userName=Klauspeng'>Klauspeng</a></TableCell>
+                    <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Klauspeng'>Klauspeng</a></TableCell>
                     <TableCell>Silver 4</TableCell>
                     </TableRow>
                     <TableRow>
-                    <TableCell><a style={{color: 'black'}} href='https://na.op.gg/summoner/userName=Tulla3212'>Tulla3212</a></TableCell>
+                    <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Tulla3212'>Tulla3212</a></TableCell>
                     <TableCell>Plat 3</TableCell>
                     </TableRow>
                     <TableRow>
-                    <TableCell><a style={{color: 'black'}} href='https://na.op.gg/summoner/userName=Spades+Gambit'>Spades Gambit</a></TableCell>
+                    <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Spades+Gambit'>Spades Gambit</a></TableCell>
                     <TableCell>Bronze 1</TableCell>
                     </TableRow>
                 </TableBody>
                 </Table>
                 <h2>Point Total: 162.8/175</h2>
-                <Button href='https://na.op.gg/multi/query=Von%20Bon%2Clukaspeng%2Cklauspeng%2CSpades%20Gambit%2CTulla3212' primary style={{fontSize: 'calc(10px + 1.5vmin)', color: 'white', fontWeight: 'bold', backgroundColor: 'black', border: 'black'}} label='Team OP.GG'/>
+                <Button target="_blank" href='https://na.op.gg/multi/query=Von%20Bon%2Clukaspeng%2Cklauspeng%2CSpades%20Gambit%2CTulla3212' primary style={{fontSize: 'calc(10px + 1.5vmin)', color: 'white', fontWeight: 'bold', backgroundColor: 'black', border: 'black'}} label='Team OP.GG'/>
             </Box>
             <Box align='center' round='small' background='rgba(255,255,255,.8)' style={{marginLeft: '10%', marginRight: '10%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black'}} gridArea="matches">
                 <h1>Match History</h1>
@@ -705,7 +518,7 @@ const config = {
             </Box>
             </Grid>
             {games.map((game) => (
-                <Game game={game}/>
+                 <Game game={game} captain={captain}/>
             ))}
         </Grommet >
         )
@@ -743,12 +556,6 @@ const config = {
                 </TableHeader>
                 <TableBody>
                 <TableRow>
-                    <TableCell>9/19</TableCell>
-                    <TableCell>The Doomsday Specialists</TableCell>
-                    <TableCell>The Copium Cartel</TableCell>
-                    <TableCell>0-0</TableCell>
-                </TableRow>
-                <TableRow>
                     <TableCell>9/26</TableCell>
                     <TableCell>The Scuttle Hunters</TableCell>
                     <TableCell>The Doomsday Specialists</TableCell>
@@ -780,7 +587,7 @@ const config = {
                 </TableRow>
                 <TableRow>
                     <TableCell>10/31</TableCell>
-                    <TableCell>Team Xan</TableCell>
+                    <TableCell>Team Jungle Diff </TableCell>
                     <TableCell>The Doomsday Specialists</TableCell>
                     <TableCell>0-0</TableCell>
                 </TableRow>
@@ -811,29 +618,29 @@ const config = {
                 </TableHeader>
                 <TableBody>
                     <TableRow>
-                    <TableCell><a style={{color: 'black'}} href='https://na.op.gg/summoner/userName=Von+Bon'>Von Bon</a></TableCell>
+                    <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Von+Bon'>Von Bon</a></TableCell>
                     <TableCell>Diamond 4</TableCell>
                     </TableRow>
                     <TableRow>
-                    <TableCell><a style={{color: 'black'}} href='https://na.op.gg/summoner/userName=Lucaspeng'>Lucaspeng</a></TableCell>
+                    <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Lukaspeng'>Lukaspeng</a></TableCell>
                     <TableCell>unranked</TableCell>
                     </TableRow>
                     <TableRow>
-                    <TableCell><a style={{color: 'black'}} href='https://na.op.gg/summoner/userName=Klauspeng'>Klauspeng</a></TableCell>
+                    <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Klauspeng'>Klauspeng</a></TableCell>
                     <TableCell>Silver 4</TableCell>
                     </TableRow>
                     <TableRow>
-                    <TableCell><a style={{color: 'black'}} href='https://na.op.gg/summoner/userName=Tulla3212'>Tulla3212</a></TableCell>
+                    <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Tulla3212'>Tulla3212</a></TableCell>
                     <TableCell>Plat 3</TableCell>
                     </TableRow>
                     <TableRow>
-                    <TableCell><a style={{color: 'black'}} href='https://na.op.gg/summoner/userName=Spades+Gambit'>Spades Gambit</a></TableCell>
+                    <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Spades+Gambit'>Spades Gambit</a></TableCell>
                     <TableCell>Bronze 1</TableCell>
                     </TableRow>
                 </TableBody>
                 </Table>
                 <h2>Point Total: 162.8/175</h2>
-                <Button href='https://na.op.gg/multi/query=Von%20Bon%2Clukaspeng%2Cklauspeng%2CSpades%20Gambit%2CTulla3212' primary style={{fontSize: 'calc(10px + 1.5vmin)', color: 'white', fontWeight: 'bold', backgroundColor: 'black', border: 'black'}} label='Team OP.GG'/>
+                <Button target="_blank" href='https://na.op.gg/multi/query=Von%20Bon%2Clukaspeng%2Cklauspeng%2CSpades%20Gambit%2CTulla3212' primary style={{fontSize: 'calc(10px + 1.5vmin)', color: 'white', fontWeight: 'bold', backgroundColor: 'black', border: 'black'}} label='Team OP.GG'/>
             </Box>
             <Box align='center' round='small' background='rgba(255,255,255,.8)' style={{paddingBottom: '2%', marginLeft: '10%', marginRight: '10%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black'}} gridArea="matches">
                 <h1>Match History</h1>
@@ -849,7 +656,7 @@ const config = {
             </Box>
             </Grid>
             {games.map((game) => (
-                <Game game={game}/>
+                <Game game={game} captain={captain}/>
             ))}
         </Grommet >
     )
