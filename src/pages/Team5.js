@@ -28,7 +28,7 @@ const config = {
     '32': 'amumu',
     '34': 'anivia',
     '1': 'annie',
-    '523': 'apehlios',
+    '523': 'aphelios',
     '22': 'ashe',
     '136': 'aurelionsol',
     '268': 'azir',
@@ -457,7 +457,7 @@ const config = {
               <TableRow>
                 <TableCell>11/7</TableCell>
                 <TableCell>The Scuttle Hunters</TableCell>
-                <TableCell>Team Keith</TableCell>
+                <TableCell>Fish and Chips</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
@@ -482,7 +482,7 @@ const config = {
               <TableBody>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=HelsEch'>HelsEch</a></TableCell>
-                  <TableCell>Bronze 4</TableCell>
+                  <TableCell>Unranked</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=m%C4%B1nt%20tea'>mınt tea</a></TableCell>
@@ -594,7 +594,7 @@ const config = {
               <TableRow>
                 <TableCell>11/7</TableCell>
                 <TableCell>The Scuttle Hunters</TableCell>
-                <TableCell>Team Keith</TableCell>
+                <TableCell>Fish and Chips</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
@@ -619,7 +619,7 @@ const config = {
               <TableBody>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=HelsEch'>HelsEch</a></TableCell>
-                  <TableCell>Bronze 4</TableCell>
+                  <TableCell>Unranked</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=m%C4%B1nt%20tea'>mınt tea</a></TableCell>

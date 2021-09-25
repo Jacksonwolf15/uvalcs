@@ -27,7 +27,7 @@ const config = {
     '32': 'amumu',
     '34': 'anivia',
     '1': 'annie',
-    '523': 'apehlios',
+    '523': 'aphelios',
     '22': 'ashe',
     '136': 'aurelionsol',
     '268': 'azir',
@@ -461,7 +461,7 @@ const config = {
                 </TableRow>
                 <TableRow>
                     <TableCell>11/14</TableCell>
-                    <TableCell>Team Keith</TableCell>
+                    <TableCell>Fish and Chips</TableCell>
                     <TableCell>The Doomsday Specialists</TableCell>
                     <TableCell>0-0</TableCell>
                 </TableRow>
@@ -481,15 +481,15 @@ const config = {
                 <TableBody>
                     <TableRow>
                     <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Von+Bon'>Von Bon</a></TableCell>
-                    <TableCell>Diamond 4</TableCell>
+                    <TableCell>Plat 1</TableCell>
                     </TableRow>
                     <TableRow>
                     <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Lukaspeng'>Lukaspeng</a></TableCell>
-                    <TableCell>unranked</TableCell>
+                    <TableCell>Unranked</TableCell>
                     </TableRow>
                     <TableRow>
                     <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Klauspeng'>Klauspeng</a></TableCell>
-                    <TableCell>Silver 4</TableCell>
+                    <TableCell>Unranked</TableCell>
                     </TableRow>
                     <TableRow>
                     <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Tulla3212'>Tulla3212</a></TableCell>
@@ -599,7 +599,7 @@ const config = {
                 </TableRow>
                 <TableRow>
                     <TableCell>11/14</TableCell>
-                    <TableCell>Team Keith</TableCell>
+                    <TableCell>Fish and Chips</TableCell>
                     <TableCell>The Doomsday Specialists</TableCell>
                     <TableCell>0-0</TableCell>
                 </TableRow>
@@ -619,15 +619,15 @@ const config = {
                 <TableBody>
                     <TableRow>
                     <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Von+Bon'>Von Bon</a></TableCell>
-                    <TableCell>Diamond 4</TableCell>
+                    <TableCell>Plat 1</TableCell>
                     </TableRow>
                     <TableRow>
                     <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Lukaspeng'>Lukaspeng</a></TableCell>
-                    <TableCell>unranked</TableCell>
+                    <TableCell>Unranked</TableCell>
                     </TableRow>
                     <TableRow>
                     <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Klauspeng'>Klauspeng</a></TableCell>
-                    <TableCell>Silver 4</TableCell>
+                    <TableCell>Unranked</TableCell>
                     </TableRow>
                     <TableRow>
                     <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Tulla3212'>Tulla3212</a></TableCell>

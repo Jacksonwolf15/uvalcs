@@ -56,7 +56,7 @@ function App() {
                     { label: 'Team Jungle Diff ', href: '/Team4' },
                     { label: 'The Scuttle Hunters', href: '/Team5' },
                     { label: 'Team Kaalok', href: '/Team6' },
-                    { label: 'Team Keith', href: '/Team7' },
+                    { label: 'Fish and Chips', href: '/Team7' },
                     { label: 'The Copium Cartel', href: '/Team8' },
                     { label: 'i like fortnite', href: '/Team9' },
                     { label: 'The Verule', href: '/Team10' },
@@ -135,7 +135,7 @@ function App() {
                   <Anchor style={{fontSize: 'calc(6px + 1.25vmin)'}} color='white' href='/Team6' label='Team Kaalok'/>
                 </TableCell>
                 <TableCell>
-                  <Anchor style={{fontSize: 'calc(6px + 1.25vmin)'}} color='white' href='/Team7' label='Team Keith'/>
+                  <Anchor style={{fontSize: 'calc(6px + 1.25vmin)'}} color='white' href='/Team7' label='Fish and Chips'/>
                 </TableCell>
                 <TableCell>
                   <Anchor style={{fontSize: 'calc(6px + 1.25vmin)'}} color='white' href='/Team8' label='The Copium Cartel'/>

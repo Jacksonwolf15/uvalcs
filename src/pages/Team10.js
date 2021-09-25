@@ -28,7 +28,7 @@ const config = {
     '32': 'amumu',
     '34': 'anivia',
     '1': 'annie',
-    '523': 'apehlios',
+    '523': 'aphelios',
     '22': 'ashe',
     '136': 'aurelionsol',
     '268': 'azir',
@@ -427,7 +427,7 @@ const config = {
               <TableRow>
                 <TableCell>10/3</TableCell>
                 <TableCell>Team Verule</TableCell>
-                <TableCell>Team Keith</TableCell>
+                <TableCell>Fish and Chips</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
@@ -482,7 +482,7 @@ const config = {
               <TableBody>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=verule'>Verule</a></TableCell>
-                  <TableCell>Silver 1</TableCell>
+                  <TableCell>Silver 2</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Frostsharks'>Frostsharks</a></TableCell>
@@ -490,7 +490,7 @@ const config = {
                 </TableRow>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Can Milk Those'>Can Milk Those</a></TableCell>
-                  <TableCell>Gold 3</TableCell>
+                  <TableCell>Gold 2</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Fire155'>Fire155</a></TableCell>
@@ -498,7 +498,7 @@ const config = {
                 </TableRow>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=DespicableO'>DespicableO</a></TableCell>
-                  <TableCell>Silver 4</TableCell>
+                  <TableCell>Unranked</TableCell>
                 </TableRow>
               </TableBody>
             </Table>
@@ -564,7 +564,7 @@ const config = {
               <TableRow>
                 <TableCell>10/3</TableCell>
                 <TableCell>Team Verule</TableCell>
-                <TableCell>Team Keith</TableCell>
+                <TableCell>Fish and Chips</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
@@ -619,7 +619,7 @@ const config = {
               <TableBody>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=verule'>Verule</a></TableCell>
-                  <TableCell>Silver 1</TableCell>
+                  <TableCell>Silver 2</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Frostsharks'>Frostsharks</a></TableCell>
@@ -627,7 +627,7 @@ const config = {
                 </TableRow>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Can Milk Those'>Can Milk Those</a></TableCell>
-                  <TableCell>Gold 3</TableCell>
+                  <TableCell>Gold 2</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Fire155'>Fire155</a></TableCell>
@@ -635,7 +635,7 @@ const config = {
                 </TableRow>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=DespicableO'>DespicableO</a></TableCell>
-                  <TableCell>Silver 4</TableCell>
+                  <TableCell>Unranked</TableCell>
                 </TableRow>
               </TableBody>
             </Table>

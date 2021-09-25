@@ -28,7 +28,7 @@ const config = {
     '32': 'amumu',
     '34': 'anivia',
     '1': 'annie',
-    '523': 'apehlios',
+    '523': 'aphelios',
     '22': 'ashe',
     '136': 'aurelionsol',
     '268': 'azir',
@@ -481,7 +481,7 @@ const config = {
               <TableBody>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=TheXADASH'>TheXADASH</a></TableCell>
-                  <TableCell>Bronze 2</TableCell>
+                  <TableCell>Unranked</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=A+Thong'>A Thong</a></TableCell>
@@ -489,15 +489,15 @@ const config = {
                 </TableRow>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Tacosauce77'>Tacosauce77</a></TableCell>
-                  <TableCell>Silver 2</TableCell>
+                  <TableCell>Unranked</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Bossben22'>Bossben22</a></TableCell>
-                  <TableCell>Gold 3</TableCell>
+                  <TableCell>Gold 2</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=SpiralBiscuit'>SpiralBiscuit</a></TableCell>
-                  <TableCell>Silver 1</TableCell>
+                  <TableCell>Gold 3</TableCell>
                 </TableRow>
               </TableBody>
             </Table>
@@ -618,22 +618,22 @@ const config = {
               <TableBody>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=TheXADASH'>TheXADASH</a></TableCell>
-                  <TableCell>Bronze 2</TableCell>
+                  <TableCell>Unranked</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=A+Thong'>A Thong</a></TableCell>
-                  <TableCell>Silver 3</TableCell>
+                  <TableCell>Diamond 3</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Tacosauce77'>Tacosauce77</a></TableCell>
-                  <TableCell>Silver 2</TableCell>
+                  <TableCell>Unranked</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Bossben22'>Bossben22</a></TableCell>
                   <TableCell>Gold 2</TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=FirstDegreeSVG'>SpiralBiscuit</a></TableCell>
+                  <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=SpiralBiscuit'>SpiralBiscuit</a></TableCell>
                   <TableCell>Gold 3</TableCell>
                 </TableRow>
               </TableBody>

@@ -36,7 +36,7 @@ function Home() {
                 <TableCell>0</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>Team Keith</TableCell>
+                <TableCell>Fish and Chips</TableCell>
                 <TableCell>0-0-0</TableCell>
                 <TableCell>0</TableCell>
               </TableRow>

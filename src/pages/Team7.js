@@ -28,7 +28,7 @@ const config = {
     '32': 'amumu',
     '34': 'anivia',
     '1': 'annie',
-    '523': 'apehlios',
+    '523': 'aphelios',
     '22': 'ashe',
     '136': 'aurelionsol',
     '268': 'azir',
@@ -404,7 +404,7 @@ const config = {
           ]}
         >
           <Box align='center' round='small' pad='small' background='rgba(255,255,255,.8)' style={{marginLeft: '10%', marginRight: '10%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black'}} gridArea="banner" >
-            <h1>Team Keith</h1>
+            <h1>Fish and Chips</h1>
           </Box>
           <Box align='center' round='small' pad='small' background='rgba(255,255,255,.8)' style={{marginLeft: '10%', marginRight: '10%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black'}} gridArea="schedule">
             <h1>Schedule</h1>
@@ -420,49 +420,49 @@ const config = {
               <TableBody>
               <TableRow>
                 <TableCell>9/26</TableCell>
-                <TableCell>Team Keith</TableCell>
-                <TableCell> The Supine Snails</TableCell>
+                <TableCell>Fish and Chips</TableCell>
+                <TableCell>The Supine Snails</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>10/3</TableCell>
                 <TableCell>Team Verule</TableCell>
-                <TableCell>Team Keith</TableCell>
+                <TableCell>Fish and Chips</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>10/10</TableCell>
-                <TableCell>Team Keith</TableCell>
+                <TableCell>Fish and Chips</TableCell>
                 <TableCell>Team Jungle Diff </TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>10/17</TableCell>
                 <TableCell>i like fortnite</TableCell>
-                <TableCell>Team Keith</TableCell>
+                <TableCell>Fish and Chips</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>10/24</TableCell>
-                <TableCell>Team Keith</TableCell>
+                <TableCell>Fish and Chips</TableCell>
                 <TableCell>Team Kaalok</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>10/31</TableCell>
-                <TableCell>Team Keith</TableCell>
+                <TableCell>Fish and Chips</TableCell>
                 <TableCell>The Copium Cartel</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>11/7</TableCell>
                 <TableCell>The Scuttle Hunters</TableCell>
-                <TableCell>Team Keith</TableCell>
+                <TableCell>Fish and Chips</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>11/14</TableCell>
-                <TableCell>Team Keith</TableCell>
+                <TableCell>Fish and Chips</TableCell>
                 <TableCell>The Doomsday Specialists</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
@@ -490,11 +490,11 @@ const config = {
                 </TableRow>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Dr+Segatarii'>Dr Segatarii</a></TableCell>
-                  <TableCell>Bronze 1</TableCell>
+                  <TableCell>Silver 4</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Jccc+student'>Jccc student</a></TableCell>
-                  <TableCell>Gold 1</TableCell>
+                  <TableCell>Plat 4</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=SecretSirene'>SecretSirene</a></TableCell>
@@ -503,7 +503,7 @@ const config = {
               </TableBody>
             </Table>
             <h2>Point Total: 174/175</h2>
-            <Button target="_blank" href='https://na.op.gg/multi/query=Bejeweled%2CFishNumber7%2CSarachyan%2CDHLETHALITYSIVIR%2CHentai%20Evelynn' primary style={{fontSize: 'calc(10px + 1.5vmin)', color: 'black', fontWeight: 'bold', backgroundColor: '#faa72e', border: '#faa72e'}} label='Team OP.GG'/>
+            <Button target="_blank" href='https://na.op.gg/multi/query=KeithChief%2C%20marshpuppie%20fan%2C%20Dr%20Segatarii%2C%20Jccc%20student%2C%20SecretSirene' primary style={{fontSize: 'calc(10px + 1.5vmin)', color: 'black', fontWeight: 'bold', backgroundColor: '#faa72e', border: '#faa72e'}} label='Team OP.GG'/>
           </Box>
           <Box align='center' round='small' background='rgba(255,255,255,.8)' style={{marginLeft: '10%', marginRight: '10%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black'}} gridArea="matches">
             <h1>Match History</h1>
@@ -541,7 +541,7 @@ const config = {
           ]}
         >
           <Box align='center' round='small' pad='small' background='rgba(255,255,255,.8)' style={{marginLeft: '10%', marginRight: '10%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black'}} gridArea="banner" >
-            <h1>Team Keith</h1>
+            <h1>Fish and Chips</h1>
           </Box>
           <Box align='center' round='small' pad='small' background='rgba(255,255,255,.8)' style={{marginLeft: '10%', marginRight: '10%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black'}} gridArea="schedule">
             <h1>Schedule</h1>
@@ -557,49 +557,49 @@ const config = {
               <TableBody>
               <TableRow>
                 <TableCell>9/26</TableCell>
-                <TableCell>Team Keith</TableCell>
+                <TableCell>Fish and Chips</TableCell>
                 <TableCell> The Supine Snails</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>10/3</TableCell>
                 <TableCell>Team Verule</TableCell>
-                <TableCell>Team Keith</TableCell>
+                <TableCell>Fish and Chips</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>10/10</TableCell>
-                <TableCell>Team Keith</TableCell>
+                <TableCell>Fish and Chips</TableCell>
                 <TableCell>Team Jungle Diff </TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>10/17</TableCell>
                 <TableCell>i like fortnite</TableCell>
-                <TableCell>Team Keith</TableCell>
+                <TableCell>Fish and Chips</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>10/24</TableCell>
-                <TableCell>Team Keith</TableCell>
+                <TableCell>Fish and Chips</TableCell>
                 <TableCell>Team Kaalok</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>10/31</TableCell>
-                <TableCell>Team Keith</TableCell>
+                <TableCell>Fish and Chips</TableCell>
                 <TableCell>The Copium Cartel</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>11/7</TableCell>
                 <TableCell>The Scuttle Hunters</TableCell>
-                <TableCell>Team Keith</TableCell>
+                <TableCell>Fish and Chips</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>11/14</TableCell>
-                <TableCell>Team Keith</TableCell>
+                <TableCell>Fish and Chips</TableCell>
                 <TableCell>The Doomsday Specialists</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
@@ -627,11 +627,11 @@ const config = {
                 </TableRow>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Dr+Segatarii'>Dr Segatarii</a></TableCell>
-                  <TableCell>Bronze 1</TableCell>
+                  <TableCell>Silver 4</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Jccc+student'>Jccc student</a></TableCell>
-                  <TableCell>Gold 1</TableCell>
+                  <TableCell>Plat 4</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=SecretSirene'>SecretSirene</a></TableCell>
@@ -640,7 +640,7 @@ const config = {
               </TableBody>
             </Table>
             <h2>Point Total: 174/175</h2>
-            <Button target="_blank" href='https://na.op.gg/multi/query=Bejeweled%2CFishNumber7%2CSarachyan%2CDHLETHALITYSIVIR%2CHentai%20Evelynn' primary style={{fontSize: 'calc(10px + 1.5vmin)', color: 'black', fontWeight: 'bold', backgroundColor: '#faa72e', border: '#faa72e'}} label='Team OP.GG'/>
+            <Button target="_blank" href='https://na.op.gg/multi/query=KeithChief%2C%20marshpuppie%20fan%2C%20Dr%20Segatarii%2C%20Jccc%20student%2C%20SecretSirene' primary style={{fontSize: 'calc(10px + 1.5vmin)', color: 'black', fontWeight: 'bold', backgroundColor: '#faa72e', border: '#faa72e'}} label='Team OP.GG'/>
           </Box>
           <Box align='center' round='small' background='rgba(255,255,255,.8)' style={{marginLeft: '10%', marginRight: '10%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black', paddingBottom: '2%'}} gridArea="matches">
             <h1>Match History</h1>

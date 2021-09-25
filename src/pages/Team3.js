@@ -28,7 +28,7 @@ const config = {
     '32': 'amumu',
     '34': 'anivia',
     '1': 'annie',
-    '523': 'apehlios',
+    '523': 'aphelios',
     '22': 'ashe',
     '136': 'aurelionsol',
     '268': 'azir',
@@ -420,7 +420,7 @@ const config = {
                 <TableBody>
                 <TableRow>
                     <TableCell>9/26</TableCell>
-                    <TableCell>Team Keith</TableCell>
+                    <TableCell>Fish and Chips</TableCell>
                     <TableCell> The Supine Snails</TableCell>
                     <TableCell>0-0</TableCell>
                 </TableRow>
@@ -494,11 +494,11 @@ const config = {
                     </TableRow>
                     <TableRow>
                     <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Fedexter'>Fedexter</a></TableCell>
-                    <TableCell>Silver 2</TableCell>
+                    <TableCell>Gold 4</TableCell>
                     </TableRow>
                     <TableRow>
                     <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=vtnx'>vtnx</a></TableCell>
-                    <TableCell>Silver 1</TableCell>
+                    <TableCell>Silver 2</TableCell>
                     </TableRow>
                 </TableBody>
                 </Table>
@@ -558,7 +558,7 @@ const config = {
                 <TableBody>
                 <TableRow>
                     <TableCell>9/26</TableCell>
-                    <TableCell>Team Keith</TableCell>
+                    <TableCell>Fish and Chips</TableCell>
                     <TableCell> The Supine Snails</TableCell>
                     <TableCell>0-0</TableCell>
                 </TableRow>
@@ -632,11 +632,11 @@ const config = {
                     </TableRow>
                     <TableRow>
                     <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Fedexter'>Fedexter</a></TableCell>
-                    <TableCell>Silver 2</TableCell>
+                    <TableCell>Gold 4</TableCell>
                     </TableRow>
                     <TableRow>
                     <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=vtnx'>vtnx</a></TableCell>
-                    <TableCell>Silver 1</TableCell>
+                    <TableCell>Silver 2</TableCell>
                     </TableRow>
                 </TableBody>
                 </Table>

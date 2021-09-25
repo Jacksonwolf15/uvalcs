@@ -30,7 +30,7 @@ const config = {
     '32': 'amumu',
     '34': 'anivia',
     '1': 'annie',
-    '523': 'apehlios',
+    '523': 'aphelios',
     '22': 'ashe',
     '136': 'aurelionsol',
     '268': 'azir',
@@ -479,11 +479,11 @@ function Team1() {
                 <TableBody>
                   <TableRow>
                     <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=JWoIf'>JWoIf</a></TableCell>
-                    <TableCell>Diamond 4</TableCell>
+                    <TableCell>Plat 1</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Quigm'>Quigm</a></TableCell>
-                    <TableCell>Bronze 3</TableCell>
+                    <TableCell>Unranked</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Sariz'>Sariz</a></TableCell>
@@ -555,7 +555,7 @@ function Team1() {
                 <TableRow>
                   <TableCell>9/19</TableCell>
                   <TableCell>The Electric Rats</TableCell>
-                  <TableCell>Team Keith</TableCell>
+                  <TableCell>Fish and Chips</TableCell>
                   <TableCell>0-0</TableCell>
                 </TableRow>
                 <TableRow>
@@ -622,11 +622,11 @@ function Team1() {
                 <TableBody>
                   <TableRow>
                     <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=JWoIf'>JWoIf</a></TableCell>
-                    <TableCell>Diamond 4</TableCell>
+                    <TableCell>Plat 1</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Quigm'>Quigm</a></TableCell>
-                    <TableCell>Bronze 3</TableCell>
+                    <TableCell>Unranked</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Sariz'>Sariz</a></TableCell>

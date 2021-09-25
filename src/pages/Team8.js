@@ -28,7 +28,7 @@ const config = {
     '32': 'amumu',
     '34': 'anivia',
     '1': 'annie',
-    '523': 'apehlios',
+    '523': 'aphelios',
     '22': 'ashe',
     '136': 'aurelionsol',
     '268': 'azir',
@@ -450,7 +450,7 @@ const config = {
               </TableRow>
               <TableRow>
                 <TableCell>10/31</TableCell>
-                <TableCell>Team Keith</TableCell>
+                <TableCell>Fish and Chips</TableCell>
                 <TableCell>The Copium Cartel</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
@@ -482,7 +482,7 @@ const config = {
               <TableBody>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Bejewelled'>Bejewelled</a></TableCell>
-                  <TableCell>Gold 2</TableCell>
+                  <TableCell>Silver 4</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=hentai+evelynn'>Hentai Evelynn</a></TableCell>
@@ -490,7 +490,7 @@ const config = {
                 </TableRow>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=DHLETHALITYSIVIR'>DHLETHALITYSIVIR</a></TableCell>
-                  <TableCell>Plat 1</TableCell>
+                  <TableCell>Diamond 3</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=sarachyan'>sarachyan</a></TableCell>
@@ -503,7 +503,7 @@ const config = {
               </TableBody>
             </Table>
             <h2>Point Total: 175.4/175</h2>
-            <Button target="_blank" href='https://na.op.gg/multi/query=Bejeweled%2CFishNumber7%2CSarachyan%2CDHLETHALITYSIVIR%2CHentai%20Evelynn' primary style={{fontSize: 'calc(10px + 1.5vmin)', color: 'black', fontWeight: 'bold', backgroundColor: '#8dd2fc', border: '#8dd2fc',}} label='Team OP.GG'/>
+            <Button target="_blank" href='https://na.op.gg/multi/query=Bejewelled%2CFishNumber7%2CSarachyan%2CDHLETHALITYSIVIR%2CHentai%20Evelynn' primary style={{fontSize: 'calc(10px + 1.5vmin)', color: 'black', fontWeight: 'bold', backgroundColor: '#8dd2fc', border: '#8dd2fc',}} label='Team OP.GG'/>
           </Box>
           <Box align='center' round='small' background='rgba(255,255,255,.8)' style={{marginLeft: '10%', marginRight: '10%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black'}} gridArea="matches">
             <h1>Match History</h1>
@@ -587,7 +587,7 @@ const config = {
               </TableRow>
               <TableRow>
                 <TableCell>10/31</TableCell>
-                <TableCell>Team Keith</TableCell>
+                <TableCell>Fish and Chips</TableCell>
                 <TableCell>The Copium Cartel</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
@@ -619,7 +619,7 @@ const config = {
               <TableBody>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Bejewelled'>Bejewelled</a></TableCell>
-                  <TableCell>Gold 2</TableCell>
+                  <TableCell>Silver 4</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=hentai+evelynn'>Hentai Evelynn</a></TableCell>
@@ -627,7 +627,7 @@ const config = {
                 </TableRow>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=DHLETHALITYSIVIR'>DHLETHALITYSIVIR</a></TableCell>
-                  <TableCell>Plat 1</TableCell>
+                  <TableCell>Diamond 3</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=sarachyan'>sarachyan</a></TableCell>
@@ -640,7 +640,7 @@ const config = {
               </TableBody>
             </Table>
             <h2>Point Total: 175.4/175</h2>
-            <Button target="_blank" href='https://na.op.gg/multi/query=Bejeweled%2CFishNumber7%2CSarachyan%2CDHLETHALITYSIVIR%2CHentai%20Evelynn' primary style={{fontSize: 'calc(10px + 1.5vmin)', color: 'black', fontWeight: 'bold', backgroundColor: '#8dd2fc', border: '#8dd2fc',}} label='Team OP.GG'/>
+            <Button target="_blank" href='https://na.op.gg/multi/query=Bejewelled%2CFishNumber7%2CSarachyan%2CDHLETHALITYSIVIR%2CHentai%20Evelynn' primary style={{fontSize: 'calc(10px + 1.5vmin)', color: 'black', fontWeight: 'bold', backgroundColor: '#8dd2fc', border: '#8dd2fc',}} label='Team OP.GG'/>
           </Box>
           <Box align='center' round='small' background='rgba(255,255,255,.8)' style={{marginLeft: '10%', marginRight: '10%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black', paddingBottom: '2%'}} gridArea="matches">
             <h1>Match History</h1>

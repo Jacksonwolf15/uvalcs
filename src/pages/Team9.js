@@ -28,7 +28,7 @@ const config = {
     '32': 'amumu',
     '34': 'anivia',
     '1': 'annie',
-    '523': 'apehlios',
+    '523': 'aphelios',
     '22': 'ashe',
     '136': 'aurelionsol',
     '268': 'azir',
@@ -439,7 +439,7 @@ const config = {
               <TableRow>
                 <TableCell>10/17</TableCell>
                 <TableCell>i like fortnite</TableCell>
-                <TableCell>Team Keith</TableCell>
+                <TableCell>Fish and Chips</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
@@ -482,11 +482,11 @@ const config = {
               <TableBody>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Taesung'>Taesung</a></TableCell>
-                  <TableCell>Plat 4</TableCell>
+                  <TableCell>Gold 1</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Levoria'>Levoria</a></TableCell>
-                  <TableCell>Plat 2</TableCell>
+                  <TableCell>Plat 1</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=jSURD03'>jSURD03</a></TableCell>
@@ -494,7 +494,7 @@ const config = {
                 </TableRow>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Fire155'>ToeFungus</a></TableCell>
-                  <TableCell>Plat 3</TableCell>
+                  <TableCell>Plat 4</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=FunkyPants32'>FunkyPants32</a></TableCell>
@@ -576,7 +576,7 @@ const config = {
               <TableRow>
                 <TableCell>10/17</TableCell>
                 <TableCell>i like fortnite</TableCell>
-                <TableCell>Team Keith</TableCell>
+                <TableCell>Fish and Chips</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
@@ -619,11 +619,11 @@ const config = {
               <TableBody>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Taesung'>Taesung</a></TableCell>
-                  <TableCell>Plat 4</TableCell>
+                  <TableCell>Gold 1</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Levoria'>Levoria</a></TableCell>
-                  <TableCell>Plat 2</TableCell>
+                  <TableCell>Plat 1</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=jSURD03'>jSURD03</a></TableCell>
@@ -631,7 +631,7 @@ const config = {
                 </TableRow>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Fire155'>ToeFungus</a></TableCell>
-                  <TableCell>Plat 3</TableCell>
+                  <TableCell>Plat 4</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=FunkyPants32'>FunkyPants32</a></TableCell>

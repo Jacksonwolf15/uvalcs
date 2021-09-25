@@ -28,7 +28,7 @@ const config = {
     '32': 'amumu',
     '34': 'anivia',
     '1': 'annie',
-    '523': 'apehlios',
+    '523': 'aphelios',
     '22': 'ashe',
     '136': 'aurelionsol',
     '268': 'azir',
@@ -444,7 +444,7 @@ const config = {
               </TableRow>
               <TableRow>
                 <TableCell>10/24</TableCell>
-                <TableCell>Team Keith</TableCell>
+                <TableCell>Fish and Chips</TableCell>
                 <TableCell>Team Kaalok</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
@@ -486,19 +486,19 @@ const config = {
                 </TableRow>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Lord+Bandito'>Lord Bandito</a></TableCell>
-                  <TableCell>Plat 1</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Wedda'>Wedda</a></TableCell>
-                  <TableCell>Bronze 1</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=thicccactus'>thicccactus</a></TableCell>
                   <TableCell>Gold 1</TableCell>
                 </TableRow>
                 <TableRow>
+                  <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Wedda'>Wedda</a></TableCell>
+                  <TableCell>Diamond 4</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=thicccactus'>thicccactus</a></TableCell>
+                  <TableCell>Silver 3</TableCell>
+                </TableRow>
+                <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=l+thelaw+l'>l TheLaw l</a></TableCell>
-                  <TableCell>Silver 4</TableCell>
+                  <TableCell>Silver 1</TableCell>
                 </TableRow>
               </TableBody>
             </Table>
@@ -581,7 +581,7 @@ const config = {
               </TableRow>
               <TableRow>
                 <TableCell>10/24</TableCell>
-                <TableCell>Team Keith</TableCell>
+                <TableCell>Fish and Chips</TableCell>
                 <TableCell>Team Kaalok</TableCell>
                 <TableCell>0-0</TableCell>
               </TableRow>
@@ -623,19 +623,19 @@ const config = {
                 </TableRow>
                 <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Lord+Bandito'>Lord Bandito</a></TableCell>
-                  <TableCell>Plat 1</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Wedda'>Wedda</a></TableCell>
-                  <TableCell>Bronze 1</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=thicccactus'>thicccactus</a></TableCell>
                   <TableCell>Gold 1</TableCell>
                 </TableRow>
                 <TableRow>
+                  <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Wedda'>Wedda</a></TableCell>
+                  <TableCell>Diamond 4</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=thicccactus'>thicccactus</a></TableCell>
+                  <TableCell>Silver 3</TableCell>
+                </TableRow>
+                <TableRow>
                   <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=l+thelaw+l'>l TheLaw l</a></TableCell>
-                  <TableCell>Silver 4</TableCell>
+                  <TableCell>Silver 1</TableCell>
                 </TableRow>
               </TableBody>
             </Table>
