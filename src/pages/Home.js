@@ -21,54 +21,54 @@ function Home() {
                 </TableRow>
               </TableHeader>
               <TableRow>
+                <TableCell>The Scuttle Hunters</TableCell>
+                <TableCell>4-1-3</TableCell>
+                <TableCell>15</TableCell>
+              </TableRow>
+              <TableRow>
                 <TableCell>The Electric Rats</TableCell>
-                <TableCell>0-0-0</TableCell>
-                <TableCell>0</TableCell>
+                <TableCell>4-1-3</TableCell>
+                <TableCell>15</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>The Doomsday Specialists</TableCell>
-                <TableCell>0-0-0</TableCell>
-                <TableCell>0</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>i like fortnite</TableCell>
-                <TableCell>0-0-0</TableCell>
-                <TableCell>0</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>Fish and Chips</TableCell>
-                <TableCell>0-0-0</TableCell>
-                <TableCell>0</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>The Supine Snails</TableCell>
-                <TableCell>0-0-0</TableCell>
-                <TableCell>0</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>The Scuttle Hunters</TableCell>
-                <TableCell>0-0-0</TableCell>
-                <TableCell>0</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>Team Verule</TableCell>
-                <TableCell>0-0-0</TableCell>
-                <TableCell>0</TableCell>
+                <TableCell>4-0-2</TableCell>
+                <TableCell>14</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>The Copium Cartel</TableCell>
-                <TableCell>0-0-0</TableCell>
-                <TableCell>0</TableCell>
+                <TableCell>4-1-0</TableCell>
+                <TableCell>12</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>Team Jungle Diff </TableCell>
-                <TableCell>0-0-0</TableCell>
-                <TableCell>0</TableCell>
+                <TableCell>3-3-1</TableCell>
+                <TableCell>10</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Fish and Chips</TableCell>
+                <TableCell>2-3-2</TableCell>
+                <TableCell>8</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Team Verule</TableCell>
+                <TableCell>1-2-3</TableCell>
+                <TableCell>6</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>i like fortnite</TableCell>
+                <TableCell>1-2-2</TableCell>
+                <TableCell>5</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>Team Kaalok</TableCell>
-                <TableCell>0-0-0</TableCell>
-                <TableCell>0</TableCell>
+                <TableCell>1-3-2</TableCell>
+                <TableCell>5</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>The Supine Snails</TableCell>
+                <TableCell>0-7-1</TableCell>
+                <TableCell>1</TableCell>
               </TableRow>
             </Table>
           </Box>

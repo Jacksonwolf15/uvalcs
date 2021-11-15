@@ -176,6 +176,7 @@ const config = {
     '26': 'zilean',
     '142': 'zoe',
     '143': 'zyra',
+    '711': 'vex'
   }
   
   const riotKey = process.env.REACT_APP_riotKey
@@ -220,96 +221,92 @@ const config = {
       const db = getDatabase()
       // A post entry.
       const gameData = {
-        gameID: json.gameId,
-        homeWin: json.teams[0].win,
-        homeKills: json.participants[0].stats.kills + json.participants[1].stats.kills + json.participants[2].stats.kills + json.participants[3].stats.kills + json.participants[4].stats.kills,
-        homeDeaths: json.participants[0].stats.deaths + json.participants[1].stats.deaths + json.participants[2].stats.deaths + json.participants[3].stats.deaths + json.participants[4].stats.deaths,
-        homeAssists: json.participants[0].stats.assists + json.participants[1].stats.assists + json.participants[2].stats.assists + json.participants[3].stats.assists + json.participants[4].stats.assists,
-        homeDragons: json.teams[0].dragonKills,
-        homeBarons: json.teams[0].baronKills,
-        homeHeralds: json.teams[0].riftHeraldKills,
-        homeGold: json.participants[0].stats.goldEarned + json.participants[1].stats.goldEarned + json.participants[2].stats.goldEarned + json.participants[3].stats.goldEarned + json.participants[4].stats.goldEarned,
-        homeTowers: json.teams[0].towerKills,
-        homeInhibs: json.teams[0].inhibitorKills,
-        oppKills: json.participants[5].stats.kills + json.participants[6].stats.kills + json.participants[7].stats.kills + json.participants[8].stats.kills + json.participants[9].stats.kills,
-        oppDeaths: json.participants[5].stats.deaths + json.participants[6].stats.deaths + json.participants[7].stats.deaths + json.participants[8].stats.deaths + json.participants[9].stats.deaths,
-        oppAssists: json.participants[5].stats.assists + json.participants[6].stats.assists + json.participants[7].stats.assists + json.participants[8].stats.assists + json.participants[9].stats.assists,
-        oppeDragons: json.teams[1].dragonKills,
-        oppBarons: json.teams[1].baronKills,
-        oppHeralds: json.teams[1].riftHeraldKills,
-        oppGold: json.participants[5].stats.goldEarned + json.participants[6].stats.goldEarned + json.participants[7].stats.goldEarned + json.participants[8].stats.goldEarned + json.participants[9].stats.goldEarned,
-        oppTowers: json.teams[1].towerKills,
-        oppInhibs: json.teams[1].inhibitorKills,
-        member1: json.participantIdentities[0].player.summonerName,
-        member1champ: json.participants[0].championId,
-        member1kills: json.participants[0].stats.kills,
-        member1deaths: json.participants[0].stats.deaths,
-        member1assists: json.participants[0].stats.assists,
-        member1gold: json.participants[0].stats.goldEarned,
-        member1dmg: json.participants[0].stats.totalDamageDealtToChampions,
-        member2: json.participantIdentities[1].player.summonerName,
-        member2champ: json.participants[1].championId,
-        member2kills: json.participants[1].stats.kills,
-        member2deaths: json.participants[1].stats.deaths,
-        member2assists: json.participants[1].stats.assists,
-        member2gold: json.participants[1].stats.goldEarned,
-        member2dmg: json.participants[1].stats.totalDamageDealtToChampions,
-        member3: json.participantIdentities[2].player.summonerName,
-        member3champ: json.participants[2].championId,
-        member3kills: json.participants[2].stats.kills,
-        member3deaths: json.participants[2].stats.deaths,
-        member3assists: json.participants[2].stats.assists,
-        member3gold: json.participants[2].stats.goldEarned,
-        member3dmg: json.participants[2].stats.totalDamageDealtToChampions,
-        member4: json.participantIdentities[3].player.summonerName,
-        member4champ: json.participants[3].championId,
-        member4kills: json.participants[3].stats.kills,
-        member4deaths: json.participants[3].stats.deaths,
-        member4assists: json.participants[3].stats.assists,
-        member4gold: json.participants[3].stats.goldEarned,
-        member4dmg: json.participants[3].stats.totalDamageDealtToChampions,
-        member5: json.participantIdentities[4].player.summonerName,
-        member5champ: json.participants[4].championId,
-        member5kills: json.participants[4].stats.kills,
-        member5deaths: json.participants[4].stats.deaths,
-        member5assists: json.participants[4].stats.assists,
-        member5gold: json.participants[4].stats.goldEarned,
-        member5dmg: json.participants[4].stats.totalDamageDealtToChampions,
-        oppmember1: json.participantIdentities[5].player.summonerName,
-        oppmember1champ: json.participants[5].championId,
-        oppmember1kills: json.participants[5].stats.kills,
-        oppmember1deaths: json.participants[5].stats.deaths,
-        oppmember1assists: json.participants[5].stats.assists,
-        oppmember1gold: json.participants[5].stats.goldEarned,
-        oppmember1dmg: json.participants[5].stats.totalDamageDealtToChampions,
-        oppmember2: json.participantIdentities[6].player.summonerName,
-        oppmember2champ: json.participants[6].championId,
-        oppmember2kills: json.participants[6].stats.kills,
-        oppmember2deaths: json.participants[6].stats.deaths,
-        oppmember2assists: json.participants[6].stats.assists,
-        oppmember2gold: json.participants[6].stats.goldEarned,
-        oppmember2dmg: json.participants[6].stats.totalDamageDealtToChampions,
-        oppmember3: json.participantIdentities[7].player.summonerName,
-        oppmember3champ: json.participants[7].championId,
-        oppmember3kills: json.participants[7].stats.kills,
-        oppmember3deaths: json.participants[7].stats.deaths,
-        oppmember3assists: json.participants[7].stats.assists,
-        oppmember3gold: json.participants[7].stats.goldEarned,
-        oppmember3dmg: json.participants[7].stats.totalDamageDealtToChampions,
-        oppmember4: json.participantIdentities[8].player.summonerName,
-        oppmember4champ: json.participants[8].championId,
-        oppmember4kills: json.participants[8].stats.kills,
-        oppmember4deaths: json.participants[8].stats.deaths,
-        oppmember4assists: json.participants[8].stats.assists,
-        oppmember4gold: json.participants[8].stats.goldEarned,
-        oppmember4dmg: json.participants[8].stats.totalDamageDealtToChampions,
-        oppmember5: json.participantIdentities[9].player.summonerName,
-        oppmember5champ: json.participants[9].championId,
-        oppmember5kills: json.participants[9].stats.kills,
-        oppmember5deaths: json.participants[9].stats.deaths,
-        oppmember5assists: json.participants[9].stats.assists,
-        oppmember5gold: json.participants[9].stats.goldEarned,
-        oppmember5dmg: json.participants[9].stats.totalDamageDealtToChampions,
+        gameID: json.info.gameId,
+        homeWin: json.info.teams[0].win,
+        homeKills: json.info.teams[0].objectives.champion.kills,
+        homeDragons: json.info.teams[0].objectives.dragon.kills,
+        homeBarons: json.info.teams[0].objectives.baron.kills,
+        homeHeralds: json.info.teams[0].objectives.riftHerald.kills,
+        homeGold: json.info.participants[0].goldEarned + json.info.participants[1].goldEarned + json.info.participants[2].goldEarned + json.info.participants[3].goldEarned + json.info.participants[4].goldEarned,
+        homeTowers: json.info.teams[0].objectives.tower.kills,
+        homeInhibs: json.info.teams[0].objectives.inhibitor.kills,
+        oppKills: json.info.teams[1].objectives.champion.kills,
+        oppDragons: json.info.teams[1].objectives.dragon.kills,
+        oppBarons: json.info.teams[1].objectives.baron.kills,
+        oppHeralds: json.info.teams[1].objectives.riftHerald.kills,
+        oppGold: json.info.participants[5].goldEarned + json.info.participants[6].goldEarned + json.info.participants[7].goldEarned + json.info.participants[8].goldEarned + json.info.participants[9].goldEarned,
+        oppTowers: json.info.teams[1].objectives.tower.kills,
+        oppInhibs: json.info.teams[1].objectives.inhibitor.kills,
+        member1: json.info.participants[0].summonerName,
+        member1champ: json.info.participants[0].championId,
+        member1kills: json.info.participants[0].kills,
+        member1deaths: json.info.participants[0].deaths,
+        member1assists: json.info.participants[0].assists,
+        member1gold: json.info.participants[0].goldEarned,
+        member1dmg: json.info.participants[0].totalDamageDealtToChampions,
+        member2: json.info.participants[1].summonerName,
+        member2champ: json.info.participants[1].championId,
+        member2kills: json.info.participants[1].kills,
+        member2deaths: json.info.participants[1].deaths,
+        member2assists: json.info.participants[1].assists,
+        member2gold: json.info.participants[1].goldEarned,
+        member2dmg: json.info.participants[1].totalDamageDealtToChampions,
+        member3: json.info.participants[2].summonerName,
+        member3champ: json.info.participants[2].championId,
+        member3kills: json.info.participants[2].kills,
+        member3deaths: json.info.participants[2].deaths,
+        member3assists: json.info.participants[2].assists,
+        member3gold: json.info.participants[2].goldEarned,
+        member3dmg: json.info.participants[2].totalDamageDealtToChampions,
+        member4: json.info.participants[3].summonerName,
+        member4champ: json.info.participants[3].championId,
+        member4kills: json.info.participants[3].kills,
+        member4deaths: json.info.participants[3].deaths,
+        member4assists: json.info.participants[3].assists,
+        member4gold: json.info.participants[3].goldEarned,
+        member4dmg: json.info.participants[3].totalDamageDealtToChampions,
+        member5: json.info.participants[4].summonerName,
+        member5champ: json.info.participants[4].championId,
+        member5kills: json.info.participants[4].kills,
+        member5deaths: json.info.participants[4].deaths,
+        member5assists: json.info.participants[4].assists,
+        member5gold: json.info.participants[4].goldEarned,
+        member5dmg: json.info.participants[4].totalDamageDealtToChampions,
+        oppmember1: json.info.participants[5].summonerName,
+        oppmember1champ: json.info.participants[5].championId,
+        oppmember1kills: json.info.participants[5].kills,
+        oppmember1deaths: json.info.participants[5].deaths,
+        oppmember1assists: json.info.participants[5].assists,
+        oppmember1gold: json.info.participants[5].goldEarned,
+        oppmember1dmg: json.info.participants[5].totalDamageDealtToChampions,
+        oppmember2: json.info.participants[6].summonerName,
+        oppmember2champ: json.info.participants[6].championId,
+        oppmember2kills: json.info.participants[6].kills,
+        oppmember2deaths: json.info.participants[6].deaths,
+        oppmember2assists: json.info.participants[6].assists,
+        oppmember2gold: json.info.participants[6].goldEarned,
+        oppmember2dmg: json.info.participants[6].totalDamageDealtToChampions,
+        oppmember3: json.info.participants[7].summonerName,
+        oppmember3champ: json.info.participants[7].championId,
+        oppmember3kills: json.info.participants[7].kills,
+        oppmember3deaths: json.info.participants[7].deaths,
+        oppmember3assists: json.info.participants[7].assists,
+        oppmember3gold: json.info.participants[7].goldEarned,
+        oppmember3dmg: json.info.participants[7].totalDamageDealtToChampions,
+        oppmember4: json.info.participants[8].summonerName,
+        oppmember4champ: json.info.participants[8].championId,
+        oppmember4kills: json.info.participants[8].kills,
+        oppmember4deaths: json.info.participants[8].deaths,
+        oppmember4assists: json.info.participants[8].assists,
+        oppmember4gold: json.info.participants[8].goldEarned,
+        oppmember4dmg: json.info.participants[8].totalDamageDealtToChampions,
+        oppmember5: json.info.participants[9].summonerName,
+        oppmember5champ: json.info.participants[9].championId,
+        oppmember5kills: json.info.participants[9].kills,
+        oppmember5deaths: json.info.participants[9].deaths,
+        oppmember5assists: json.info.participants[9].assists,
+        oppmember5gold: json.info.participants[9].goldEarned,
+        oppmember5dmg: json.info.participants[9].totalDamageDealtToChampions,
       };
       
       
@@ -374,12 +371,14 @@ const config = {
       if (input.length !== 10)
         alert("Please enter a valid game ID");
       else {
-        fetch("https://na1.api.riotgames.com/lol/match/v4/matches/" + input + "?api_key=" + riotKey)
+        fetch("https://americas.api.riotgames.com/lol/match/v5/matches/NA1_" + input + "?api_key=" + riotKey)
           .then((res) => res.json())
           .then((res)=>{
             writeGameData(res)
           });
       }
+      setInput("")
+      alert("Game Entry Successful!")
     };
   
     const bigscreen = useMediaQuery('(min-width: 1138px)');
@@ -412,58 +411,58 @@ const config = {
                 <TableRow>
                   <TableCell>Week</TableCell>
                   <TableCell>Home</TableCell>
-                  <TableCell>Away</TableCell>
                   <TableCell>Score</TableCell>
+                  <TableCell>Away</TableCell>
                 </TableRow>
               </TableHeader>
               <TableBody>
               <TableRow>
                 <TableCell>9/26</TableCell>
-                <TableCell>Team Jungle Diff </TableCell>
+                <TableCell>Team Jungle Diff</TableCell>
+                <TableCell>2-0</TableCell>
                 <TableCell>Team Kaalok</TableCell>
-                <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>10/3</TableCell>
-                <TableCell>Team Jungle Diff </TableCell>
-                <TableCell>The Fortniters</TableCell>
-                <TableCell>0-0</TableCell>
+                <TableCell>Team Jungle Diff</TableCell>
+                <TableCell>1-1</TableCell>
+                <TableCell>i like fortnite</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>10/10</TableCell>
                 <TableCell>Team Keith</TableCell>
+                <TableCell>0-2</TableCell>
                 <TableCell>Team Jungle Diff </TableCell>
-                <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>10/17</TableCell>
-                <TableCell>Team Jungle Diff </TableCell>
-                <TableCell>The Copium Cartel</TableCell>
+                <TableCell>Team Jungle Diff</TableCell>
                 <TableCell>0-0</TableCell>
+                <TableCell>The Copium Cartel</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>10/24</TableCell>
                 <TableCell>The Scuttle Hunters</TableCell>
-                <TableCell>Team Jungle Diff </TableCell>
-                <TableCell>0-0</TableCell>
+                <TableCell>2-0</TableCell>
+                <TableCell>Team Jungle Diff</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>10/31</TableCell>
-                <TableCell>Team Jungle Diff </TableCell>
-                <TableCell>The Doomsday Specialists</TableCell>
+                <TableCell>Team Jungle Diff</TableCell>
                 <TableCell>0-0</TableCell>
+                <TableCell>The Doomsday Specialists</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>11/7</TableCell>
                 <TableCell>The Electric Rats</TableCell>
-                <TableCell>Team Jungle Diff </TableCell>
-                <TableCell>0-0</TableCell>
+                <TableCell>2-0</TableCell>
+                <TableCell>Team Jungle Diff</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>11/14</TableCell>
-                <TableCell>Team Jungle Diff </TableCell>
-                <TableCell> The Supine Snails</TableCell>
-                <TableCell>0-0</TableCell>
+                <TableCell>Team Jungle Diff</TableCell>
+                <TableCell>2-0</TableCell>
+                <TableCell>The Supine Snails</TableCell>
               </TableRow>
               </TableBody>
             </Table>
@@ -549,58 +548,58 @@ const config = {
                 <TableRow>
                   <TableCell>Week</TableCell>
                   <TableCell>Home</TableCell>
-                  <TableCell>Away</TableCell>
                   <TableCell>Score</TableCell>
+                  <TableCell>Away</TableCell>
                 </TableRow>
               </TableHeader>
               <TableBody>
               <TableRow>
                 <TableCell>9/26</TableCell>
-                <TableCell>Team Jungle Diff </TableCell>
+                <TableCell>Team Jungle Diff</TableCell>
+                <TableCell>2-0</TableCell>
                 <TableCell>Team Kaalok</TableCell>
-                <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>10/3</TableCell>
-                <TableCell>Team Jungle Diff </TableCell>
-                <TableCell>The Fortniters</TableCell>
-                <TableCell>0-0</TableCell>
+                <TableCell>Team Jungle Diff</TableCell>
+                <TableCell>1-1</TableCell>
+                <TableCell>i like fortnite</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>10/10</TableCell>
                 <TableCell>Team Keith</TableCell>
+                <TableCell>0-2</TableCell>
                 <TableCell>Team Jungle Diff </TableCell>
-                <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>10/17</TableCell>
                 <TableCell>Team Jungle Diff </TableCell>
-                <TableCell>The Copium Cartel</TableCell>
                 <TableCell>0-0</TableCell>
+                <TableCell>The Copium Cartel</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>10/24</TableCell>
                 <TableCell>The Scuttle Hunters</TableCell>
+                <TableCell>2-0</TableCell>
                 <TableCell>Team Jungle Diff </TableCell>
-                <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>10/31</TableCell>
                 <TableCell>Team Jungle Diff </TableCell>
-                <TableCell>The Doomsday Specialists</TableCell>
                 <TableCell>0-0</TableCell>
+                <TableCell>The Doomsday Specialists</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>11/7</TableCell>
                 <TableCell>The Electric Rats</TableCell>
+                <TableCell>2-0</TableCell>
                 <TableCell>Team Jungle Diff </TableCell>
-                <TableCell>0-0</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>11/14</TableCell>
-                <TableCell>Team Jungle Diff </TableCell>
-                <TableCell> The Supine Snails</TableCell>
-                <TableCell>0-0</TableCell>
+                <TableCell>Team Jungle Diff</TableCell>
+                <TableCell>2-0</TableCell>
+                <TableCell>The Supine Snails</TableCell>
               </TableRow>
               </TableBody>
             </Table>

@@ -5,21 +5,34 @@ import { Box, Grommet, Table, TableBody, TableCell, TableHeader, TableRow, Meter
 
 
 const Game = ({game, captain}) => {
+    const captains = {
+      'Von Bon' : 'team2', 
+      'Shoushukann' : 'team3', 
+      'TheXADASH': 'team4', 
+      'KeithChief': 'team7', 
+      'Verule': 'team10', 
+      'Taesung': 'team9', 
+      'Bejewelled': 'team8', 
+      'Plump Dumpling': 'team6', 
+      'HelsEch': 'team5',
+      'JWoif': 'team1'
+    }
     let win = false
     if (game.member1 === captain || game.member2 === captain || game.member3 === captain || game.member4 === captain || game.member5 === captain) {
-      if (game.homeWin === 'Win') {
+      if (game.homeWin === true) {
         win = true
       }
       
     } else {
-      if (game.homeWin === 'Fail') {
+      if (game.homeWin === false) {
         win = true
       }
     }
+    
     const damage1 = Math.max(game.member1dmg, game.member2dmg,game.member3dmg, game.member4dmg,game.member5dmg)
     const damage2 = Math.max(game.oppmember1dmg,game.oppmember2dmg, game.oppmember3dmg,game.oppmember4dmg, game.oppmember5dmg)
-    const kills = game.member1kills + game.member2kills + game.member3kills + game.member4kills + game.member5kills
-    const oppkills = game.oppmember1kills + game.oppmember2kills + game.oppmember3kills + game.oppmember4kills + game.oppmember5kills
+    const kills = game.homeKills
+    const oppkills = game.oppKills
     let image1 = 'https://fastcdn.mobalytics.gg/assets/lol/images/dd/champions/icons/' + game.member1champname + '.png'
     let image2 = 'https://fastcdn.mobalytics.gg/assets/lol/images/dd/champions/icons/' + game.member2champname + '.png'
     let image3 = 'https://fastcdn.mobalytics.gg/assets/lol/images/dd/champions/icons/' + game.member3champname + '.png'

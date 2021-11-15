@@ -59,7 +59,7 @@ function App() {
                     { label: 'Fish and Chips', href: '/Team7' },
                     { label: 'The Copium Cartel', href: '/Team8' },
                     { label: 'i like fortnite', href: '/Team9' },
-                    { label: 'The Verule', href: '/Team10' },
+                    { label: 'Team Verule', href: '/Team10' },
                   ]}
                 />
               </Box>
