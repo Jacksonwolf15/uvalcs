@@ -1,11 +1,13 @@
 /* eslint-disable react/jsx-no-target-blank */
 import '../App.css';
 import React, { useEffect, useState } from "react";
+import { Close, Add } from 'grommet-icons';
 import { Grid, Button, Box, Grommet, Table, TableBody, TableCell, TableHeader, TableRow } from 'grommet';
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get, set, child, push } from "firebase/database";
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import Game from '../components/game.js'
+import Game from './game.js'
+
 
 const config = {
     apiKey: process.env.REACT_APP_apiKey,
@@ -188,33 +190,90 @@ const config = {
   
   }
 
-  function Team2() {
-
+function Team({teamName, captain, teamColor1, teamColor2, cap}) {
     const [input, setInput] = useState("")
     const [games, setGames] = useState([])
     const [submit, setSubmit] = useState(false)
+    const [players, setPlayers] = useState([])
+    const [sum, setSum] = useState(0)
+    const [link, setLink] = useState('')
+    const [points, setPoints] = useState(0)
+    const [IGN, setIGN] = useState('')
+    const [show, setShow] = useState(false)
+
+    const bgteam = {
+        animation: 'slide 3s ease-in-out infinite alternate',
+        backgroundImage: 'linear-gradient(-60deg, ' + teamColor1 + ' 50%, ' + teamColor2 + ' 50%)',
+        bottom: '0',
+        left: '-50%',
+        opacity: '0.5',
+        position: 'fixed',
+        right: '-50%',
+        top: '0',
+        zIndex: '-1'
+    }
+
+    const bg2 = {
+      animation: 'slide 3s ease-in-out infinite alternate',
+      backgroundImage: 'linear-gradient(-60deg, ' + teamColor1 + ' 50%, ' + teamColor2 + ' 50%)',
+      bottom: '0',
+      left: '-50%',
+      opacity: '0.5',
+      position: 'fixed',
+      right: '-50%',
+      top: '0',
+      zIndex: '-1',
+      animationDirection: 'alternate-reverse',
+      animationDuration: '4s'
+    }
     
-  
-    const captain = 'Von Bon'
-  
+    const bg3 = {
+      animation: 'slide 3s ease-in-out infinite alternate',
+      backgroundImage: 'linear-gradient(-60deg, ' + teamColor1 + ' 50%, ' + teamColor2 + ' 50%)',
+      bottom: '0',
+      left: '-50%',
+      opacity: '0.5',
+      position: 'fixed',
+      right: '-50%',
+      top: '0',
+      zIndex: '-1',
+      animationDuration: '5s'
+    }
+
     useEffect(()=> {
       const dbRef = ref(getDatabase());
-      get(child(dbRef, 'team2/games')).then((snapshot) => {
+      get(child(dbRef, teamName + '/games')).then((snapshot) => {
       if (snapshot.exists()) {
         setGames(Object.values(snapshot.val()))
       } else {
         console.log("No data available")
       }
       }).catch((error) => {
-      console.error(error);
+        console.error(error);
       });
+      get(child(dbRef, teamName + '/players')).then((snapshot) => {
+        if (snapshot.exists()) {
+          setPlayers(Object.values(snapshot.val()))
+          let temp  = 0
+          let templink = 'https://na.op.gg/multi/query='
+          players.forEach(player => {
+            temp += player.pointValue
+            templink += player.IGN.replace(/\s/g, '') + '2%C'
+          })
+          setSum(temp)
+          setLink(templink)
+        } else {
+          console.log("No player data available")
+        }
+      }).catch((error) => {
+        console.log(error);
+      })
     }, [submit])
     
   
     const handleChange = (newInput) => {
       setInput(newInput);
     };
-  
   
     function writeGameData(json) {
       const db = getDatabase()
@@ -307,8 +366,7 @@ const config = {
         oppmember5gold: json.info.participants[9].goldEarned,
         oppmember5dmg: json.info.participants[9].totalDamageDealtToChampions,
       };
-      
-      
+
       let count = 1
       let champs = [gameData.member1champ,gameData.member2champ,gameData.member3champ,gameData.member4champ,gameData.member5champ,gameData.oppmember1champ,gameData.oppmember2champ,gameData.oppmember3champ,gameData.oppmember4champ,gameData.oppmember5champ,]
       for (let i in champs) {
@@ -349,47 +407,75 @@ const config = {
               default:
                 break;
             }
+
             count++
           }
         }
       }
-      console.log(gameData)
       // Create a new post reference with an auto-generated id
   
-      const postListRef = ref(db, 'team2/games/');
+      const postListRef = ref(db, {teamName} + '/games/');
       const newPostRef = push(postListRef);
       set(newPostRef, gameData);
-      
       setSubmit(!submit)
     }
-  
-  
     
     const handleAdd = (e) => {
       e.preventDefault();
-      if (input.length !== 10)
+      if (input.length !== 10) {
         alert("Please enter a valid game ID");
-      else {
+      } else {
         fetch("https://americas.api.riotgames.com/lol/match/v5/matches/NA1_" + input + "?api_key=" + riotKey)
           .then((res) => res.json())
           .then((res)=>{
             writeGameData(res)
           });
+        setInput("")
+        alert("Game Entry Successful!")
       }
-      setInput("")
-      alert("Game Entry Successful!")
     };
-  
+
+    const handleAddPlayer = () => {
+      const db = getDatabase()
+      // A post entry.
+      const playerData = {
+        IGN: IGN,
+        kills: 0,
+        assists: 0,
+        deaths: 0,
+        damage: 0,
+        dmgtaken: 0,
+        pointValue: points,
+      };
+
+      set(ref(db, teamName + '/players/' + IGN), playerData);
+      setIGN('')
+      setPoints(0)
+      setSubmit(!submit)
+    }
+
+    const handleIGN = (newIGN) => {
+      setIGN(newIGN)
+    }
+
+    const handlePoints = (newPoints) => {
+      setPoints(newPoints)
+    }
+
+    const handleRemovePlayer = (releasee) => {
+      const db = getDatabase()
+      set(ref(db, teamName + '/players/' + releasee), null);
+    }
   
     const bigscreen = useMediaQuery('(min-width: 1138px)');
-  
-    if (bigscreen) {
-        return(
+  //next we test add remove players, and do remove teams and copy paste into second section
+    if (bigscreen) { 
+      return(
         <Grommet>
-            <div class="bgvon"></div>
-            <div class="bgvon bg2"></div>
-            <div class="bgvon bg3"></div>
-            <Grid style={{marginTop:'4%', paddingBottom:'2%'}}
+          <div style={bgteam}></div>
+          <div style={bg2}></div>
+          <div style={bg3}></div>
+          <Grid style={{marginTop:'4%', paddingBottom: '2%'}}
             fill 
             rows={['xsmall', 'auto', '250px']}
             columns={['1/2', '1/2']}
@@ -400,134 +486,160 @@ const config = {
             { name: 'roster', start: [1, 1], end: [1, 1] },
             { name: 'matches', start: [0,2], end: [1,2] },
             ]}
-            >
+          >
             <Box align='center' round='small' pad='small' background='rgba(255,255,255,.8)' style={{marginLeft: '10%', marginRight: '10%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black'}} gridArea="banner" >
-                <h1>The Doomsday Specialists</h1>
+              <h1>{teamName}</h1>
             </Box>
-            <Box align='center' round='small' pad='small' background='rgba(255,255,255,.8)' style={{marginLeft: '10%', marginRight: '10%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black'}} gridArea="schedule">
-                <h1>Schedule</h1>
-                <Table>
+            <Box align='center' round='small' background='rgba(255,255,255,.8)' style={{marginLeft: '10%', marginRight: '10%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black'}} gridArea="schedule">
+              <h1>Schedule</h1>
+              <Table>
                 <TableHeader>
-                    <TableRow>
+                  <TableRow>
                     <TableCell>Week</TableCell>
                     <TableCell>Home</TableCell>
                     <TableCell>Score</TableCell>
                     <TableCell>Away</TableCell>
-                    </TableRow>
+                  </TableRow>
                 </TableHeader>
                 <TableBody>
                 <TableRow>
-                    <TableCell>9/26</TableCell>
-                    <TableCell>The Scuttle Hunters</TableCell>
-                    <TableCell>0-2</TableCell>
-                    <TableCell>The Doomsday Specialists</TableCell>
+                  <TableCell>9/26</TableCell>
+                  <TableCell>The Copium Cartel</TableCell>
+                  <TableCell>2-0</TableCell>
+                  <TableCell>The Electric Rats</TableCell>
                 </TableRow>
                 <TableRow>
-                    <TableCell>10/3</TableCell>
-                    <TableCell>Team Kaalok</TableCell>
-                    <TableCell>0-2</TableCell>
-                    <TableCell>The Doomsday Specialists</TableCell>
+                  <TableCell>10/3</TableCell>
+                  <TableCell>The Electric Rats</TableCell>
+                  <TableCell>1-1</TableCell>
+                  <TableCell>The Scuttle Hunters</TableCell>
                 </TableRow>
                 <TableRow>
-                    <TableCell>10/10</TableCell>
-                    <TableCell>The Doomsday Specialists</TableCell>
-                    <TableCell>1-1</TableCell>
-                    <TableCell>The Electric Rats</TableCell>
+                  <TableCell>10/10</TableCell>
+                  <TableCell>The Doomsday Specialists</TableCell>
+                  <TableCell>1-1</TableCell>
+                  <TableCell>The Electric Rats</TableCell>
                 </TableRow>
                 <TableRow>
-                    <TableCell>10/17</TableCell>
-                    <TableCell> The Supine Snails</TableCell>
-                    <TableCell>1-1</TableCell>
-                    <TableCell>The Doomsday Specialists</TableCell>
+                  <TableCell>10/17</TableCell>
+                  <TableCell>Team Kaalok</TableCell>
+                  <TableCell>0-2</TableCell>
+                  <TableCell>The Electric Rats</TableCell>
                 </TableRow>
                 <TableRow>
-                    <TableCell>10/24</TableCell>
-                    <TableCell>The Doomsday Specialists</TableCell>
-                    <TableCell>2-0</TableCell>
-                    <TableCell>Team Verule</TableCell>
+                  <TableCell>10/24</TableCell>
+                  <TableCell>The Electric Rats</TableCell>
+                  <TableCell>2-0</TableCell>
+                  <TableCell>The Supine Snails</TableCell>
                 </TableRow>
                 <TableRow>
-                    <TableCell>10/31</TableCell>
-                    <TableCell>Team Jungle Diff</TableCell>
-                    <TableCell>0-2</TableCell>
-                    <TableCell>The Doomsday Specialists</TableCell>
+                  <TableCell>10/31</TableCell>
+                  <TableCell>Team Verule</TableCell>
+                  <TableCell>1-1</TableCell>
+                  <TableCell>The Electric Rats</TableCell>
                 </TableRow>
                 <TableRow>
-                    <TableCell>11/7</TableCell>
-                    <TableCell>The Doomsday Specialists</TableCell>
-                    <TableCell>2-0</TableCell>
-                    <TableCell>i like fortnite</TableCell>
+                  <TableCell>11/7</TableCell>
+                  <TableCell>The Electric Rats</TableCell>
+                  <TableCell>2-0</TableCell>
+                  <TableCell>Team Jungle Diff </TableCell>
                 </TableRow>
                 <TableRow>
-                    <TableCell>11/14</TableCell>
-                    <TableCell>Fish and Chips</TableCell>
-                    <TableCell>0-2</TableCell>
-                    <TableCell>The Doomsday Specialists</TableCell>
+                  <TableCell>11/14</TableCell>
+                  <TableCell>i like fortnite</TableCell>
+                  <TableCell>0-2</TableCell>
+                  <TableCell>The Electric Rats</TableCell>
                 </TableRow>
                 </TableBody>
-                </Table>
-                
+              </Table>
+              
             </Box>
             <Box align='center' round='small' background='rgba(255,255,255,.8)' style={{marginLeft: '10%', marginRight: '10%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black'}} gridArea="roster">
-                <h1>Roster</h1>
-                <Table>
+              <h1>Roster</h1>
+              <Table>
                 <TableHeader>
-                    <TableRow>
+                  <TableRow>
                     <TableCell>IGN</TableCell>
-                    <TableCell>Rank</TableCell>
-                    </TableRow>
+                    <TableCell>Points</TableCell>
+                    <TableCell>Kills</TableCell>
+                    <TableCell>Deaths</TableCell>
+                    <TableCell>Assists</TableCell>
+                  </TableRow>
                 </TableHeader>
                 <TableBody>
+                  {players.map((player) => (
                     <TableRow>
-                    <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Von+Bon'>Von Bon</a></TableCell>
-                    <TableCell>Diamond 4</TableCell>
+                      <TableCell><a style={{color: 'black'}} target="_blank" href={'https://na.op.gg/summoner/userName='+player.IGN}>{player.IGN}</a></TableCell>
+                      <TableCell>{player.pointValue}</TableCell>
+                      <TableCell>{player.kills}</TableCell>
+                      <TableCell>{player.deaths}</TableCell>
+                      <TableCell>{player.assists}</TableCell>
+                      <Button plain={false} icon={<Close />} onClick={handleRemovePlayer(player.IGN)} primary />
                     </TableRow>
+                  ))}
+                  {players.length < 5 && ( 
                     <TableRow>
-                    <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Lukaspeng'>Lukaspeng</a></TableCell>
-                    <TableCell>Unranked</TableCell>
+                      <TableCell></TableCell>
+                      <TableCell></TableCell>
+                      <TableCell>
+                        <form onSubmit={handleAddPlayer}>
+                        <Button icon={<Add />} hoverIndicator onClick={() => setShow(true)} />
+                          {show && (
+                            <Layer
+                              onEsc={() => setShow(false)}
+                              onClickOutside={() => setShow(false)}
+                            >
+                              <Box align='center' round='small' pad='medium' background='rgba(255,255,255,.8)' style={{maxWidth: '40rem', margin: 'auto', borderRadius: '.25em', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black', marginTop: '5%'}}>
+                                <h2>IGN: </h2>
+                                <input
+                                  label='IGN: ' 
+                                  type="text"
+                                  onChange={(e) => handleIGN(e.target.value)}
+                                />
+                                <h2>Point Value: </h2>
+                                <input
+                                  label='Point Value: ' 
+                                  type="text"
+                                  onChange={(e) => handlePoints(e.target.value)}
+                                />
+                                <Button type='submit' onClick={() => handleAddPlayer()} style={{fontSize: 'calc(10px + 1.5vmin)', color: 'black', fontWeight: 'bold', backgroundColor: '#ffa51f', border: '#ffa51f'}} label='Add Player'/>
+                              </Box>
+                            </Layer>
+                          )}
+                        </form>
+                      </TableCell>
+                      <TableCell></TableCell>
+                      <TableCell></TableCell>
                     </TableRow>
-                    <TableRow>
-                    <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Klauspeng'>Klauspeng</a></TableCell>
-                    <TableCell>Unranked</TableCell>
-                    </TableRow>
-                    <TableRow>
-                    <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Tulla3212'>Tulla3212</a></TableCell>
-                    <TableCell>Plat 3</TableCell>
-                    </TableRow>
-                    <TableRow>
-                    <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Spades+Gambit'>Spades Gambit</a></TableCell>
-                    <TableCell>Bronze 1</TableCell>
-                    </TableRow>
+                  )}
                 </TableBody>
-                </Table>
-                <h2>Point Total: 162.8/175</h2>
-                <Button target="_blank" href='https://na.op.gg/multi/query=Von%20Bon%2Clukaspeng%2Cklauspeng%2CSpades%20Gambit%2CTulla3212' primary style={{fontSize: 'calc(10px + 1.5vmin)', color: 'white', fontWeight: 'bold', backgroundColor: 'black', border: 'black'}} label='Team OP.GG'/>
+              </Table>
+              <h2>Point Total: {sum}/{cap}</h2>
+              <Button target="_blank" href={link} primary style={{fontSize: 'calc(10px + 1.5vmin)', color: 'black', fontWeight: 'bold', backgroundColor: '#fffa75', border: '#fffa75'}} label='Team OP.GG'/>
             </Box>
             <Box align='center' round='small' background='rgba(255,255,255,.8)' style={{marginLeft: '10%', marginRight: '10%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black'}} gridArea="matches">
-                <h1>Match History</h1>
-                <form onSubmit={handleAdd}>
-                <h2>Match ID:</h2>
-    
-                <input
+              <h1>Match History</h1>
+              <form onSubmit={handleAdd}>
+              <h2>Match ID:</h2>
+              <input
                 type="text"
                 onChange={(e) => handleChange(e.target.value)}
-                />
-                <Button type='submit' style={{fontSize: 'calc(10px + 1.5vmin)', color: 'white', fontWeight: 'bold', marginLeft: '10px', backgroundColor: 'black', border: 'black'}} label='Add Game'/>
-                </form>
+              />
+              <Button type='submit' style={{fontSize: 'calc(10px + 1.5vmin)', color: 'black', fontWeight: 'bold', marginLeft: '10px', backgroundColor: '#fffa75', border: '#fffa75'}} label='Add Game'/>
+              </form>
             </Box>
             </Grid>
             {games.map((game) => (
-                 <Game game={game} captain={captain}/>
+              <Game game={game} captain={captain}/>
             ))}
         </Grommet >
-        )
-    }
-    return(
+      )}
+      return(
         <Grommet>
-            <div class="bgvon"></div>
-            <div class="bgvon bg2"></div>
-            <div class="bgvon bg3"></div>
-            <Grid style={{marginTop:'4%', paddingBottom: '2%'}}
+          <div style={bgteam}></div>
+          <div style={bg2} ></div>
+          <div style={bg3}></div>
+          <Grid style={{marginTop:'4%', paddingBottom: '2%'}}
             fill 
             rows={['xsmall', 'auto', 'auto', 'auto']}
             columns={['1/2', '1/2']}
@@ -538,126 +650,127 @@ const config = {
             { name: 'roster', start: [0, 1], end: [1, 1] },
             { name: 'matches', start: [0,3], end: [1,3] },
             ]}
-            >
+          >
             <Box align='center' round='small' pad='small' background='rgba(255,255,255,.8)' style={{marginLeft: '10%', marginRight: '10%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black'}} gridArea="banner" >
-                <h1>The Doomsday Specialists</h1>
+              <h1>{teamName}</h1>
             </Box>
-            <Box align='center' round='small' pad='small' background='rgba(255,255,255,.8)' style={{marginLeft: '10%', marginRight: '10%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black'}} gridArea="schedule">
-                <h1>Schedule</h1>
-                <Table>
+            <Box align='center' round='small' background='rgba(255,255,255,.8)' style={{marginLeft: '10%', marginRight: '10%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black'}} gridArea="schedule">
+              <h1>Schedule</h1>
+              <Table>
                 <TableHeader>
-                    <TableRow>
+                  <TableRow>
                     <TableCell>Week</TableCell>
                     <TableCell>Home</TableCell>
                     <TableCell>Score</TableCell>
                     <TableCell>Away</TableCell>
-                    </TableRow>
+                  </TableRow>
                 </TableHeader>
                 <TableBody>
                 <TableRow>
-                    <TableCell>9/26</TableCell>
-                    <TableCell>The Scuttle Hunters</TableCell>
-                    <TableCell>0-2</TableCell>
-                    <TableCell>The Doomsday Specialists</TableCell>
+                  <TableCell>9/26</TableCell>
+                  <TableCell>The Copium Cartel</TableCell>
+                  <TableCell>2-0</TableCell>
+                  <TableCell>The Electric Rats</TableCell>
                 </TableRow>
                 <TableRow>
-                    <TableCell>10/3</TableCell>
-                    <TableCell>Team Kaalok</TableCell>
-                    <TableCell>0-2</TableCell>
-                    <TableCell>The Doomsday Specialists</TableCell>
+                  <TableCell>10/3</TableCell>
+                  <TableCell>The Electric Rats</TableCell>
+                  <TableCell>1-1</TableCell>
+                  <TableCell>The Scuttle Hunters</TableCell>
                 </TableRow>
                 <TableRow>
-                    <TableCell>10/10</TableCell>
-                    <TableCell>The Doomsday Specialists</TableCell>
-                    <TableCell>1-1</TableCell>
-                    <TableCell>The Electric Rats</TableCell>
+                  <TableCell>10/10</TableCell>
+                  <TableCell>The Doomsday Specialists</TableCell>
+                  <TableCell>1-1</TableCell>
+                  <TableCell>The Electric Rats</TableCell>
                 </TableRow>
                 <TableRow>
-                    <TableCell>10/17</TableCell>
-                    <TableCell>The Supine Snails</TableCell>
-                    <TableCell>1-1</TableCell>
-                    <TableCell>The Doomsday Specialists</TableCell>
+                  <TableCell>10/17</TableCell>
+                  <TableCell>Team Kaalok</TableCell>
+                  <TableCell>0-2</TableCell>
+                  <TableCell>The Electric Rats</TableCell>
                 </TableRow>
                 <TableRow>
-                    <TableCell>10/24</TableCell>
-                    <TableCell>The Doomsday Specialists</TableCell>
-                    <TableCell>2-0</TableCell>
-                    <TableCell>Team Verule</TableCell>
+                  <TableCell>10/24</TableCell>
+                  <TableCell>The Electric Rats</TableCell>
+                  <TableCell>2-0</TableCell>
+                  <TableCell>The Supine Snails</TableCell>
                 </TableRow>
                 <TableRow>
-                    <TableCell>10/31</TableCell>
-                    <TableCell>Team Jungle Diff </TableCell>
-                    <TableCell>0-2</TableCell>
-                    <TableCell>The Doomsday Specialists</TableCell>
+                  <TableCell>10/31</TableCell>
+                  <TableCell>Team Verule</TableCell>
+                  <TableCell>1-1</TableCell>
+                  <TableCell>The Electric Rats</TableCell>
                 </TableRow>
                 <TableRow>
-                    <TableCell>11/7</TableCell>
-                    <TableCell>The Doomsday Specialists</TableCell>
-                    <TableCell>2-0</TableCell>
-                    <TableCell>i like fortnite</TableCell>
+                  <TableCell>11/7</TableCell>
+                  <TableCell>The Electric Rats</TableCell>
+                  <TableCell>2-0</TableCell>
+                  <TableCell>Team Jungle Diff </TableCell>
                 </TableRow>
                 <TableRow>
-                    <TableCell>11/14</TableCell>
-                    <TableCell>Fish and Chips</TableCell>
-                    <TableCell>0-2</TableCell>
-                    <TableCell>The Doomsday Specialists</TableCell>
+                  <TableCell>11/14</TableCell>
+                  <TableCell>i like fortnite</TableCell>
+                  <TableCell>0-2</TableCell>
+                  <TableCell>The Electric Rats</TableCell>
                 </TableRow>
                 </TableBody>
-                </Table>
-                
+              </Table>
+              
             </Box>
-            <Box align='center' round='small' background='rgba(255,255,255,.8)' style={{marginLeft: '10%', marginRight: '10%', paddingBottom: '2%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black'}} gridArea="roster">
-                <h1>Roster</h1>
-                <Table>
+            <Box align='center' round='small' background='rgba(255,255,255,.8)' style={{marginLeft: '10%', marginRight: '10%', paddingBottom: '2%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black',}} gridArea="roster">
+              <h1>Roster</h1>
+              <Table>
                 <TableHeader>
-                    <TableRow>
+                  <TableRow>
                     <TableCell>IGN</TableCell>
                     <TableCell>Rank</TableCell>
-                    </TableRow>
+                  </TableRow>
                 </TableHeader>
                 <TableBody>
-                    <TableRow>
-                    <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Von+Bon'>Von Bon</a></TableCell>
+                  <TableRow>
+                    <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=JWoIf'>JWoIf</a></TableCell>
                     <TableCell>Diamond 4</TableCell>
-                    </TableRow>
-                    <TableRow>
-                    <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Lukaspeng'>Lukaspeng</a></TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Quigm'>Quigm</a></TableCell>
                     <TableCell>Unranked</TableCell>
-                    </TableRow>
-                    <TableRow>
-                    <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Klauspeng'>Klauspeng</a></TableCell>
-                    <TableCell>Unranked</TableCell>
-                    </TableRow>
-                    <TableRow>
-                    <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Tulla3212'>Tulla3212</a></TableCell>
-                    <TableCell>Plat 3</TableCell>
-                    </TableRow>
-                    <TableRow>
-                    <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Spades+Gambit'>Spades Gambit</a></TableCell>
-                    <TableCell>Bronze 1</TableCell>
-                    </TableRow>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Sariz'>Sariz</a></TableCell>
+                    <TableCell>Diamond 4</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=NoiceFC'>NoiceFC</a></TableCell>
+                    <TableCell>Silver 1</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=TheDyou'>TheDyou</a></TableCell>
+                    <TableCell>Bronze 2</TableCell>
+                  </TableRow>
                 </TableBody>
-                </Table>
-                <h2>Point Total: 162.8/175</h2>
-                <Button target="_blank" href='https://na.op.gg/multi/query=Von%20Bon%2Clukaspeng%2Cklauspeng%2CSpades%20Gambit%2CTulla3212' primary style={{fontSize: 'calc(10px + 1.5vmin)', color: 'white', fontWeight: 'bold', backgroundColor: 'black', border: 'black'}} label='Team OP.GG'/>
+              </Table>
+              <h2>Point Total: 174.8/175</h2>
+              <Button target="_blank" href='https://na.op.gg/multi/query=JWoif%2CQuigm%2CSariz%2CNoiceFC%2CTheDyou%2C' primary style={{fontSize: 'calc(10px + 1.5vmin)', color: 'black', fontWeight: 'bold', backgroundColor: '#fffa75', border: '#fffa75'}} label='Team OP.GG'/>
             </Box>
             <Box align='center' round='small' background='rgba(255,255,255,.8)' style={{paddingBottom: '2%', marginLeft: '10%', marginRight: '10%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black'}} gridArea="matches">
-                <h1>Match History</h1>
-                <form onSubmit={handleAdd}>
-                <h2>Match ID:</h2>
-    
-                <input
+              <h1>Match History</h1>
+              <form onSubmit={handleAdd}>
+              <h2>Match ID:</h2>
+  
+              <input
                 type="text"
                 onChange={(e) => handleChange(e.target.value)}
-                />
-                <Button type='submit' style={{fontSize: 'calc(10px + 1.5vmin)', color: 'white', fontWeight: 'bold', marginLeft: '10px', backgroundColor: 'black', border: 'black'}} label='Add Game'/>
-                </form>
+              />
+              <Button type='submit' style={{fontSize: 'calc(10px + 1.5vmin)', color: 'black', fontWeight: 'bold', marginLeft: '10px', backgroundColor: '#fffa75', border: '#fffa75'}} label='Add Game'/>
+              </form>
             </Box>
             </Grid>
             {games.map((game) => (
-                <Game game={game} captain={captain}/>
+              <Game game={game} captain={captain}/>
             ))}
         </Grommet >
-    )
+      )
   }
-  export default Team2;
+
+  export default Team;

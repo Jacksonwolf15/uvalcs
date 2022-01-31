@@ -456,7 +456,7 @@ const config = {
               <TableRow>
                 <TableCell>11/7</TableCell>
                 <TableCell>The Doomsday Specialists</TableCell>
-                <TableCell>0-0</TableCell>
+                <TableCell>2-0</TableCell>
                 <TableCell>i like fortnite</TableCell>
               </TableRow>
               <TableRow>
@@ -581,7 +581,7 @@ const config = {
               <TableRow>
                 <TableCell>10/24</TableCell>
                 <TableCell>The Copium Cartel</TableCell>
-                <TableCell>0-0</TableCell>
+                <TableCell>2-0</TableCell>
                 <TableCell>i like fortnite</TableCell>
               </TableRow>
               <TableRow>
@@ -593,7 +593,7 @@ const config = {
               <TableRow>
                 <TableCell>11/7</TableCell>
                 <TableCell>The Doomsday Specialists</TableCell>
-                <TableCell>0-0</TableCell>
+                <TableCell>2-0</TableCell>
                 <TableCell>i like fortnite</TableCell>
               </TableRow>
               <TableRow>

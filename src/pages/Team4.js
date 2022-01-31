@@ -449,7 +449,7 @@ const config = {
               <TableRow>
                 <TableCell>10/31</TableCell>
                 <TableCell>Team Jungle Diff</TableCell>
-                <TableCell>0-0</TableCell>
+                <TableCell>0-2</TableCell>
                 <TableCell>The Doomsday Specialists</TableCell>
               </TableRow>
               <TableRow>
@@ -573,7 +573,7 @@ const config = {
               </TableRow>
               <TableRow>
                 <TableCell>10/17</TableCell>
-                <TableCell>Team Jungle Diff </TableCell>
+                <TableCell>Team Jungle Diff</TableCell>
                 <TableCell>0-0</TableCell>
                 <TableCell>The Copium Cartel</TableCell>
               </TableRow>
@@ -585,8 +585,8 @@ const config = {
               </TableRow>
               <TableRow>
                 <TableCell>10/31</TableCell>
-                <TableCell>Team Jungle Diff </TableCell>
-                <TableCell>0-0</TableCell>
+                <TableCell>Team Jungle Diff</TableCell>
+                <TableCell>0-2</TableCell>
                 <TableCell>The Doomsday Specialists</TableCell>
               </TableRow>
               <TableRow>

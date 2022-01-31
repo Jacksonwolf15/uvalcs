@@ -432,7 +432,7 @@ const config = {
               <TableRow>
                 <TableCell>10/10</TableCell>
                 <TableCell>The Copium Cartel</TableCell>
-                <TableCell>0-0</TableCell>
+                <TableCell>0-2</TableCell>
                 <TableCell>Team Verule</TableCell>
               </TableRow>
               <TableRow>
@@ -569,7 +569,7 @@ const config = {
               <TableRow>
                 <TableCell>10/10</TableCell>
                 <TableCell>The Copium Cartel</TableCell>
-                <TableCell>0-0</TableCell>
+                <TableCell>0-2</TableCell>
                 <TableCell>Team Verule</TableCell>
               </TableRow>
               <TableRow>

@@ -432,7 +432,7 @@ const config = {
               <TableRow>
                 <TableCell>10/10</TableCell>
                 <TableCell>The Copium Cartel</TableCell>
-                <TableCell>0-0</TableCell>
+                <TableCell>0-2</TableCell>
                 <TableCell>Team Verule</TableCell>
               </TableRow>
               <TableRow>
@@ -444,7 +444,7 @@ const config = {
               <TableRow>
                 <TableCell>10/24</TableCell>
                 <TableCell>Team Bejewelled</TableCell>
-                <TableCell>0-0</TableCell>
+                <TableCell>2-0</TableCell>
                 <TableCell>i like fortnite</TableCell>
               </TableRow>
               <TableRow>
@@ -569,7 +569,7 @@ const config = {
               <TableRow>
                 <TableCell>10/10</TableCell>
                 <TableCell>The Copium Cartel</TableCell>
-                <TableCell>0-0</TableCell>
+                <TableCell>0-2</TableCell>
                 <TableCell>Team Verule</TableCell>
               </TableRow>
               <TableRow>
@@ -581,7 +581,7 @@ const config = {
               <TableRow>
                 <TableCell>10/24</TableCell>
                 <TableCell>Team Bejewelled</TableCell>
-                <TableCell>0-0</TableCell>
+                <TableCell>2-0</TableCell>
                 <TableCell>i like fortnite</TableCell>
               </TableRow>
               <TableRow>

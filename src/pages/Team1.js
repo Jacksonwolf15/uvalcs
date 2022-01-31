@@ -8,8 +8,6 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Game from '../components/game.js'
 
 
-
-
 const config = {
     apiKey: process.env.REACT_APP_apiKey,
     authDomain: process.env.REACT_APP_authDomain,
@@ -365,9 +363,9 @@ function Team1() {
     
     const handleAdd = (e) => {
       e.preventDefault();
-      if (input.length !== 10)
+      if (input.length !== 10) {
         alert("Please enter a valid game ID");
-      else {
+      } else {
         fetch("https://americas.api.riotgames.com/lol/match/v5/matches/NA1_" + input + "?api_key=" + riotKey)
           .then((res) => res.json())
           .then((res)=>{
@@ -383,9 +381,9 @@ function Team1() {
     if (bigscreen) {
       return(
         <Grommet>
-          <div class="bgrats"></div>
-          <div class="bgrats bg2"></div>
-          <div class="bgrats bg3"></div>
+          <div className="bgrats"></div>
+          <div className="bgrats bg2"></div>
+          <div className="bgrats bg3"></div>
           <Grid style={{marginTop:'4%', paddingBottom: '2%'}}
             fill 
             rows={['xsmall', 'auto', '250px']}
@@ -520,9 +518,9 @@ function Team1() {
       )}
       return(
         <Grommet>
-          <div class="bgrats"></div>
-          <div class="bgrats bg2"></div>
-          <div class="bgrats bg3"></div>
+          <div className="bgrats"></div>
+          <div className="bgrats bg2"></div>
+          <div className="bgrats bg3"></div>
           <Grid style={{marginTop:'4%', paddingBottom: '2%'}}
             fill 
             rows={['xsmall', 'auto', 'auto', 'auto']}
