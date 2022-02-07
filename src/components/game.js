@@ -3,31 +3,10 @@ import React from "react";
 import { Box, Grommet, Table, TableBody, TableCell, TableHeader, TableRow, Meter} from 'grommet';
 
 
-
-const Game = ({game, captain}) => {
-    const captains = {
-      'Von Bon' : 'team2', 
-      'Shoushukann' : 'team3', 
-      'TheXADASH': 'team4', 
-      'KeithChief': 'team7', 
-      'Verule': 'team10', 
-      'Taesung': 'team9', 
-      'Bejewelled': 'team8', 
-      'Plump Dumpling': 'team6', 
-      'HelsEch': 'team5',
-      'JWoif': 'team1'
-    }
-    let win = false
-    if (game.member1 === captain || game.member2 === captain || game.member3 === captain || game.member4 === captain || game.member5 === captain) {
-      if (game.homeWin === true) {
-        win = true
-      }
-      
-    } else {
-      if (game.homeWin === false) {
-        win = true
-      }
-    }
+const Game = ({game}) => {
+    
+  
+    
     
     const damage1 = Math.max(game.member1dmg, game.member2dmg,game.member3dmg, game.member4dmg,game.member5dmg)
     const damage2 = Math.max(game.oppmember1dmg,game.oppmember2dmg, game.oppmember3dmg,game.oppmember4dmg, game.oppmember5dmg)
@@ -43,7 +22,7 @@ const Game = ({game, captain}) => {
     let image8 = 'https://fastcdn.mobalytics.gg/assets/lol/images/dd/champions/icons/' + game.oppmember3champname + '.png'
     let image9 = 'https://fastcdn.mobalytics.gg/assets/lol/images/dd/champions/icons/' + game.oppmember4champname + '.png'
     let image10 = 'https://fastcdn.mobalytics.gg/assets/lol/images/dd/champions/icons/' + game.oppmember5champname + '.png'
-    if (win) { //make everything in the boxes and the box static size.
+    if (game.win) { //make everything in the boxes and the box static size.
     return (
       <div  style={{display: "flex", flexDirection: "column", marginTop: '4%', marginRight: '-2%'}}> 
           <Grommet>

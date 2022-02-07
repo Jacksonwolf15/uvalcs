@@ -1,13 +1,13 @@
 /* eslint-disable react/jsx-no-target-blank */
 import '../App.css';
 import React, { useEffect, useState } from "react";
-import { Close, Add } from 'grommet-icons';
-import { Grid, Button, Box, Grommet, Table, TableBody, TableCell, TableHeader, TableRow } from 'grommet';
+import { Add } from 'grommet-icons';
+import { Grid, Select, Layer, Button, Box, Grommet, Table, TableBody, TableCell, TableHeader, TableRow } from 'grommet';
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get, set, child, push } from "firebase/database";
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import Game from './game.js'
-
+import Game from './game.js';
+import Schedule from './schedule.js'
 
 const config = {
     apiKey: process.env.REACT_APP_apiKey,
@@ -190,16 +190,21 @@ const config = {
   
   }
 
-function Team({teamName, captain, teamColor1, teamColor2, cap}) {
+function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLosses, teamTies}) {
     const [input, setInput] = useState("")
     const [games, setGames] = useState([])
     const [submit, setSubmit] = useState(false)
     const [players, setPlayers] = useState([])
     const [sum, setSum] = useState(0)
     const [link, setLink] = useState('')
+    const [schedule, setSchedule] = useState([])
     const [points, setPoints] = useState(0)
     const [IGN, setIGN] = useState('')
     const [show, setShow] = useState(false)
+    const [week, setWeek] = useState('week ?')
+    const [weekData, setWeekData] = useState({})
+
+    let cap = 175 
 
     const bgteam = {
         animation: 'slide 3s ease-in-out infinite alternate',
@@ -240,9 +245,16 @@ function Team({teamName, captain, teamColor1, teamColor2, cap}) {
       animationDuration: '5s'
     }
 
-    useEffect(()=> {
-      const dbRef = ref(getDatabase());
-      get(child(dbRef, teamName + '/games')).then((snapshot) => {
+    const teamButton = {
+      backgroundColor: teamColor1, 
+      border: teamColor1,
+      fontSize: 'calc(10px + 1.5vmin)', 
+      color: 'black', 
+      fontWeight: 'bold'
+    }
+    useEffect(() => {
+      const dbRef = ref(getDatabase())
+      get(child(dbRef, teamKey + '/games')).then((snapshot) => {
       if (snapshot.exists()) {
         setGames(Object.values(snapshot.val()))
       } else {
@@ -251,14 +263,28 @@ function Team({teamName, captain, teamColor1, teamColor2, cap}) {
       }).catch((error) => {
         console.error(error);
       });
-      get(child(dbRef, teamName + '/players')).then((snapshot) => {
+      get(child(dbRef, teamKey + '/schedule')).then((snapshot) => {
+        if (snapshot.exists()) {
+          setSchedule(Object.values(snapshot.val()))
+        } else {
+          console.log("No schedule available")
+        }
+        }).catch((error) => {
+          console.error(error);
+        });
+    }, [submit, teamKey])
+
+
+    useEffect(() => {
+      const dbRef = ref(getDatabase())
+      get(child(dbRef, teamKey + '/players')).then((snapshot) => {
         if (snapshot.exists()) {
           setPlayers(Object.values(snapshot.val()))
           let temp  = 0
           let templink = 'https://na.op.gg/multi/query='
           players.forEach(player => {
-            temp += player.pointValue
-            templink += player.IGN.replace(/\s/g, '') + '2%C'
+            temp += parseFloat(player.pointValue)
+            templink += player.IGN.replace(/\s/g, '') + '%2C%20'
           })
           setSum(temp)
           setLink(templink)
@@ -268,15 +294,15 @@ function Team({teamName, captain, teamColor1, teamColor2, cap}) {
       }).catch((error) => {
         console.log(error);
       })
-    }, [submit])
+    }, [teamKey, submit])
     
   
     const handleChange = (newInput) => {
       setInput(newInput);
     };
-  
     function writeGameData(json) {
       const db = getDatabase()
+
       // A post entry.
       const gameData = {
         gameID: json.info.gameId,
@@ -366,7 +392,79 @@ function Team({teamName, captain, teamColor1, teamColor2, cap}) {
         oppmember5gold: json.info.participants[9].goldEarned,
         oppmember5dmg: json.info.participants[9].totalDamageDealtToChampions,
       };
-
+      
+      let win = false
+      const dbRef = ref(getDatabase())
+      get(child(dbRef, teamKey + '/schedule/' + week.replace(/\s/g, ''))).then((snapshot) => {
+        if (snapshot.exists()) {
+          setWeekData(Object.values(snapshot.val()))
+        } else {
+          setWeekData({away: 'Error', awayWins: 0, homeWins: 0, home: 'Error'})
+        }
+      }).catch((error) => {
+        console.log(error);
+      })
+      if (gameData.member1 === captain || gameData.member2 === captain || gameData.member3 === captain || gameData.member4 === captain || gameData.member5 === captain) {
+        if (gameData.homeWin === true) {
+          win = true
+          set(ref(db, teamKey + '/schedule/' + week.replace(/\s/g, '')), {
+            away: weekData[2],
+            home: weekData[0],
+            homeWins: weekData[1] + 1,
+            awayWins: weekData[3]
+          });
+          if (weekData[1] === 1) {
+            set(ref(db, teamKey + '/wins'), {wins: teamWins + 1});
+          } else if (weekData[3] === 1) {
+            set(ref(db, teamKey + '/ties'), {ties: teamTies + 1});
+          }
+        } else {
+          win = false
+          set(ref(db, teamKey + '/schedule/' + week.replace(/\s/g, '')), {
+            away: weekData[2],
+            home: weekData[0],
+            homeWins: weekData[1],
+            awayWins: weekData[3] + 1
+          });
+          if (weekData[1] === 1) {
+            set(ref(db, teamKey + '/ties'), {ties: teamTies + 1});
+          } else if (weekData[3] === 1) {
+            set(ref(db, teamKey + '/losses'), {losses: teamLosses + 1});
+          }
+        }
+      } else {
+        if (gameData.homeWin === false) {
+          win = true
+          set( ref(db, teamKey + '/schedule/' + week.replace(/\s/g, '')), {
+            away: weekData[2],
+            home: weekData[0],
+            homeWins: weekData[1],
+            awayWins: weekData[3] + 1
+          });
+          if (weekData[1] === 1) {
+            set(ref(db, teamKey + '/ties'), {ties: teamTies + 1});
+          } else if (weekData[3] === 1) {
+            set(ref(db, teamKey + '/wins'), {wins: teamWins + 1});
+          }
+        } else {
+          win = false
+          let postListRef = ref(db, teamKey + '/schedule/' + week.replace(/\s/g, ''));
+          let newPostRef = push(postListRef);
+          set(newPostRef, {
+            away: weekData[2],
+            home: weekData[0],
+            homeWins: weekData[1] + 1,
+            awayWins: weekData[3]
+          });
+          if (weekData[1] === 1) {
+            set(ref(db, teamKey + '/losses'), {losses: teamLosses + 1});
+          } else if (weekData[3] === 1) {
+            set(ref(db, teamKey + '/ties'), {ties: teamTies + 1});
+          }
+        }
+      }
+      
+      gameData.win = win
       let count = 1
       let champs = [gameData.member1champ,gameData.member2champ,gameData.member3champ,gameData.member4champ,gameData.member5champ,gameData.oppmember1champ,gameData.oppmember2champ,gameData.oppmember3champ,gameData.oppmember4champ,gameData.oppmember5champ,]
       for (let i in champs) {
@@ -407,30 +505,125 @@ function Team({teamName, captain, teamColor1, teamColor2, cap}) {
               default:
                 break;
             }
-
             count++
           }
         }
       }
       // Create a new post reference with an auto-generated id
   
-      const postListRef = ref(db, {teamName} + '/games/');
-      const newPostRef = push(postListRef);
+      let postListRef = ref(db, teamKey + '/games/');
+      let newPostRef = push(postListRef);
       set(newPostRef, gameData);
+      for (let i = 0; i < players.length; i++) {
+        if (players[i].IGN === gameData.member1) {
+          let player = players.filter(ele => ele.IGN === gameData.member1)
+          let playerStats = {
+            kills: player.stats.kills + gameData.member1kills,
+            assists: player.stats.assists + gameData.member1assists,
+            deaths: player.stats.deaths + gameData.member1deaths,
+            damage: player.stats.damage + gameData.member1dmg,
+          };
+          set(ref(db, teamKey + '/players/' + gameData.member1 +'/stats'), playerStats)
+        } else if (players[i].IGN === gameData.member2) {
+          let player = players.filter(ele => ele.IGN === gameData.member2)
+          let playerStats = {
+            kills: player.stats.kills + gameData.member2kills,
+            assists: player.stats.assists + gameData.member2assists,
+            deaths: player.stats.deaths + gameData.member2deaths,
+            damage: player.stats.damage + gameData.member2dmg,
+          };
+          set(ref(db, teamKey + '/players/' + gameData.member2 +'/stats'), playerStats)
+        } else if (players[i].IGN === gameData.member3) {
+          let player = players.filter(ele => ele.IGN === gameData.member3)
+          let playerStats = {
+            kills: player.stats.kills + gameData.member3kills,
+            assists: player.stats.assists + gameData.member3assists,
+            deaths: player.stats.deaths + gameData.member3deaths,
+            damage: player.stats.damage + gameData.member3dmg,
+          };
+          set(ref(db, teamKey + '/players/' + gameData.member3 +'/stats'), playerStats)
+        } else if (players[i].IGN === gameData.member4) {
+          let player = players.filter(ele => ele.IGN === gameData.member4)
+          let playerStats = {
+            kills: player.stats.kills + gameData.member4kills,
+            assists: player.stats.assists + gameData.member4assists,
+            deaths: player.stats.deaths + gameData.member4deaths,
+            damage: player.stats.damage + gameData.member4dmg,
+          };
+          set(ref(db, teamKey + '/players/' + gameData.member4 +'/stats'), playerStats)
+        } else if (players[i].IGN === gameData.member5) {
+          let player = players.filter(ele => ele.IGN === gameData.member5)
+          let playerStats = {
+            kills: player.stats.kills + gameData.member5kills,
+            assists: player.stats.assists + gameData.member5assists,
+            deaths: player.stats.deaths + gameData.member5deaths,
+            damage: player.stats.damage + gameData.member5dmg,
+          };
+          set(ref(db, teamKey + '/players/' + gameData.member5 +'/stats'), playerStats)
+        } else if (players[i].IGN === gameData.oppmember1) {
+          let player = players.filter(ele => ele.IGN === gameData.oppmember1)
+          let playerStats = {
+            kills: player.stats.kills + gameData.oppmember1kills,
+            assists: player.stats.assists + gameData.oppmember1assists,
+            deaths: player.stats.deaths + gameData.oppmember1deaths,
+            damage: player.stats.damage + gameData.oppmember1dmg,
+          };
+          set(ref(db, teamKey + '/players/' + gameData.oppmember1 +'/stats'), playerStats)
+        } else if (players[i].IGN === gameData.oppmember2) {
+          let player = players.filter(ele => ele.IGN === gameData.oppmember2)
+          let playerStats = {
+            kills: player.stats.kills + gameData.oppmember2kills,
+            assists: player.stats.assists + gameData.oppmember2assists,
+            deaths: player.stats.deaths + gameData.oppmember2deaths,
+            damage: player.stats.damage + gameData.oppmember2dmg,
+          };
+          set(ref(db, teamKey + '/players/' + gameData.oppmember2 +'/stats'), playerStats)
+        } else if (players[i].IGN === gameData.oppmember3) {
+          let player = players.filter(ele => ele.IGN === gameData.oppmember3)
+          let playerStats = {
+            kills: player.stats.kills + gameData.oppmember3kills,
+            assists: player.stats.assists + gameData.oppmember3assists,
+            deaths: player.stats.deaths + gameData.oppmember3deaths,
+            damage: player.stats.damage + gameData.oppmember3dmg,
+          };
+          set(ref(db, teamKey + '/players/' + gameData.oppmember3 +'/stats'), playerStats)
+        } else if (players[i].IGN === gameData.oppmember4) {
+          let player = players.filter(ele => ele.IGN === gameData.oppmember4)
+          let playerStats = {
+            kills: player.stats.kills + gameData.oppmember4kills,
+            assists: player.stats.assists + gameData.oppmember4assists,
+            deaths: player.stats.deaths + gameData.oppmember4deaths,
+            damage: player.stats.damage + gameData.oppmember4dmg,
+          };
+          set(ref(db, teamKey + '/players/' + gameData.oppmember4 +'/stats'), playerStats)
+        } else if (players[i].IGN === gameData.oppmember5) {
+          let player = players.filter(ele => ele.IGN === gameData.oppmember5)
+          let playerStats = {
+            kills: player.stats.kills + gameData.oppmember5kills,
+            assists: player.stats.assists + gameData.oppmember5assists,
+            deaths: player.stats.deaths + gameData.oppmember5deaths,
+            damage: player.stats.damage + gameData.oppmember5dmg,
+          };
+          set(ref(db, teamKey + '/players/' + gameData.oppmember5 +'/stats'), playerStats)
+        }
+      }
       setSubmit(!submit)
     }
-    
+    console.log(players)
     const handleAdd = (e) => {
       e.preventDefault();
       if (input.length !== 10) {
         alert("Please enter a valid game ID");
+      } else if (week === 'week ?' || week === ''){
+        alert('Please select a week');
       } else {
         fetch("https://americas.api.riotgames.com/lol/match/v5/matches/NA1_" + input + "?api_key=" + riotKey)
           .then((res) => res.json())
           .then((res)=>{
             writeGameData(res)
           });
-        setInput("")
+        setInput('')
+        setWeek('week ?')
         alert("Game Entry Successful!")
       }
     };
@@ -440,18 +633,20 @@ function Team({teamName, captain, teamColor1, teamColor2, cap}) {
       // A post entry.
       const playerData = {
         IGN: IGN,
-        kills: 0,
-        assists: 0,
-        deaths: 0,
-        damage: 0,
-        dmgtaken: 0,
+        stats: {
+          kills: 0,
+          assists: 0,
+          deaths: 0,
+          damage: 0
+        },
         pointValue: points,
       };
 
-      set(ref(db, teamName + '/players/' + IGN), playerData);
+      set(ref(db, teamKey + '/players/' + IGN), playerData);
       setIGN('')
       setPoints(0)
       setSubmit(!submit)
+      setShow(false)
     }
 
     const handleIGN = (newIGN) => {
@@ -461,12 +656,6 @@ function Team({teamName, captain, teamColor1, teamColor2, cap}) {
     const handlePoints = (newPoints) => {
       setPoints(newPoints)
     }
-
-    const handleRemovePlayer = (releasee) => {
-      const db = getDatabase()
-      set(ref(db, teamName + '/players/' + releasee), null);
-    }
-  
     const bigscreen = useMediaQuery('(min-width: 1138px)');
   //next we test add remove players, and do remove teams and copy paste into second section
     if (bigscreen) { 
@@ -488,74 +677,15 @@ function Team({teamName, captain, teamColor1, teamColor2, cap}) {
             ]}
           >
             <Box align='center' round='small' pad='small' background='rgba(255,255,255,.8)' style={{marginLeft: '10%', marginRight: '10%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black'}} gridArea="banner" >
-              <h1>{teamName}</h1>
+              <h1>{Name}</h1>
             </Box>
-            <Box align='center' round='small' background='rgba(255,255,255,.8)' style={{marginLeft: '10%', marginRight: '10%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black'}} gridArea="schedule">
-              <h1>Schedule</h1>
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableCell>Week</TableCell>
-                    <TableCell>Home</TableCell>
-                    <TableCell>Score</TableCell>
-                    <TableCell>Away</TableCell>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                <TableRow>
-                  <TableCell>9/26</TableCell>
-                  <TableCell>The Copium Cartel</TableCell>
-                  <TableCell>2-0</TableCell>
-                  <TableCell>The Electric Rats</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>10/3</TableCell>
-                  <TableCell>The Electric Rats</TableCell>
-                  <TableCell>1-1</TableCell>
-                  <TableCell>The Scuttle Hunters</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>10/10</TableCell>
-                  <TableCell>The Doomsday Specialists</TableCell>
-                  <TableCell>1-1</TableCell>
-                  <TableCell>The Electric Rats</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>10/17</TableCell>
-                  <TableCell>Team Kaalok</TableCell>
-                  <TableCell>0-2</TableCell>
-                  <TableCell>The Electric Rats</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>10/24</TableCell>
-                  <TableCell>The Electric Rats</TableCell>
-                  <TableCell>2-0</TableCell>
-                  <TableCell>The Supine Snails</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>10/31</TableCell>
-                  <TableCell>Team Verule</TableCell>
-                  <TableCell>1-1</TableCell>
-                  <TableCell>The Electric Rats</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>11/7</TableCell>
-                  <TableCell>The Electric Rats</TableCell>
-                  <TableCell>2-0</TableCell>
-                  <TableCell>Team Jungle Diff </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>11/14</TableCell>
-                  <TableCell>i like fortnite</TableCell>
-                  <TableCell>0-2</TableCell>
-                  <TableCell>The Electric Rats</TableCell>
-                </TableRow>
-                </TableBody>
-              </Table>
-              
-            </Box>
+            {schedule.length > 0 && 
+              <Box align='center' round='small' background='rgba(255,255,255,.8)' style={{marginLeft: '10%', marginRight: '10%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black'}} gridArea="schedule">
+                <Schedule schedule={schedule}/>
+              </Box>
+            }
             <Box align='center' round='small' background='rgba(255,255,255,.8)' style={{marginLeft: '10%', marginRight: '10%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black'}} gridArea="roster">
-              <h1>Roster</h1>
+            <h1>Roster</h1>
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -568,13 +698,12 @@ function Team({teamName, captain, teamColor1, teamColor2, cap}) {
                 </TableHeader>
                 <TableBody>
                   {players.map((player) => (
-                    <TableRow>
+                    <TableRow key={player.IGN}>
                       <TableCell><a style={{color: 'black'}} target="_blank" href={'https://na.op.gg/summoner/userName='+player.IGN}>{player.IGN}</a></TableCell>
                       <TableCell>{player.pointValue}</TableCell>
-                      <TableCell>{player.kills}</TableCell>
-                      <TableCell>{player.deaths}</TableCell>
-                      <TableCell>{player.assists}</TableCell>
-                      <Button plain={false} icon={<Close />} onClick={handleRemovePlayer(player.IGN)} primary />
+                      <TableCell>{player.stats.kills}</TableCell>
+                      <TableCell>{player.stats.deaths}</TableCell>
+                      <TableCell>{player.stats.assists}</TableCell>
                     </TableRow>
                   ))}
                   {players.length < 5 && ( 
@@ -602,7 +731,7 @@ function Team({teamName, captain, teamColor1, teamColor2, cap}) {
                                   type="text"
                                   onChange={(e) => handlePoints(e.target.value)}
                                 />
-                                <Button type='submit' onClick={() => handleAddPlayer()} style={{fontSize: 'calc(10px + 1.5vmin)', color: 'black', fontWeight: 'bold', backgroundColor: '#ffa51f', border: '#ffa51f'}} label='Add Player'/>
+                                <Button primary type='submit' onClick={() => handleAddPlayer()} style={teamButton} label='Add Player'/>
                               </Box>
                             </Layer>
                           )}
@@ -615,7 +744,7 @@ function Team({teamName, captain, teamColor1, teamColor2, cap}) {
                 </TableBody>
               </Table>
               <h2>Point Total: {sum}/{cap}</h2>
-              <Button target="_blank" href={link} primary style={{fontSize: 'calc(10px + 1.5vmin)', color: 'black', fontWeight: 'bold', backgroundColor: '#fffa75', border: '#fffa75'}} label='Team OP.GG'/>
+              <Button primary target="_blank" href={link} style={teamButton} label='Team OP.GG'/>
             </Box>
             <Box align='center' round='small' background='rgba(255,255,255,.8)' style={{marginLeft: '10%', marginRight: '10%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black'}} gridArea="matches">
               <h1>Match History</h1>
@@ -625,12 +754,20 @@ function Team({teamName, captain, teamColor1, teamColor2, cap}) {
                 type="text"
                 onChange={(e) => handleChange(e.target.value)}
               />
-              <Button type='submit' style={{fontSize: 'calc(10px + 1.5vmin)', color: 'black', fontWeight: 'bold', marginLeft: '10px', backgroundColor: '#fffa75', border: '#fffa75'}} label='Add Game'/>
+              <Select
+                defaultValue='Week ?'
+                size='medium'
+                margin='small'
+                options={['week 1', 'week 2', 'week 3', 'week 4', 'week 5', 'week 6', 'week 7']}
+                value={week}
+                onChange={({ option }) => setWeek(option)}
+              />
+              <Button primary type='submit' style={teamButton} label='Add Game'/>
               </form>
             </Box>
             </Grid>
             {games.map((game) => (
-              <Game game={game} captain={captain}/>
+              <Game key={game.gameID} game={game} captain={captain}/>
             ))}
         </Grommet >
       )}
@@ -652,122 +789,97 @@ function Team({teamName, captain, teamColor1, teamColor2, cap}) {
             ]}
           >
             <Box align='center' round='small' pad='small' background='rgba(255,255,255,.8)' style={{marginLeft: '10%', marginRight: '10%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black'}} gridArea="banner" >
-              <h1>{teamName}</h1>
+              <h1>{Name}</h1>
             </Box>
-            <Box align='center' round='small' background='rgba(255,255,255,.8)' style={{marginLeft: '10%', marginRight: '10%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black'}} gridArea="schedule">
-              <h1>Schedule</h1>
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableCell>Week</TableCell>
-                    <TableCell>Home</TableCell>
-                    <TableCell>Score</TableCell>
-                    <TableCell>Away</TableCell>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                <TableRow>
-                  <TableCell>9/26</TableCell>
-                  <TableCell>The Copium Cartel</TableCell>
-                  <TableCell>2-0</TableCell>
-                  <TableCell>The Electric Rats</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>10/3</TableCell>
-                  <TableCell>The Electric Rats</TableCell>
-                  <TableCell>1-1</TableCell>
-                  <TableCell>The Scuttle Hunters</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>10/10</TableCell>
-                  <TableCell>The Doomsday Specialists</TableCell>
-                  <TableCell>1-1</TableCell>
-                  <TableCell>The Electric Rats</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>10/17</TableCell>
-                  <TableCell>Team Kaalok</TableCell>
-                  <TableCell>0-2</TableCell>
-                  <TableCell>The Electric Rats</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>10/24</TableCell>
-                  <TableCell>The Electric Rats</TableCell>
-                  <TableCell>2-0</TableCell>
-                  <TableCell>The Supine Snails</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>10/31</TableCell>
-                  <TableCell>Team Verule</TableCell>
-                  <TableCell>1-1</TableCell>
-                  <TableCell>The Electric Rats</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>11/7</TableCell>
-                  <TableCell>The Electric Rats</TableCell>
-                  <TableCell>2-0</TableCell>
-                  <TableCell>Team Jungle Diff </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>11/14</TableCell>
-                  <TableCell>i like fortnite</TableCell>
-                  <TableCell>0-2</TableCell>
-                  <TableCell>The Electric Rats</TableCell>
-                </TableRow>
-                </TableBody>
-              </Table>
-              
-            </Box>
+            {schedule.length > 0 && 
+              <Box align='center' round='small' background='rgba(255,255,255,.8)' style={{marginLeft: '10%', marginRight: '10%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black'}} gridArea="schedule">
+                <Schedule schedule={schedule}/>
+              </Box>
+            }
             <Box align='center' round='small' background='rgba(255,255,255,.8)' style={{marginLeft: '10%', marginRight: '10%', paddingBottom: '2%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black',}} gridArea="roster">
-              <h1>Roster</h1>
+            <h1>Roster</h1>
               <Table>
                 <TableHeader>
                   <TableRow>
                     <TableCell>IGN</TableCell>
-                    <TableCell>Rank</TableCell>
+                    <TableCell>Points</TableCell>
+                    <TableCell>Kills</TableCell>
+                    <TableCell>Deaths</TableCell>
+                    <TableCell>Assists</TableCell>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  <TableRow>
-                    <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=JWoIf'>JWoIf</a></TableCell>
-                    <TableCell>Diamond 4</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Quigm'>Quigm</a></TableCell>
-                    <TableCell>Unranked</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=Sariz'>Sariz</a></TableCell>
-                    <TableCell>Diamond 4</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=NoiceFC'>NoiceFC</a></TableCell>
-                    <TableCell>Silver 1</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell><a style={{color: 'black'}} target="_blank" href='https://na.op.gg/summoner/userName=TheDyou'>TheDyou</a></TableCell>
-                    <TableCell>Bronze 2</TableCell>
-                  </TableRow>
+                  {players.map((player) => (
+                    <TableRow key={player.IGN}>
+                      <TableCell><a style={{color: 'black'}} target="_blank" href={'https://na.op.gg/summoner/userName='+player.IGN}>{player.IGN}</a></TableCell>
+                      <TableCell>{player.pointValue}</TableCell>
+                      <TableCell>{player.stats.kills}</TableCell>
+                      <TableCell>{player.stats.deaths}</TableCell>
+                      <TableCell>{player.stats.assists}</TableCell>
+                    </TableRow>
+                  ))}
+                  {players.length < 5 && ( 
+                    <TableRow>
+                      <TableCell></TableCell>
+                      <TableCell></TableCell>
+                      <TableCell>
+                        <form onSubmit={handleAddPlayer}>
+                        <Button icon={<Add />} hoverIndicator onClick={() => setShow(true)} />
+                          {show && (
+                            <Layer
+                              onEsc={() => setShow(false)}
+                              onClickOutside={() => setShow(false)}
+                            >
+                              <Box align='center' round='small' pad='medium' background='rgba(255,255,255,.8)' style={{maxWidth: '40rem', margin: 'auto', borderRadius: '.25em', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black', marginTop: '5%'}}>
+                                <h2>IGN: </h2>
+                                <input
+                                  label='IGN: ' 
+                                  type="text"
+                                  onChange={(e) => handleIGN(e.target.value)}
+                                />
+                                <h2>Point Value: </h2>
+                                <input
+                                  label='Point Value: ' 
+                                  type="text"
+                                  onChange={(e) => handlePoints(e.target.value)}
+                                />
+                                <Button primary type='submit' onClick={() => handleAddPlayer()} style={teamButton} label='Add Player'/>
+                              </Box>
+                            </Layer>
+                          )}
+                        </form>
+                      </TableCell>
+                      <TableCell></TableCell>
+                      <TableCell></TableCell>
+                    </TableRow>
+                  )}
                 </TableBody>
               </Table>
-              <h2>Point Total: 174.8/175</h2>
-              <Button target="_blank" href='https://na.op.gg/multi/query=JWoif%2CQuigm%2CSariz%2CNoiceFC%2CTheDyou%2C' primary style={{fontSize: 'calc(10px + 1.5vmin)', color: 'black', fontWeight: 'bold', backgroundColor: '#fffa75', border: '#fffa75'}} label='Team OP.GG'/>
+              <h2>Point Total: {sum}/{cap}</h2>
+              <Button primary target="_blank" href={link} style={teamButton} label='Team OP.GG'/>
             </Box>
             <Box align='center' round='small' background='rgba(255,255,255,.8)' style={{paddingBottom: '2%', marginLeft: '10%', marginRight: '10%', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black'}} gridArea="matches">
               <h1>Match History</h1>
               <form onSubmit={handleAdd}>
               <h2>Match ID:</h2>
-  
               <input
                 type="text"
                 onChange={(e) => handleChange(e.target.value)}
               />
-              <Button type='submit' style={{fontSize: 'calc(10px + 1.5vmin)', color: 'black', fontWeight: 'bold', marginLeft: '10px', backgroundColor: '#fffa75', border: '#fffa75'}} label='Add Game'/>
+              <Select
+                defaultValue='Week ?'
+                size='small'
+                margin='small'
+                options={['week 1', 'week 2', 'week 3', 'week 4', 'week 5', 'week 6', 'week 7']}
+                value={week}
+                onChange={({ option }) => setWeek(option)}
+              />
+              <Button type='submit' style={teamButton} label='Add Game'/>
               </form>
             </Box>
             </Grid>
             {games.map((game) => (
-              <Game game={game} captain={captain}/>
+              <Game key={game.gameID} game={game} captain={captain}/>
             ))}
         </Grommet >
       )
