@@ -298,7 +298,7 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
         temp += parseFloat(player.pointValue)
         templink += player.IGN.replace(/\s/g, '') + '%2C%20'
       })
-      setSum(temp)
+      setSum(Math.round(temp * Math.pow(10, 1)) / Math.pow(10, 1))
       setLink(templink)
     }, [players])
     
