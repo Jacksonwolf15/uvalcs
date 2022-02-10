@@ -4,10 +4,6 @@ import { Box, Grommet, Table, TableBody, TableCell, TableHeader, TableRow, Meter
 
 
 const Game = ({game}) => {
-    
-  
-    
-    
     const damage1 = Math.max(game.member1dmg, game.member2dmg,game.member3dmg, game.member4dmg,game.member5dmg)
     const damage2 = Math.max(game.oppmember1dmg,game.oppmember2dmg, game.oppmember3dmg,game.oppmember4dmg, game.oppmember5dmg)
     const kills = game.homeKills
@@ -22,7 +18,7 @@ const Game = ({game}) => {
     let image8 = 'https://fastcdn.mobalytics.gg/assets/lol/images/dd/champions/icons/' + game.oppmember3champname + '.png'
     let image9 = 'https://fastcdn.mobalytics.gg/assets/lol/images/dd/champions/icons/' + game.oppmember4champname + '.png'
     let image10 = 'https://fastcdn.mobalytics.gg/assets/lol/images/dd/champions/icons/' + game.oppmember5champname + '.png'
-    if (game.win) { //make everything in the boxes and the box static size.
+    if (game.win) { 
     return (
       <div  style={{display: "flex", flexDirection: "column", marginTop: '4%', marginRight: '-2%'}}> 
           <Grommet>

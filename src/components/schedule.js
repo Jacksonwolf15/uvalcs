@@ -1,6 +1,6 @@
 import '../App.css';
 import React from "react";
-import { Box, Grommet, Table, TableBody, TableCell, TableHeader, TableRow, Meter} from 'grommet';
+import { Grommet, Table, TableBody, TableCell, TableHeader, TableRow} from 'grommet';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 
