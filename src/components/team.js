@@ -184,11 +184,10 @@ const config = {
   const riotKey = process.env.REACT_APP_riotKey
   
   try {
-    const firebaseApp = initializeApp(config)
+    initializeApp(config)
   }
-  
   catch {
-  
+    
   }
 
 function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLosses, teamTies}) {

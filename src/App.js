@@ -20,9 +20,8 @@ const config = {
 };
 
 try {
-  const firebaseApp = initializeApp(config)
+  initializeApp(config)
 }
-
 catch {
 
 }
