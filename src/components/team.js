@@ -178,7 +178,8 @@ const config = {
     '142': 'zoe',
     '143': 'zyra',
     '711': 'vex',
-    '221': 'zeri'
+    '221': 'zeri',
+    '888': 'renataglasc'
   }
   
   const riotKey = process.env.REACT_APP_riotKey

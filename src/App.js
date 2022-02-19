@@ -47,7 +47,7 @@ function App() {
     setItems([])
     let temp = []
     for (let i = 0; i < teams.length; i++) {
-      temp.push({label: teams[i].name, href: '/' + teams[i].name.replace(/ /g, '')})
+      temp.push({label: teams[i].name, href: '/' + teams[i].name.replace(/ /g, '').replace('?', '').replace('.', '')})
     }
     setItems(temp)
   }, [teams])
@@ -74,7 +74,7 @@ function App() {
           <div className='box' >
           <Switch>
             {teams.map((team) => (
-              <Route key={team.teamName} path={'/' + team.name.replace(/ /g, '')}>
+              <Route key={team.teamName} path={'/' + team.name.replace(/ /g, '').replace('?', '').replace('.', '')}>
                 <Team key={team.teamName} teamKey={team.teamName} Name={team.name} captain={team.captain} teamColor1={team.teamColor1} teamColor2={team.teamColor2} teamWins={team.wins} teamLosses={team.losses} teamTies={team.ties}/>
               </Route> 
             ))}
@@ -97,7 +97,7 @@ function App() {
               <TableRow>
                 {teams.map((team) => (
                   <TableCell key={team.teamName}>
-                    <Anchor key={team.teamName} style={{fontSize: 'calc(6px + 1.25vmin)'}} color='white' href={team.name.replace(/ /g, '')} label={team.name}></Anchor>
+                    <Anchor key={team.teamName} style={{fontSize: 'calc(6px + 1.25vmin)'}} color='white' href={team.name.replace(/ /g, '').replace('?', '').replace('.', '')} label={team.name}></Anchor>
                   </TableCell> 
                 ))}
               </TableRow>
@@ -109,7 +109,7 @@ function App() {
           <div className='box' >
           <Switch>
             {teams.map((team) => (
-              <Route key={team.teamName} path={'/' + team.name.replace(/ /g, '')}>
+              <Route key={team.teamName} path={'/' + team.name.replace(/ /g, '').replace('?', '').replace('.', '')}>
                 <Team key={team.teamName} teamKey={team.teamName} Name={team.name} captain={team.captain} teamColor1={team.teamColor1} teamColor2={team.teamColor2} teamWins={team.wins} teamLosses={team.losses} teamTies={team.ties} />
               </Route> 
             ))}
