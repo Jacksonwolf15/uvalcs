@@ -762,7 +762,19 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {players.map((player) => (
+                  {players.map((player) => {
+                  if (player.IGN === 'ScizorX5o' || player.IGN === 'klauspeng' || player.IGN === 'lukaspeng') {
+                    return (
+                      <TableRow key={player.IGN}>
+                        <TableCell><a style={{color: 'black'}} target="_blank" href={'https://na.op.gg/summoner/userName='+player.IGN}>{player.IGN}</a></TableCell>
+                        <TableCell><a target="_blank" href={'https://na.whatismymmr.com/' + player.IGN}>{player.pointValue + '*'}</a></TableCell>
+                        <TableCell>{player.stats.kills}</TableCell>
+                        <TableCell>{player.stats.deaths}</TableCell>
+                        <TableCell>{player.stats.assists}</TableCell>
+                      </TableRow>
+                    )
+                  }
+                  return (
                     <TableRow key={player.IGN}>
                       <TableCell><a style={{color: 'black'}} target="_blank" href={'https://na.op.gg/summoner/userName='+player.IGN}>{player.IGN}</a></TableCell>
                       <TableCell>{player.pointValue}</TableCell>
@@ -770,7 +782,7 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
                       <TableCell>{player.stats.deaths}</TableCell>
                       <TableCell>{player.stats.assists}</TableCell>
                     </TableRow>
-                  ))}
+                  )})}
                   {players.length < 5 && ( 
                     <TableRow>
                       <TableCell></TableCell>
@@ -874,15 +886,27 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {players.map((player) => (
+                  {players.map((player) => {
+                  if (player.IGN === 'ScizorX5o' || player.IGN === 'klauspeng' || player.IGN === 'lukaspeng') {
+                    return (
                       <TableRow key={player.IGN}>
                         <TableCell><a style={{color: 'black'}} target="_blank" href={'https://na.op.gg/summoner/userName='+player.IGN}>{player.IGN}</a></TableCell>
-                        <TableCell>{player.pointValue}</TableCell>
+                        <TableCell><a target="_blank" href={'https://na.whatismymmr.com/' + player.IGN}>{player.pointValue + '*'}</a></TableCell>
                         <TableCell>{player.stats.kills}</TableCell>
                         <TableCell>{player.stats.deaths}</TableCell>
                         <TableCell>{player.stats.assists}</TableCell>
                       </TableRow>
-                    ))}
+                    )
+                  }
+                  return (
+                    <TableRow key={player.IGN}>
+                      <TableCell><a style={{color: 'black'}} target="_blank" href={'https://na.op.gg/summoner/userName='+player.IGN}>{player.IGN}</a></TableCell>
+                      <TableCell>{player.pointValue}</TableCell>
+                      <TableCell>{player.stats.kills}</TableCell>
+                      <TableCell>{player.stats.deaths}</TableCell>
+                      <TableCell>{player.stats.assists}</TableCell>
+                    </TableRow>
+                  )})}
                     {players.length < 5 && ( 
                       <TableRow>
                         <TableCell></TableCell>
