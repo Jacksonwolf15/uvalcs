@@ -199,7 +199,6 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
     const [sum, setSum] = useState(0)
     const [link, setLink] = useState('')
     const [schedule, setSchedule] = useState([])
-    const [show, setShow] = useState(false)
     const [week, setWeek] = useState('Game ?')
     const [wins, setWins] = useState(teamWins)
     const [losses, setLosses] = useState(teamLosses)
@@ -305,8 +304,6 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
     };
 
     function writeGameData(json) {
-      // A post entry.
-      //figure out how to get win to work and make a useEffect with teamWins, losses, and ties to make sure it updates correctly if they're doing multiple weeks
         get(child(ref(getDatabase()), teamKey + '/schedule/' + week.replace(/\s/g, ''))).then((snapshot) => {
           const db = getDatabase()
 
@@ -379,6 +376,10 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
 
           let win = false
           if (snapshot.exists()) {
+            if (snapshot.val().homeWins === 1 || snapshot.val().awayWins === 1) {
+              alert("You've already entered a game for this week!")
+              return
+            }
             if (gameData.member1 === captain || gameData.member2 === captain || gameData.member3 === captain || gameData.member4 === captain || gameData.member5 === captain) {
               if (gameData.homeWin) {
                 win = true
