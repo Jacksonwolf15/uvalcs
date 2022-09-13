@@ -191,7 +191,7 @@ const config = {
     
   }
 
-function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLosses, teamTies}) {
+function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLosses}) {
     const [input, setInput] = useState("")
     const [games, setGames] = useState([])
     const [submit, setSubmit] = useState(false)
@@ -199,15 +199,12 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
     const [sum, setSum] = useState(0)
     const [link, setLink] = useState('')
     const [schedule, setSchedule] = useState([])
-    const [points, setPoints] = useState(0)
-    const [IGN, setIGN] = useState('')
     const [show, setShow] = useState(false)
-    const [week, setWeek] = useState('week ?')
+    const [week, setWeek] = useState('Game ?')
     const [wins, setWins] = useState(teamWins)
-    const [ties, setTies] = useState(teamTies)
     const [losses, setLosses] = useState(teamLosses)
 
-    let cap = 175 
+    let cap = 170
 
     const bgteam = {
         animation: 'slide 3s ease-in-out infinite alternate',
@@ -385,6 +382,8 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
             if (gameData.member1 === captain || gameData.member2 === captain || gameData.member3 === captain || gameData.member4 === captain || gameData.member5 === captain) {
               if (gameData.homeWin) {
                 win = true
+                set(ref(db, teamKey + '/wins'), wins + 1)
+                setWins(wins + 1)
                 if (snapshot.val().home === Name) {
                   set(ref(db, teamKey + '/schedule/' + week.replace(/\s/g, '')), {
                     away: snapshot.val().away,
@@ -392,13 +391,6 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
                     homeWins: snapshot.val().homeWins + 1,
                     awayWins: snapshot.val().awayWins
                   });
-                  if (snapshot.val().homeWins === 1) {
-                    set(ref(db, teamKey + '/wins'), wins + 1)
-                    setWins(wins + 1)
-                  } else if (snapshot.val().awayWins === 1) {
-                    set(ref(db, teamKey + '/ties'), ties + 1)
-                    setTies(ties + 1)
-                  }
                 } else {
                   set(ref(db, teamKey + '/schedule/' + week.replace(/\s/g, '')), {
                     away: snapshot.val().away,
@@ -406,16 +398,11 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
                     homeWins: snapshot.val().homeWins,
                     awayWins: snapshot.val().awayWins + 1
                   });
-                  if (snapshot.val().homeWins === 1) {
-                    set(ref(db, teamKey + '/ties'), ties + 1)
-                    setTies(ties + 1)
-                  } else if (snapshot.val().awayWins === 1) {
-                    set(ref(db, teamKey + '/wins'), wins + 1)
-                    setWins(wins + 1)
-                  }
                 }
               } else {
                 win = false
+                set(ref(db, teamKey + '/losses'), losses + 1)
+                setLosses(losses + 1)
                 if (snapshot.val().home === Name) {
                   set(ref(db, teamKey + '/schedule/' + week.replace(/\s/g, '')), {
                     away: snapshot.val().away,
@@ -423,13 +410,6 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
                     homeWins: snapshot.val().homeWins,
                     awayWins: snapshot.val().awayWins + 1
                   });
-                  if (snapshot.val().homeWins === 1) {
-                    set(ref(db, teamKey + '/ties'), ties + 1)
-                    setTies(ties + 1)
-                  } else if (snapshot.val().awayWins === 1) {
-                    set(ref(db, teamKey + '/losses'), losses + 1)
-                    setLosses(losses + 1)
-                  }
                 } else {
                   set(ref(db, teamKey + '/schedule/' + week.replace(/\s/g, '')), {
                     away: snapshot.val().away,
@@ -437,18 +417,13 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
                     homeWins: snapshot.val().homeWins + 1,
                     awayWins: snapshot.val().awayWins
                   });
-                  if (snapshot.val().homeWins === 1) {
-                    set(ref(db, teamKey + '/losses'), losses + 1)
-                    setLosses(losses + 1)
-                  } else if (snapshot.val().awayWins === 1) {
-                    set(ref(db, teamKey + '/ties'), ties + 1)
-                    setTies(ties + 1)
-                  }
                 }
               }
             } else {
               if (!gameData.homeWin) {
                 win = true
+                set(ref(db, teamKey + '/wins'), wins + 1)
+                setWins(wins + 1)
                 if (snapshot.val().home === Name) {
                   set(ref(db, teamKey + '/schedule/' + week.replace(/\s/g, '')), {
                     away: snapshot.val().away,
@@ -456,13 +431,6 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
                     homeWins: snapshot.val().homeWins + 1,
                     awayWins: snapshot.val().awayWins
                   });
-                  if (snapshot.val().homeWins === 1) {
-                    set(ref(db, teamKey + '/wins'), wins + 1)
-                    setWins(wins + 1)
-                  } else if (snapshot.val().awayWins === 1) {
-                    set(ref(db, teamKey + '/ties'), ties + 1)
-                    setTies(ties + 1)
-                  }
                 } else {
                   set(ref(db, teamKey + '/schedule/' + week.replace(/\s/g, '')), {
                     away: snapshot.val().away,
@@ -470,16 +438,11 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
                     homeWins: snapshot.val().homeWins,
                     awayWins: snapshot.val().awayWins + 1
                   });
-                  if (snapshot.val().homeWins === 1) {
-                    set(ref(db, teamKey + '/ties'), ties + 1)
-                    setTies(ties + 1)
-                  } else if (snapshot.val().awayWins === 1) {
-                    set(ref(db, teamKey + '/wins'), wins + 1)
-                    setWins(wins + 1)
-                  }
                 }
               } else {
                 win = false
+                set(ref(db, teamKey + '/losses'), losses + 1)
+                setLosses(losses + 1)
                 if (snapshot.val().home === Name) {
                   set(ref(db, teamKey + '/schedule/' + week.replace(/\s/g, '')), {
                     away: snapshot.val().away,
@@ -487,13 +450,6 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
                     homeWins: snapshot.val().homeWins,
                     awayWins: snapshot.val().awayWins + 1
                   });
-                  if (snapshot.val().homeWins === 1) {
-                    set(ref(db, teamKey + '/ties'), ties + 1)
-                    setTies(ties + 1)
-                  } else if (snapshot.val().awayWins === 1) {
-                    set(ref(db, teamKey + '/losses'), losses + 1)
-                    setLosses(losses + 1)
-                  }
                 } else {
                   set(ref(db, teamKey + '/schedule/' + week.replace(/\s/g, '')), {
                     away: snapshot.val().away,
@@ -501,13 +457,6 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
                     homeWins: snapshot.val().homeWins + 1,
                     awayWins: snapshot.val().awayWins
                   });
-                  if (snapshot.val().homeWins === 1) {
-                    set(ref(db, teamKey + '/losses'), losses + 1)
-                    setLosses(ties + 1)
-                  } else if (snapshot.val().awayWins === 1) {
-                    set(ref(db, teamKey + '/ties'), ties + 1)
-                    setTies(ties + 1)
-                  }
                 }
               }
             }
@@ -568,7 +517,7 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
               deaths: players[i].stats.deaths + gameData.member1deaths,
               damage: players[i].stats.damage + gameData.member1dmg,
             };
-            set(ref(db, teamKey + '/players/' + gameData.member1 +'/stats'), playerStats)
+            set(ref(db, teamKey + '/players/player_' + (i+1) + '/stats'), playerStats)
           } else if (players[i].IGN === gameData.member2) {
             let playerStats = {
               kills: players[i].stats.kills + gameData.member2kills,
@@ -576,7 +525,7 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
               deaths: players[i].stats.deaths + gameData.member2deaths,
               damage: players[i].stats.damage + gameData.member2dmg,
             };
-            set(ref(db, teamKey + '/players/' + gameData.member2 +'/stats'), playerStats)
+            set(ref(db, teamKey + '/players/player_' + (i+1) +'/stats'), playerStats)
           } else if (players[i].IGN === gameData.member3) {
             let playerStats = {
               kills: players[i].stats.kills + gameData.member3kills,
@@ -584,7 +533,7 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
               deaths: players[i].stats.deaths + gameData.member3deaths,
               damage: players[i].stats.damage + gameData.member3dmg,
             };
-            set(ref(db, teamKey + '/players/' + gameData.member3 +'/stats'), playerStats)
+            set(ref(db, teamKey + '/players/player_' + (i+1) +'/stats'), playerStats)
           } else if (players[i].IGN === gameData.member4) {
             let playerStats = {
               kills: players[i].stats.kills + gameData.member4kills,
@@ -592,7 +541,7 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
               deaths: players[i].stats.deaths + gameData.member4deaths,
               damage: players[i].stats.damage + gameData.member4dmg,
             };
-            set(ref(db, teamKey + '/players/' + gameData.member4 +'/stats'), playerStats)
+            set(ref(db, teamKey + '/players/player_' + (i+1) +'/stats'), playerStats)
           } else if (players[i].IGN === gameData.member5) {
             let playerStats = {
               kills: players[i].stats.kills + gameData.member5kills,
@@ -600,7 +549,7 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
               deaths: players[i].stats.deaths + gameData.member5deaths,
               damage: players[i].stats.damage + gameData.member5dmg,
             };
-            set(ref(db, teamKey + '/players/' + gameData.member5 +'/stats'), playerStats)
+            set(ref(db, teamKey + '/players/player_' + (i+1) +'/stats'), playerStats)
           } else if (players[i].IGN === gameData.oppmember1) {
             let playerStats = {
               kills: players[i].stats.kills + gameData.oppmember1kills,
@@ -608,7 +557,7 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
               deaths: players[i].stats.deaths + gameData.oppmember1deaths,
               damage: players[i].stats.damage + gameData.oppmember1dmg,
             };
-            set(ref(db, teamKey + '/players/' + gameData.oppmember1 +'/stats'), playerStats)
+            set(ref(db, teamKey + '/players/player_' + (i+1) +'/stats'), playerStats)
           } else if (players[i].IGN === gameData.oppmember2) {
             let playerStats = {
               kills: players[i].stats.kills + gameData.oppmember2kills,
@@ -616,7 +565,7 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
               deaths: players[i].stats.deaths + gameData.oppmember2deaths,
               damage: players[i].stats.damage + gameData.oppmember2dmg,
             };
-            set(ref(db, teamKey + '/players/' + gameData.oppmember2 +'/stats'), playerStats)
+            set(ref(db, teamKey + '/players/player_' + (i+1) +'/stats'), playerStats)
           } else if (players[i].IGN === gameData.oppmember3) {
             let playerStats = {
               kills: players[i].stats.kills + gameData.oppmember3kills,
@@ -624,7 +573,7 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
               deaths: players[i].stats.deaths + gameData.oppmember3deaths,
               damage: players[i].stats.damage + gameData.oppmember3dmg,
             };
-            set(ref(db, teamKey + '/players/' + gameData.oppmember3 +'/stats'), playerStats)
+            set(ref(db, teamKey + '/players/player_' + (i+1) +'/stats'), playerStats)
           } else if (players[i].IGN === gameData.oppmember4) {
             let playerStats = {
               kills: players[i].stats.kills + gameData.oppmember4kills,
@@ -632,7 +581,7 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
               deaths: players[i].stats.deaths + gameData.oppmember4deaths,
               damage: players[i].stats.damage + gameData.oppmember4dmg,
             };
-            set(ref(db, teamKey + '/players/' + gameData.oppmember4 +'/stats'), playerStats)
+            set(ref(db, teamKey + '/players/player_' + (i+1) +'/stats'), playerStats)
           } else if (players[i].IGN === gameData.oppmember5) {
             let playerStats = {
               kills: players[i].stats.kills + gameData.oppmember5kills,
@@ -640,14 +589,14 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
               deaths: players[i].stats.deaths + gameData.oppmember5deaths,
               damage: players[i].stats.damage + gameData.oppmember5dmg,
             };
-            set(ref(db, teamKey + '/players/' + gameData.oppmember5 +'/stats'), playerStats)
+            set(ref(db, teamKey + '/players/player_' + (i+1) +'/stats'), playerStats)
           }
         }
           let postListRef = ref(db, teamKey + '/games/');
           let newPostRef = push(postListRef);
           set(newPostRef, gameData);
           setInput('')
-          setWeek('week ?')
+          setWeek('Game ?')
           setSubmit(!submit)
           alert("Game Entry Successful!")
         }).catch((error) => {
@@ -660,8 +609,8 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
       e.preventDefault();
       if (input.length !== 10) {
         alert("Please enter a valid game ID");
-      } else if (week === 'week ?' || week === ''){
-        alert('Please select a week');
+      } else if (week === 'Game ?' || week === ''){
+        alert('Please select a game');
       } else {
         fetch("https://americas.api.riotgames.com/lol/match/v5/matches/NA1_" + input + "?api_key=" + riotKey)
           .then((res) => res.json())
@@ -671,34 +620,6 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
       }
     };
 
-    const handleAddPlayer = () => {
-      const db = getDatabase()
-      // A post entry.
-      const playerData = {
-        IGN: IGN,
-        stats: {
-          kills: 0,
-          assists: 0,
-          deaths: 0,
-          damage: 0
-        },
-        pointValue: points,
-      };
-
-      set(ref(db, teamKey + '/players/' + IGN), playerData);
-      setIGN('')
-      setPoints(0)
-      setSubmit(!submit)
-      setShow(false)
-    }
-
-    const handleIGN = (newIGN) => {
-      setIGN(newIGN)
-    }
-
-    const handlePoints = (newPoints) => {
-      setPoints(newPoints)
-    }
     const bigscreen = useMediaQuery('(min-width: 1138px)');
 
     if (bigscreen) { 
@@ -741,61 +662,15 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
                 </TableHeader>
                 <TableBody>
                   {players.map((player) => {
-                  if (player.IGN === 'ScizorX5o' || player.IGN === 'klauspeng' || player.IGN === 'lukaspeng') {
                     return (
                       <TableRow key={player.IGN}>
                         <TableCell><a style={{color: 'black'}} target="_blank" href={'https://na.op.gg/summoner/userName='+player.IGN}>{player.IGN}</a></TableCell>
-                        <TableCell><a target="_blank" href={'https://na.whatismymmr.com/' + player.IGN}>{player.pointValue + '*'}</a></TableCell>
+                        <TableCell>{player.pointValue}</TableCell>
                         <TableCell>{player.stats.kills}</TableCell>
                         <TableCell>{player.stats.deaths}</TableCell>
                         <TableCell>{player.stats.assists}</TableCell>
                       </TableRow>
-                    )
-                  }
-                  return (
-                    <TableRow key={player.IGN}>
-                      <TableCell><a style={{color: 'black'}} target="_blank" href={'https://na.op.gg/summoner/userName='+player.IGN}>{player.IGN}</a></TableCell>
-                      <TableCell>{player.pointValue}</TableCell>
-                      <TableCell>{player.stats.kills}</TableCell>
-                      <TableCell>{player.stats.deaths}</TableCell>
-                      <TableCell>{player.stats.assists}</TableCell>
-                    </TableRow>
-                  )})}
-                  {players.length < 5 && ( 
-                    <TableRow>
-                      <TableCell></TableCell>
-                      <TableCell></TableCell>
-                      <TableCell>
-                        <form onSubmit={handleAddPlayer}>
-                        <Button icon={<Add />} hoverIndicator onClick={() => setShow(true)} />
-                          {show && (
-                            <Layer
-                              onEsc={() => setShow(false)}
-                              onClickOutside={() => setShow(false)}
-                            >
-                              <Box align='center' round='small' pad='medium' background='rgba(255,255,255,.8)' style={{maxWidth: '40rem', margin: 'auto', borderRadius: '.25em', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black', marginTop: '5%'}}>
-                                <h2>IGN: </h2>
-                                <input
-                                  label='IGN: ' 
-                                  type="text"
-                                  onChange={(e) => handleIGN(e.target.value)}
-                                />
-                                <h2>Point Value: </h2>
-                                <input
-                                  label='Point Value: ' 
-                                  type="text"
-                                  onChange={(e) => handlePoints(e.target.value)}
-                                />
-                                <Button primary type='submit' onClick={() => handleAddPlayer()} style={teamButton} label='Add Player'/>
-                              </Box>
-                            </Layer>
-                          )}
-                        </form>
-                      </TableCell>
-                      <TableCell></TableCell>
-                      <TableCell></TableCell>
-                    </TableRow>
-                  )}
+                    )})}
                 </TableBody>
               </Table>
               <h2>Point Total: {sum}/{cap}</h2>
@@ -810,10 +685,10 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
                 onChange={(e) => handleChange(e.target.value)}
               />
               <Select
-                defaultValue='Week ?'
+                defaultValue='Game ?'
                 size='medium'
                 margin='small'
-                options={['week 1', 'week 2', 'week 3', 'week 4', 'week 5', 'week 6', 'week 7']}
+                options={['Game 1', 'Game 2', 'Game 3', 'Game 4', 'Game 5', 'Game 6', 'Game 7', 'Game 8', 'Game 9', 'Game 10', 'Game 11', 'Game 12', 'Game 13', 'Game 14', 'Game 15', 'Game 16', 'Game 17', 'Game 18', 'Game 19', 'Game 20', 'Game 21', 'Game 22']}
                 value={week}
                 onChange={({ option }) => setWeek(option)}
               />
@@ -885,41 +760,6 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
                       <TableCell>{player.stats.assists}</TableCell>
                     </TableRow>
                   )})}
-                    {players.length < 5 && ( 
-                      <TableRow>
-                        <TableCell></TableCell>
-                        <TableCell></TableCell>
-                        <TableCell>
-                          <form onSubmit={handleAddPlayer}>
-                          <Button icon={<Add />} hoverIndicator onClick={() => setShow(true)} />
-                            {show && (
-                              <Layer
-                                onEsc={() => setShow(false)}
-                                onClickOutside={() => setShow(false)}
-                              >
-                                <Box align='center' round='small' pad='medium' background='rgba(255,255,255,.8)' style={{maxWidth: '40rem', margin: 'auto', borderRadius: '.25em', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black', marginTop: '5%'}}>
-                                  <h2>IGN: </h2>
-                                  <input
-                                    label='IGN: ' 
-                                    type="text"
-                                    onChange={(e) => handleIGN(e.target.value)}
-                                  />
-                                  <h2>Point Value: </h2>
-                                  <input
-                                    label='Point Value: ' 
-                                    type="text"
-                                    onChange={(e) => handlePoints(e.target.value)}
-                                  />
-                                  <Button primary type='submit' onClick={() => handleAddPlayer()} style={teamButton} label='Add Player'/>
-                                </Box>
-                              </Layer>
-                            )}
-                          </form>
-                        </TableCell>
-                        <TableCell></TableCell>
-                        <TableCell></TableCell>
-                      </TableRow>
-                    )}
                   </TableBody>
                 </Table>
                 <h2>Point Total: {sum}/{cap}</h2>
@@ -934,10 +774,10 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
                   onChange={(e) => handleChange(e.target.value)}
                 />
                 <Select
-                  defaultValue='Week ?'
+                  defaultValue='Game ?'
                   size='small'
                   margin='small'
-                  options={['week 1', 'week 2', 'week 3', 'week 4', 'week 5', 'week 6', 'week 7']}
+                  options={['Game 1', 'Game 2', 'Game 3', 'Game 4', 'Game 5', 'Game 6', 'Game 7', 'Game 8', 'Game 9', 'Game 10', 'Game 11', 'Game 12', 'Game 13', 'Game 14', 'Game 15', 'Game 16', 'Game 17', 'Game 18', 'Game 19', 'Game 20', 'Game 21', 'Game 22']}
                   value={week}
                   onChange={({ option }) => setWeek(option)}
                 />
