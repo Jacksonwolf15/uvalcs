@@ -377,7 +377,7 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
           let win = false
           if (snapshot.exists()) {
             if (snapshot.val().homeWins === 1 || snapshot.val().awayWins === 1) {
-              alert("You've already entered a game for this week!")
+              alert("You've already entered a data for this game!")
               return
             }
             if (gameData.member1 === captain || gameData.member2 === captain || gameData.member3 === captain || gameData.member4 === captain || gameData.member5 === captain) {
