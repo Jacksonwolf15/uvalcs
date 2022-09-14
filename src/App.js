@@ -52,7 +52,6 @@ function App() {
     setItems(temp)
   }, [teams])
   
-
   const bigscreen = useMediaQuery('(min-width: 1020px)');
   if (!bigscreen) {
     return (
