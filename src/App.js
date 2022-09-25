@@ -73,8 +73,8 @@ function App() {
           <div className='box' >
           <Switch>
             {teams.map((team) => (
-              <Route key={team.teamName} path={'/' + team.name.replace(/ /g, '').replace('?', '').replace('.', '')}>
-                <Team key={team.teamName} teamKey={team.teamName} Name={team.name} captain={team.captain} teamColor1={team.teamColor1} teamColor2={team.teamColor2} teamWins={team.wins} teamLosses={team.losses} teamTies={team.ties}/>
+              <Route key={team.name} path={'/' + team.name.replace(/ /g, '').replace('?', '').replace('.', '')}>
+                <Team key={team.name} teamKey={team.id} Name={team.name} captain={team.captain} teamColor1={team.teamColor1} teamColor2={team.teamColor2} teamWins={team.wins} teamLosses={team.losses}/>
               </Route> 
             ))}
             <Route path="/">
@@ -109,7 +109,7 @@ function App() {
           <Switch>
             {teams.map((team) => (
               <Route key={team.teamName} path={'/' + team.name.replace(/ /g, '').replace('?', '').replace('.', '')}>
-                <Team key={team.teamName} teamKey={team.teamName} Name={team.name} captain={team.captain} teamColor1={team.teamColor1} teamColor2={team.teamColor2} teamWins={team.wins} teamLosses={team.losses} teamTies={team.ties} />
+                <Team key={team.name} teamKey={team.id} Name={team.name} captain={team.captain} teamColor1={team.teamColor1} teamColor2={team.teamColor2} teamWins={team.wins} teamLosses={team.losses}/>
               </Route> 
             ))}
             <Route path="/">

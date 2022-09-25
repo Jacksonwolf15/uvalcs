@@ -64,7 +64,7 @@ function Home({teams}) {
             </div> 
           </Box>
           <Box align='center' round='small' pad='medium' background='rgba(255,255,255,.8)' style={{maxWidth: '40rem', margin: 'auto', borderRadius: '.25em', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black', marginTop: '5%'}}>
-            <h1>UVA LCS FALL 2021 SEASON MVP</h1>
+            <h1>UVA LCS FALL 2022 SEASON MVP</h1>
             <Grid style={{}}
             fill 
             rows={['auto']}

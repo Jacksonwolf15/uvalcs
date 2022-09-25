@@ -253,7 +253,7 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
     }
     useEffect(() => {
       const dbRef = ref(getDatabase())
-      get(child(dbRef, teamKey + '/games')).then((snapshot) => {
+      get(child(dbRef, "team_" + teamKey +'/games')).then((snapshot) => {
       if (snapshot.exists()) {
         setGames(Object.values(snapshot.val()))
       } else {
@@ -262,7 +262,7 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
       }).catch((error) => {
         console.error(error);
       });
-      get(child(dbRef, teamKey + '/schedule')).then((snapshot) => {
+      get(child(dbRef, "team_" + teamKey + '/schedule')).then((snapshot) => {
         if (snapshot.exists()) {
           setSchedule(Object.values(snapshot.val()))
         } else {
@@ -275,7 +275,7 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
 
     useEffect(() => {
       const dbRef = ref(getDatabase())
-      get(child(dbRef, teamKey + '/players')).then((snapshot) => {
+      get(child(dbRef, "team_" + teamKey +  '/players')).then((snapshot) => {
         if (snapshot.exists()) {
           setPlayers(Object.values(snapshot.val()))
         } else {
