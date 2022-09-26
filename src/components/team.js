@@ -304,7 +304,7 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
     };
 
     function writeGameData(json) {
-        get(child(ref(getDatabase()), teamKey + '/schedule/' + week.replace(/\s/g, ''))).then((snapshot) => {
+        get(child(ref(getDatabase()), "team_" + teamKey + '/schedule/' + week.replace(/\s/g, ''))).then((snapshot) => {
           const db = getDatabase()
 
           const gameData = {
@@ -383,17 +383,17 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
             if (gameData.member1 === captain || gameData.member2 === captain || gameData.member3 === captain || gameData.member4 === captain || gameData.member5 === captain) {
               if (gameData.homeWin) {
                 win = true
-                set(ref(db, teamKey + '/wins'), wins + 1)
+                set(ref(db, "team_" + teamKey + '/wins'), wins + 1)
                 setWins(wins + 1)
                 if (snapshot.val().home === Name) {
-                  set(ref(db, teamKey + '/schedule/' + week.replace(/\s/g, '')), {
+                  set(ref(db, "team_" + teamKey + '/schedule/' + week.replace(/\s/g, '')), {
                     away: snapshot.val().away,
                     home: snapshot.val().home,
                     homeWins: snapshot.val().homeWins + 1,
                     awayWins: snapshot.val().awayWins
                   });
                 } else {
-                  set(ref(db, teamKey + '/schedule/' + week.replace(/\s/g, '')), {
+                  set(ref(db, "team_" + teamKey + '/schedule/' + week.replace(/\s/g, '')), {
                     away: snapshot.val().away,
                     home: snapshot.val().home,
                     homeWins: snapshot.val().homeWins,
@@ -402,17 +402,17 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
                 }
               } else {
                 win = false
-                set(ref(db, teamKey + '/losses'), losses + 1)
+                set(ref(db, "team_" + teamKey + '/losses'), losses + 1)
                 setLosses(losses + 1)
                 if (snapshot.val().home === Name) {
-                  set(ref(db, teamKey + '/schedule/' + week.replace(/\s/g, '')), {
+                  set(ref(db, "team_" + teamKey + '/schedule/' + week.replace(/\s/g, '')), {
                     away: snapshot.val().away,
                     home: snapshot.val().home,
                     homeWins: snapshot.val().homeWins,
                     awayWins: snapshot.val().awayWins + 1
                   });
                 } else {
-                  set(ref(db, teamKey + '/schedule/' + week.replace(/\s/g, '')), {
+                  set(ref(db, "team_" + teamKey + '/schedule/' + week.replace(/\s/g, '')), {
                     away: snapshot.val().away,
                     home: snapshot.val().home,
                     homeWins: snapshot.val().homeWins + 1,
@@ -423,17 +423,17 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
             } else {
               if (!gameData.homeWin) {
                 win = true
-                set(ref(db, teamKey + '/wins'), wins + 1)
+                set(ref(db, "team_" + teamKey + '/wins'), wins + 1)
                 setWins(wins + 1)
                 if (snapshot.val().home === Name) {
-                  set(ref(db, teamKey + '/schedule/' + week.replace(/\s/g, '')), {
+                  set(ref(db, "team_" + teamKey + '/schedule/' + week.replace(/\s/g, '')), {
                     away: snapshot.val().away,
                     home: snapshot.val().home,
                     homeWins: snapshot.val().homeWins + 1,
                     awayWins: snapshot.val().awayWins
                   });
                 } else {
-                  set(ref(db, teamKey + '/schedule/' + week.replace(/\s/g, '')), {
+                  set(ref(db, "team_" + teamKey + '/schedule/' + week.replace(/\s/g, '')), {
                     away: snapshot.val().away,
                     home: snapshot.val().home,
                     homeWins: snapshot.val().homeWins,
@@ -442,17 +442,17 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
                 }
               } else {
                 win = false
-                set(ref(db, teamKey + '/losses'), losses + 1)
+                set(ref(db, "team_" + teamKey + '/losses'), losses + 1)
                 setLosses(losses + 1)
                 if (snapshot.val().home === Name) {
-                  set(ref(db, teamKey + '/schedule/' + week.replace(/\s/g, '')), {
+                  set(ref(db, "team_" + teamKey + '/schedule/' + week.replace(/\s/g, '')), {
                     away: snapshot.val().away,
                     home: snapshot.val().home,
                     homeWins: snapshot.val().homeWins,
                     awayWins: snapshot.val().awayWins + 1
                   });
                 } else {
-                  set(ref(db, teamKey + '/schedule/' + week.replace(/\s/g, '')), {
+                  set(ref(db, "team_" + teamKey + '/schedule/' + week.replace(/\s/g, '')), {
                     away: snapshot.val().away,
                     home: snapshot.val().home,
                     homeWins: snapshot.val().homeWins + 1,
@@ -518,7 +518,7 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
               deaths: players[i].stats.deaths + gameData.member1deaths,
               damage: players[i].stats.damage + gameData.member1dmg,
             };
-            set(ref(db, teamKey + '/players/player_' + (i+1) + '/stats'), playerStats)
+            set(ref(db, "team_" + teamKey + '/players/player_' + (i+1) + '/stats'), playerStats)
           } else if (players[i].IGN === gameData.member2) {
             let playerStats = {
               kills: players[i].stats.kills + gameData.member2kills,
@@ -526,7 +526,7 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
               deaths: players[i].stats.deaths + gameData.member2deaths,
               damage: players[i].stats.damage + gameData.member2dmg,
             };
-            set(ref(db, teamKey + '/players/player_' + (i+1) +'/stats'), playerStats)
+            set(ref(db, "team_" + teamKey + '/players/player_' + (i+1) +'/stats'), playerStats)
           } else if (players[i].IGN === gameData.member3) {
             let playerStats = {
               kills: players[i].stats.kills + gameData.member3kills,
@@ -534,7 +534,7 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
               deaths: players[i].stats.deaths + gameData.member3deaths,
               damage: players[i].stats.damage + gameData.member3dmg,
             };
-            set(ref(db, teamKey + '/players/player_' + (i+1) +'/stats'), playerStats)
+            set(ref(db, "team_" + teamKey + '/players/player_' + (i+1) +'/stats'), playerStats)
           } else if (players[i].IGN === gameData.member4) {
             let playerStats = {
               kills: players[i].stats.kills + gameData.member4kills,
@@ -542,7 +542,7 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
               deaths: players[i].stats.deaths + gameData.member4deaths,
               damage: players[i].stats.damage + gameData.member4dmg,
             };
-            set(ref(db, teamKey + '/players/player_' + (i+1) +'/stats'), playerStats)
+            set(ref(db, "team_" + teamKey + '/players/player_' + (i+1) +'/stats'), playerStats)
           } else if (players[i].IGN === gameData.member5) {
             let playerStats = {
               kills: players[i].stats.kills + gameData.member5kills,
@@ -550,7 +550,7 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
               deaths: players[i].stats.deaths + gameData.member5deaths,
               damage: players[i].stats.damage + gameData.member5dmg,
             };
-            set(ref(db, teamKey + '/players/player_' + (i+1) +'/stats'), playerStats)
+            set(ref(db, "team_" + teamKey + '/players/player_' + (i+1) +'/stats'), playerStats)
           } else if (players[i].IGN === gameData.oppmember1) {
             let playerStats = {
               kills: players[i].stats.kills + gameData.oppmember1kills,
@@ -558,7 +558,7 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
               deaths: players[i].stats.deaths + gameData.oppmember1deaths,
               damage: players[i].stats.damage + gameData.oppmember1dmg,
             };
-            set(ref(db, teamKey + '/players/player_' + (i+1) +'/stats'), playerStats)
+            set(ref(db, "team_" + teamKey + '/players/player_' + (i+1) +'/stats'), playerStats)
           } else if (players[i].IGN === gameData.oppmember2) {
             let playerStats = {
               kills: players[i].stats.kills + gameData.oppmember2kills,
@@ -566,7 +566,7 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
               deaths: players[i].stats.deaths + gameData.oppmember2deaths,
               damage: players[i].stats.damage + gameData.oppmember2dmg,
             };
-            set(ref(db, teamKey + '/players/player_' + (i+1) +'/stats'), playerStats)
+            set(ref(db, "team_" + teamKey + '/players/player_' + (i+1) +'/stats'), playerStats)
           } else if (players[i].IGN === gameData.oppmember3) {
             let playerStats = {
               kills: players[i].stats.kills + gameData.oppmember3kills,
@@ -574,7 +574,7 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
               deaths: players[i].stats.deaths + gameData.oppmember3deaths,
               damage: players[i].stats.damage + gameData.oppmember3dmg,
             };
-            set(ref(db, teamKey + '/players/player_' + (i+1) +'/stats'), playerStats)
+            set(ref(db, "team_" + teamKey + '/players/player_' + (i+1) +'/stats'), playerStats)
           } else if (players[i].IGN === gameData.oppmember4) {
             let playerStats = {
               kills: players[i].stats.kills + gameData.oppmember4kills,
@@ -582,7 +582,7 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
               deaths: players[i].stats.deaths + gameData.oppmember4deaths,
               damage: players[i].stats.damage + gameData.oppmember4dmg,
             };
-            set(ref(db, teamKey + '/players/player_' + (i+1) +'/stats'), playerStats)
+            set(ref(db, "team_" + teamKey + '/players/player_' + (i+1) +'/stats'), playerStats)
           } else if (players[i].IGN === gameData.oppmember5) {
             let playerStats = {
               kills: players[i].stats.kills + gameData.oppmember5kills,
@@ -590,10 +590,10 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
               deaths: players[i].stats.deaths + gameData.oppmember5deaths,
               damage: players[i].stats.damage + gameData.oppmember5dmg,
             };
-            set(ref(db, teamKey + '/players/player_' + (i+1) +'/stats'), playerStats)
+            set(ref(db, "team_" + teamKey + '/players/player_' + (i+1) +'/stats'), playerStats)
           }
         }
-          let postListRef = ref(db, teamKey + '/games/');
+          let postListRef = ref(db, "team_" + teamKey + '/games/');
           let newPostRef = push(postListRef);
           set(newPostRef, gameData);
           setInput('')
