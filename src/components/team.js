@@ -179,7 +179,9 @@ const config = {
     '143': 'zyra',
     '711': 'vex',
     '221': 'zeri',
-    '888': 'renataglasc'
+    '888': 'renataglasc',
+    '895': 'nilah',
+    '200': 'belveth'
   }
   
   const riotKey = process.env.REACT_APP_riotKey
