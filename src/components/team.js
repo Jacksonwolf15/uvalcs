@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-target-blank */
 import '../App.css';
 import React, { useEffect, useState } from "react";
-import { Add } from 'grommet-icons';
+import { Add, Windows } from 'grommet-icons';
 import { Grid, Select, Layer, Button, Box, Grommet, Table, TableBody, TableCell, TableHeader, TableRow } from 'grommet';
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get, set, child, push } from "firebase/database";
@@ -254,40 +254,40 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
       fontWeight: 'bold'
     }
     useEffect(() => {
-      const dbRef = ref(getDatabase())
-      get(child(dbRef, "team_" + teamKey +'/games')).then((snapshot) => {
-      if (snapshot.exists()) {
-        setGames(Object.values(snapshot.val()))
-      } else {
-        console.log("No data available")
-      }
-      }).catch((error) => {
-        console.error(error);
-      });
-      get(child(dbRef, "team_" + teamKey + '/schedule')).then((snapshot) => {
+        const dbRef = ref(getDatabase())
+        get(child(dbRef, "team_" + teamKey +'/games')).then((snapshot) => {
         if (snapshot.exists()) {
-          setSchedule(Object.values(snapshot.val()))
+          setGames(Object.values(snapshot.val()))
         } else {
-          console.log("No schedule available")
+          console.log("No data available")
         }
         }).catch((error) => {
           console.error(error);
         });
+        get(child(dbRef, "team_" + teamKey + '/schedule')).then((snapshot) => {
+          if (snapshot.exists()) {
+            setSchedule(Object.values(snapshot.val()))
+          } else {
+            console.log("No schedule available")
+          }
+          }).catch((error) => {
+            console.error(error);
+          })
     }, [submit, teamKey])
 
     useEffect(() => {
-      const dbRef = ref(getDatabase())
-      get(child(dbRef, "team_" + teamKey +  '/players')).then((snapshot) => {
-        if (snapshot.exists()) {
-          setPlayers(Object.values(snapshot.val()))
-        } else {
-          console.log("No player data available")
-        }
-      }).catch((error) => {
-        console.log(error);
-      })
-    }, [teamKey, submit, players])
+        const dbRef = ref(getDatabase())
+        get(child(dbRef, "team_" + teamKey +  '/players')).then((snapshot) => {
+          if (snapshot.exists()) {
+            setPlayers(Object.values(snapshot.val()))
+          } else {
+            console.log("No player data available")
+          }
+        }).catch((error) => {
+          console.log(error);
+        })
 
+    }, [teamKey, submit, players])
 
     useEffect(() => {
       let temp  = 0
@@ -299,13 +299,13 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
       setSum(Math.round(temp * Math.pow(10, 1)) / Math.pow(10, 1))
       setLink(templink)
     }, [players])
-    
   
     const handleChange = (newInput) => {
       setInput(newInput);
     };
 
     function writeGameData(json) {
+      console.log("team_" + teamKey + '/schedule/' + week.replace(/\s/g, ''))
         get(child(ref(getDatabase()), "team_" + teamKey + '/schedule/' + week.replace(/\s/g, ''))).then((snapshot) => {
           const db = getDatabase()
 
@@ -691,7 +691,7 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
                 defaultValue='Game ?'
                 size='medium'
                 margin='small'
-                options={['Game 1', 'Game 2', 'Game 3', 'Game 4', 'Game 5', 'Game 6', 'Game 7', 'Game 8', 'Game 9', 'Game 10', 'Game 11', 'Game 12', 'Game 13', 'Game 14', 'Game 15', 'Game 16', 'Game 17', 'Game 18', 'Game 19', 'Game 20', 'Game 21', 'Game 22']}
+                options={['Game 01', 'Game 02', 'Game 03', 'Game 04', 'Game 05', 'Game 06', 'Game 07', 'Game 08', 'Game 09', 'Game 10', 'Game 11', 'Game 12', 'Game 13', 'Game 14', 'Game 15', 'Game 16', 'Game 17', 'Game 18', 'Game 19', 'Game 20', 'Game 21', 'Game 22']}
                 value={week}
                 onChange={({ option }) => setWeek(option)}
               />
@@ -769,7 +769,7 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
                   defaultValue='Game ?'
                   size='small'
                   margin='small'
-                  options={['Game 1', 'Game 2', 'Game 3', 'Game 4', 'Game 5', 'Game 6', 'Game 7', 'Game 8', 'Game 9', 'Game 10', 'Game 11', 'Game 12', 'Game 13', 'Game 14', 'Game 15', 'Game 16', 'Game 17', 'Game 18', 'Game 19', 'Game 20', 'Game 21', 'Game 22']}
+                  options={['Game 01', 'Game 02', 'Game 03', 'Game 04', 'Game 05', 'Game 06', 'Game 07', 'Game 08', 'Game 09', 'Game 10', 'Game 11', 'Game 12', 'Game 13', 'Game 14', 'Game 15', 'Game 16', 'Game 17', 'Game 18', 'Game 19', 'Game 20', 'Game 21', 'Game 22']}
                   value={week}
                   onChange={({ option }) => setWeek(option)}
                 />
