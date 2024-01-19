@@ -691,7 +691,7 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
                 defaultValue='Game ?'
                 size='medium'
                 margin='small'
-                options={['Game 01', 'Game 02', 'Game 03', 'Game 04', 'Game 05', 'Game 06', 'Game 07', 'Game 08', 'Game 09', 'Game 10', 'Game 11', 'Game 12', 'Game 13', 'Game 14', 'Game 15', 'Game 16', 'Game 17', 'Game 18', 'Game 19', 'Game 20', 'Game 21', 'Game 22']}
+                options={['Game 01', 'Game 02', 'Game 03', 'Game 04', 'Game 05', 'Game 06', 'Game 07', 'Game 08', 'Game 09', 'Game 10', 'Game 11']}
                 value={week}
                 onChange={({ option }) => setWeek(option)}
               />
@@ -769,7 +769,7 @@ function Team({teamKey, Name, captain, teamColor1, teamColor2, teamWins, teamLos
                   defaultValue='Game ?'
                   size='small'
                   margin='small'
-                  options={['Game 01', 'Game 02', 'Game 03', 'Game 04', 'Game 05', 'Game 06', 'Game 07', 'Game 08', 'Game 09', 'Game 10', 'Game 11', 'Game 12', 'Game 13', 'Game 14', 'Game 15', 'Game 16', 'Game 17', 'Game 18', 'Game 19', 'Game 20', 'Game 21', 'Game 22']}
+                  options={['Game 01', 'Game 02', 'Game 03', 'Game 04', 'Game 05', 'Game 06', 'Game 07', 'Game 08', 'Game 09', 'Game 10', 'Game 11']}
                   value={week}
                   onChange={({ option }) => setWeek(option)}
                 />
