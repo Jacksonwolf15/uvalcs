@@ -17,7 +17,7 @@ function Home({teams}) {
         <div className="bg bg3"></div>
         <header style={{paddingBottom: "5%"}}>
           <Box align='center' round='small' pad='medium' background='rgba(255,255,255,.8)' style={{maxWidth: '40rem', margin: 'auto', borderRadius: '.25em', boxShadow:'0 0 .25em rgba(0,0,0,.25)', color: 'black', marginTop: '5%'}}>
-            <h1>UVA LCS SPRING 2022</h1>
+            <h1>UVA LCS SPRING 2024</h1>
           </Box>
           
           {/* Joe Beason tournament bracket slightly modified
